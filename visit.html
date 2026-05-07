@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+
+<html><head>
+<base href=".">
+<!--<base href="http://cdux.cs.uoregon.edu/">-->
+<!--<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-15">-->
+
+  <title>VisIt Visualization Software</title>
+
+  <link href="style.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+
+<div class="header">
+
+<style>
+img {
+   padding-bottom: 20px
+}
+</style>
+
+<div class="masthead">
+ <a href="./index.html"><img src="./images/general/cdux-banner.png" alt="" height="150" width="768"></a>
+</div>
+
+<div class="navigation">
+  <a class="item" href="index.html">Home</a>
+  <a class="item" href="news.html">News</a>
+  <a class="item" href="research.html">Research</a>
+  <a class="item" href="publications.html">Publications</a>
+  <a class="item" href="people.html">People</a>
+  <a class="item" href="join.html">Prospective Students</a>
+  <!-- <a class="item" href="social.html">Social Events</a> --!>
+ 
+</div> <!-- end nav -->
+
+</div> <!-- end header -->
+
+<div class="content">
+
+<style>
+div.normal {
+    font-size: 100%;
+}
+div.small {
+    font-size: 75%;
+}
+div.larger {
+    font-size: 125%;
+}
+</style>
+
+
+<table>
+<tbody><tr><td class="mainbar">
+
+
+<td width=100% valign=top id="newsletter-encapsulate">
+<span style="font-size: 24px; font-weight:bold">
+
+<br>
+VisIt: An End-User Tool for Visualizing and Analyzing Very Large Data
+
+</span>
+
+<hr size=2 color=black>
+<span style="font-size: 18px">
+
+<img style="border: 1px solid black" src="images/vis/rti.jpeg" width=500 alt="Image" align="right" border="15">
+
+VisIt is an open source, turnkey application for large scale simulated and experimental data sets. Its charter goes beyond pretty pictures; the application is an infrastructure for parallelized, general post-processing of extremely massive data sets. Target use cases include data exploration, comparative analysis, visual debugging, quantitative analysis, and presentation graphics.
+<br>
+<br>
+The VisIt product delivers the efforts of many software developers in a single package. First, VisIt leverages several third party libraries: the Qt widget library for its user interface, the Python programming language for a command line interpreter, and the Visualization ToolKit (VTK) library for its data model and many of its visualization algorithms. On top of that, an additional fifty man-years worth of effort have been devoted to the development of VisIt itself. The VisIt-specific effort has largely been focused on parallelization for large data sets, user interface, implementing custom data analysis routines, addressing non-standard data models (such as adaptive refinement meshes (AMR) and mixed materials zones), and creating a robust overall product. VisIt consists over one and a half million lines of code, and its third party libraries have an additional million lines of code. It has been ported to Windows, Mac, and many UNIX variants.
+<br>
+<br>
+The basic design is a client-server model, where the server is parallelized. The client-server aspect allows for effective visualization in a remote setting, while the parallelization of the server allows for the largest data sets to be processed reasonably interactively. The tool has been used to visualize many large data sets, including a two hundred and sixteen billion data point structured grid, a one billion point particle simulation, and curvilinear, unstructured, and AMR meshes with hundreds of millions to billions of elements.  Further, research efforts have scaled the tool up to work on synthetic data sets with trillions of elements. The most common form of the server is as a stand alone process that reads in data from files. However, an alternate form exists where a simulation code can link in "lib-VisIt" and become itself the server, allowing for in situ visualization and analysis.
+<br>
+<br>
+VisIt follows a data flow network paradigm where interoperable modules are connected to perform custom analysis. The modules come from VisIt's five primary user interface abstractions and there are many examples of each. There are twenty one "plots" (ways to render data), forty-two "operators" (ways to manipulate data), over one hundred file format readers, over fifty "queries" (ways to extract quantitative information), and over one hundred "expressions" (ways to create derived quantities). Further, a plugin capability allows for dynamic incorporation of new plot, operator, and database modules. These plugins can be partially code generated, even including automatic generation of Qt and Python user interfaces.
+<br>
+<br>
+The VisIt project originated at Lawrence Livermore National Laboratory,
+but it has gone on to become a distributed project being developed by many groups, including researchers at the University of Oregon. Hank Childs of UO served as the project architect since its inception in 2000 until becoming a faculty member in 2013.
+
+<h2>People</h2>
+<div style="width:100%;margin-left:auto; margin-right:auto;">
+<div style="float:left;width:200px;min-height:200px;margin:10px;text-align:center;">
+<a href="morrison.html"><img style="border: none" src="./images/people/morrison_cropped.png" alt="" width="150"></a>
+<br>
+<a href="morrison.html"><b>Garrett Morrison</b></a>
+<br>M.S. Student (alum)</div>
+<div style="float:left;width:200px;min-height:200px;margin:10px;text-align:center;">
+<a href="brennan.html"><img style="border: none" src="./images/people/brennan_cropped.jpg" alt="" width="150"></a>
+<br>
+<a href="brennan.html"><b>Jeremy Brennan</b></a>
+<br>Undergrad Researcher (alum)</div>
+<div style="float:left;width:200px;min-height:200px;margin:10px;text-align:center;">
+<a href="maguire.html"><img style="border: none" src="./images/people/maguire_cropped.jpg" alt="" width="150"></a>
+<br>
+<a href="maguire.html"><b>Alister Maguire</b></a>
+<br>Undergrad Researcher (alum)</div>
+<div style="float:left;width:200px;min-height:200px;margin:10px;text-align:center;">
+<a href="childs.html"><img style="border: none" src="./images/people/childs_cropped.png" alt="" width="150"></a>
+<br>
+<a href="childs.html"><b>Hank Childs</b></a>
+<br>CDUX Director</div>
+</div><div class="clearfix"></div>
+
+(The VisIt team consists of many developers, at National Labs, Universities, and private industry.  Only CDUX personnel are listed here.)
+<h2>Publications</h2>
+
+<p><table class="TFtable">
+<tr><td>
+<a name="2011_ChildsSciDAC"></a>
+<div style="float: left; width: 125; margin: 5px; padding: 5px">
+<IMG SRC="pubs/ChildsSciDAC_thumb.jpeg" BORDER="0" width="125"></a></div>
+<br>VisIt: An End-User Tool For Visualizing and Analyzing Very Large Data <br>
+<a href="childs.html">Hank Childs</a>,
+Eric Brugger, Brad Whitlock, Jeremy Meredith, Sean Ahern, Kathleen Bonnell, Mark Miller, Gunther H. Weber, Cyrus Harrison, David Pugmire, Thomas Fogal, Christoph Garth, Allen Sanderson, E. Wes Bethel, Marc Durant, David Camp, Jean M. Favre, Oliver Ruebel, Paul Navratil, Matthew Wheeler, Paul Selby, and Fabien Vivodtzev <br>
+DOE SciDAC Conference, Denver, CO, July 2011 <br>
+<br>[<a href="pubs/ChildsSciDAC.pdf">PDF</a>] &nbsp; &nbsp; [<a href="pubs/ChildsSciDAC.bib">BIB</a>]<br>
+</td></tr>
+<tr><td>
+<a name="2005_ChildsVis05"></a>
+<div style="float: left; width: 125; margin: 5px; padding: 5px">
+<IMG SRC="pubs/ChildsVis05_thumb.jpeg" BORDER="0" width="125"></a></div>
+<br>A Contract-Based System for Large Data Visualization <br>
+<a href="childs.html">Hank Childs</a>,
+Eric Brugger, Kathleen Bonnell,
+<a href="http://ft.ornl.gov/~jsmeredith/">Jeremy Meredith</a>,
+Mark Miller, Brad Whitlock, and
+<a href="http://engineering.ucdavis.edu/biographies/nelson-max/">Nelson Max</a> <br>
+IEEE Visualization, Minneapolis, MN, October 2005 <br>
+<br>[<a href="pubs/ChildsVis05.pdf">PDF</a>] &nbsp; &nbsp; [<a href="pubs/ChildsVis05.bib">BIB</a>]<br>
+</td></tr>
+<tr><td>
+<a name="2010_ChildsCGA"></a>
+<div style="float: left; width: 125; margin: 5px; padding: 5px">
+<IMG SRC="pubs/ChildsCGA_thumb.jpeg" BORDER="0" width="125"></a></div>
+<br>Extreme Scaling of Production Visualization Software on Diverse Architectures <br>
+<a href="childs.html">Hank Childs</a>,
+<a href="http://climatechangescience.ornl.gov/content/david-r-pugmire">David Pugmire</a>,
+Sean Ahern,
+Brad Whitlock,
+<a href="http://mark.howison.org/">Mark Howison</a>,
+<a href="http://vis.lbl.gov/~prabhat/">Prabhat</a>,
+<a href="http://crd.lbl.gov/departments/data-science-and-technology/data-analytics-and-visualization/staff/gunther-h-weber/">Gunther Weber</a>, and
+<a href="http://vis.lbl.gov/~wes/">Wes Bethel</a> <br>
+IEEE Computer Graphics and Applications (CG&A), May 2010 <br>
+<br>[<a href="pubs/ChildsCGA.pdf">PDF</a>] &nbsp; &nbsp; [<a href="pubs/ChildsCGA.bib">BIB</a>]<br>
+</td></tr>
+<tr><td>
+<a name="2013_AhernWSSSPE"></a>
+<div style="float: left; width: 125; margin: 5px; padding: 5px">
+<IMG SRC="pubs/AhernWSSSPE_thumb.jpeg" BORDER="0" width="125"></a></div>
+<br>VisIt: Experiences with Sustainable Software <br>
+Sean Ahern,
+Eric Brugger,
+Brad Whitlock,
+<a href="http://ft.ornl.gov/~jsmeredith/">Jeremy Meredith</a>, 
+Kathleen Biagas, Mark Miller, and
+<a href="childs.html">Hank Childs</a> <br>
+SC13 Workshop on Sustainable Software for Science: Practice and Experiences (WSSSPE), Denver, CO, November 2013 <br>
+<br>[<a href="pubs/AhernWSSSPE.pdf">PDF</a>] &nbsp; &nbsp; [<a href="pubs/AhernWSSSPE.bib">BIB</a>]<br>
+</td></tr>
+</table>
+</td></tr>
+</tbody></table>
+</div>
+
+<div class="footer" style="clear: both">
+Research Group on Computing and Data Understanding at eXtreme Scale &#8226; The University of Oregon &#8226; cdux-info@cs.uoregon.edu
+
+</div>
+
+<!--
+<div class="footer_logo">
+<a href="http://www.ucdavis.edu/"><img border="0" src="./idav_files/ucdavis_logo_png"></a>
+</div>
+-->
+
+
+
+
+</body></html>

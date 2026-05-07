@@ -1,0 +1,37 @@
+﻿body {
+ font-size: 15pt;
+ font-family: Helvetica
+}
+
+.indent {
+	text-indent: 12%;
+}
+
+.image {
+	padding-top: 1%
+}
+
+#image1 {
+   margin-left: 35%;
+}
+#image2 {
+   margin-left: 45%;
+}
+#image3 {
+   margin-left: 35%;
+}
+#image4 {
+   margin-left: 35%;
+}
+#image5 {
+   margin-left: 35%;
+}
+#image6 {
+   margin-left: 35%;
+}
+#image7 {
+   margin-left: 25%;
+}
+#image8 {
+   margin-left: 35%;
+}

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+
+<html><head>
+<base href=".">
+<!--<base href="http://cdux.cs.uoregon.edu/">-->
+<!--<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-15">-->
+
+  <title>CDUX: Research Group on Computing and Data Understanding at eXtreme Scale</title>
+
+  <link href="style.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+
+<div class="header">
+
+<style>
+img {
+   padding-bottom: 20px
+}
+</style>
+
+<div class="masthead">
+ <a href="./index.html"><img src="./images/general/cdux-banner.png" alt="" height="150" width="768"></a>
+</div>
+
+<div class="navigation">
+  <a class="item" href="index.html">Home</a>
+  <a class="item" href="news.html">News</a>
+  <a class="item" href="research.html">Research</a>
+  <a class="item" href="publications.html">Publications</a>
+  <a class="item" href="people.html">People</a>
+  <a class="item" href="join.html">Prospective Students</a>
+  <!-- <a class="item" href="social.html">Social Events</a> --!>
+ 
+</div> <!-- end nav -->
+
+</div> <!-- end header -->
+
+<div class="content">
+
+<style>
+div.normal {
+    font-size: 100%;
+}
+div.larger {
+    font-size: 125%;
+}
+</style>
+
+
+<table>
+<tbody><tr><td class="mainbar">
+
+<div class="larger">
+
+<p>
+The research group on Computing and Data Understanding at eXtreme Scale (CDUX)
+pursues problems in scientific visualization, high-performance computing,
+scientific computing, information visualization, and computer graphics, 
+and especially focuses on problems where these areas intersect.
+We perform research for 
+the <a href="http://energy.gov">Department of Energy</a>, 
+for the <a href="http://nsf.gov">National Science Foundation</a>,
+and for private industry.
+This research is delivered in widely used software tools, like
+<a href="http://www.llnl.gov/visit">VisIt</a>, and helps develop new
+tools, 
+like <a href="http://m.vtk.org/index.php/Main_Page">VTK-m</a>, a visualization library for many-core architectures,
+and like <a href="https://www.tacc.utexas.edu/research-development/tacc-software/gravit">GraviT</a>, a distributed-memory parallel ray-tracing library.
+The results of our research are often published at premier venues,
+like the <a href="http://ieeevis.org">IEEE 
+Visualization</a> 
+and <a href="http://supercomputing.org">ACM/IEEE SuperComputing (SC)</a> conferences.
+</p>
+<p>
+CDUX is part of the <a href="http://cs.uoregon.edu/">Computer and Information
+Science Department</a> at the <a href="http://uoregon.edu">University of 
+Oregon</a>.
+</p>
+
+
+<br>
+<div class="clearfix"></div>
+
+<div class="news_page_item">
+<div class="news_page_title">Top Headlines</div>
+<br>
+<ul>
+<li>June 2017: 9 CDUX students <a href="news.html#2017_internships">to spend their summers</a> at DOE Labs</li>
+<li>Apr. 2017: Incoming PhD student Kristi Belcher wins <a href="news.html#2017_belcherPhD"> NSF Graduate Research Fellowship</a></li>
+<li>Dec. 2016: <a href="news.html#2016_ornlKress">Staff position at ORNL</a> for James Kress</li>
+<li>Sep. 2016: <a href="news.html#2016_ncarLi">Staff position at NCAR</a> for Samuel Li</li>
+<li>June 2016: <a href="news.html#2016_sc16BPF">Best Paper Finalist</a> at SC16</li>
+<li>June 2016: 9 CDUX students <a href="news.html#2016_internships">to spend their summers</a> at DOE Labs</li>
+<li>Jan. 2016: <a href="news.html#2016_llnlLarsen">Staff position at LLNL</a> for Matt Larsen</li>
+<li>June 2015: 8 CDUX students head to <a href="news.html#2015_internships">summer internships</a></li>
+<li>June 2015: Hank Childs wins <a href="news.html#2015_researchAward">research</a> and 
+<a href="news.html#2015_teachingAward">teaching</a> awards</li>
+<li>May 2015: <a href="news.html#2015_lgsf">Lawrence Graduate Fellowships</a> for two CDUX students</li>
+<li>Feb. 2015: <a href="news.html#2015_vda">Best Paper</a> at SPIE Visualization and Data Analysis Conference</li>
+<li>Nov. 2014: <a href="news.html#2014_ldav">Best Paper</a> at IEEE Symposium on Large Data Analysis and Visualization</li>
+</ul>
+</div>
+
+</td><td class="sidebar">
+<img width="450" src="./images/vis/rti.jpeg" alt="" style="float:right">
+<!-- no close td since footer does this -->
+</td></tr>
+</tbody></table>
+</div>
+</div>
+
+<div class="footer" style="clear: both">
+Research Group on Computing and Data Understanding at eXtreme Scale &#8226; The University of Oregon &#8226; cdux-info@cs.uoregon.edu
+
+</div>
+
+<!--
+<div class="footer_logo">
+<a href="http://www.ucdavis.edu/"><img border="0" src="./idav_files/ucdavis_logo_png"></a>
+</div>
+-->
+
+
+
+
+</body></html>

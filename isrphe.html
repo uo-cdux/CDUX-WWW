@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+
+<html><head>
+<base href=".">
+<!--<base href="http://cdux.cs.uoregon.edu/">-->
+<!--<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-15">-->
+
+  <title>In Situ Reduction, Post Hoc Exploration</title>
+
+  <link href="style.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+
+<div class="header">
+
+<style>
+img {
+   padding-bottom: 20px
+}
+</style>
+
+<div class="masthead">
+ <a href="./index.html"><img src="./images/general/cdux-banner.png" alt="" height="150" width="768"></a>
+</div>
+
+<div class="navigation">
+  <a class="item" href="index.html">Home</a>
+  <a class="item" href="news.html">News</a>
+  <a class="item" href="research.html">Research</a>
+  <a class="item" href="publications.html">Publications</a>
+  <a class="item" href="people.html">People</a>
+  <a class="item" href="join.html">Prospective Students</a>
+  <!-- <a class="item" href="social.html">Social Events</a> --!>
+ 
+</div> <!-- end nav -->
+
+</div> <!-- end header -->
+
+<div class="content">
+
+<style>
+div.normal {
+    font-size: 100%;
+}
+div.small {
+    font-size: 75%;
+}
+div.larger {
+    font-size: 125%;
+}
+</style>
+
+
+<table>
+<tbody><tr><td class="mainbar">
+
+
+<td width=100% valign=top id="newsletter-encapsulate">
+<span style="font-size: 24px; font-weight:bold">
+
+<br>
+The <i>In Situ Reduction, Post Hoc Exploration</i> paradigm:<br>
+How to reduce data to a small enough form that it can be saved to disk and yet maintain enough accuracy to be useful for analysis?
+</span>
+
+<hr size=2 color=black>
+<span style="font-size: 18px">
+
+<br>
+<br>
+
+<div class="news_page_item">
+<div class="news_page_title">Overview</div>
+<p>
+
+<img style="border: 1px solid black" src="images/vis/exploration.png" width=500 alt="Image" align="right" border="15">
+
+An important consideration for in situ processing is whether the desired visualizations are known a priori. When they are known a priori, the visualizations can be specified ahead of time and carried out as the data is generated. When they are not known a priori, in situ processing is more complicated, since it is not clear which visualizations to carry out. One approach is to refuse in situ processing, i.e., to do post hoc processing instead, although saving data less frequently. The problem with this approach is that I/O constraints may cause the data to become so sparse temporally that important phenomena may be lost (i.e., a phenomenon begins after one time slice is saved and ends before the next one) or that features cannot be tracked over time.
+</p>
+
+<p>
+Another approach when lacking a priori knowledge, and the research challenge this webpage focuses on, is to use a combination of in situ and post hoc processing. Specifically, data is transformed and reduced in situ, the resulting reduced data is saved to disk, and then this data is explored later in the traditional post hoc manner. The benefit of this idea is that the reduced data could be small enough to store sufficient temporal frequency even in the face of severe I/O constraints. 
+</p>
+
+<p>
+The remainder of this section is organized in three parts: (1) Lagrangian flow, (2) wavelet compression, and (3) additional results.
+</p>
+
+</div>
+
+<div class="news_page_item">
+<div class="news_page_title">Lagrangian Flow</div>
+
+<p>
+While many researchers have considered the benefits of considering flow from the Lagrangian
+perspective, our work was the first to envision using Lagrangian basis flows as an in situ data
+reduction operator. The idea is to extract Lagrangian basis flows (i.e., pathlines) in situ, to store
+the basis flows to disk, and then later to do post hoc exploration by interpolating from the basis
+flows. The Lagrangian approach has an advantage over the traditional (Eulerian) approach, as
+its basis flows are calculated in situ, giving it access to all spatiotemporal data. As a result, the
+basis flows accurately capture an interval in time. This contrasts with the Eulerian method (the
+traditional approach), where time steps of vector data are stored and post hoc analysis requires
+temporal interpolation between these time steps, introducing error. In all, Lagrangian methods
+have the potential to represent more information per byte than the Eulerian approach, enabling
+more accurate analysis for the same storage or enabling the same accuracy with less storage.
+The <a href="publications.html#2014_AgranovskyLDAV">initial work</a>,
+a collaboration by UC Davis Ph.D. student Alexy Agranovsky, Hank Childs, and others,
+ was on the viability of the approach. 
+Example results from this work included 12X
+accuracy improvements using the same storage, and the same accuracy with 64X less storage. 
+This work was awarded Best Paper at LDAV14.
+After this initial work, CDUX alumnus <a href="sane.html">Sudhanshu Sane</a>
+pursued improvements to the Lagrangian approach as part of his dissertation. 
+Sudhanshu started by performing
+<a href="publications.html#2018_SaneEGPGV">more extensive evaluations of the initial work</a>, 
+in order to provide a better baseline for future comparisons.
+His <a href="publications.html#2019_SaneEGPGV19">second work</a> 
+extended the possibilities for increasing efficiency. 
+While the initial work placed pathlines at regular seeding locations and terminated 
+them at regular time intervals, which we subsequently termed "fixed duration / fixed placement" (FDFP), Sudhanshu introduced "variable duration / variable placement" (VDVP) basis flows, which led to factor-of-two improvements. 
+That said, his key contribution here was an interpolation scheme that can deal with VDVP basis flows, opening the door to new strategies that go beyond the FDFP's
+more regimented approach. 
+Sudhanshu's <a href="publications.html#2021_SaneEGPGV21">
+third work</a> optimized the time it takes to calculate basis flows in situ, 
+reducing the burden on simulation codes. 
+His main idea was to terminate basis flow calculation at block boundaries, creating
+a communication-free approach.  While this approach will clearly improve performance,
+the surprising aspect was how little error it introduced.
+This work was awarded Best Paper at EGPGV21.
+Finally, Sudhanshu's <a href="publications.html#2021_SaneICCS">fourth work</a>
+on Lagrangian flow put together all of his previous results and showed viability
+for both cosmology and seismology simulations on Oak Ridge's Summit supercomputer.
+This work was awarded Best Paper for ICCS21's Main Track, which received 650 submissions.
+</p>
+
+</div>
+
+<div class="news_page_item">
+<div class="news_page_title">Wavelet Compression</div>
+
+Our group has produced several results considering the viability of wavelet compression as an in situ reduction operator, and this topic was the primary dissertation question of 
+<a href="li.html">Samuel Li</a>. 
+Sam's first research thrust
+was on 
+<a href="publications.html#2015_LiLDAV">evaluating the integrity of scientific data sets after undergoing a wavelet transformation</a>.
+In this work, Sam also demonstrated the benefit of bringing in modern wavelet approaches (CDF kernels and prioritized coefficients) for scientific data. 
+Sam's second research thrust was on how to carry out wavelet transforms on exascale computers. 
+Sam had two works on this front, one on 
+<a href="publications.html#2017_LiEGPGV">portably performant approaches</a> 
+and another on 
+<a href="publications.html#2017_LiCluster">achieving better accuracy by leveraging deep memory hierarchies to embrace temporal coherence</a>.
+Sam’s final research thrust considered whether wavelet transformations could be accomplished within simulation codes' time budgets, and evaluating their savings at scale. Sam's
+<a href="publications.html#2017_LiISAV">work on this topic</a>
+included runs of up to 1000 MPI ranks on NCAR’s Cheyenne supercomputer. 
+These works combined to answer his dissertation question: yes, wavelet compression is a viable reduction operator for exascale computing. 
+Finally, 
+<a href="marsaglia.html">Nicole Marsaglia</a>
+ published an <a href="publications.html#2019_MarsagliaEGPGV">extension to this work</a>, 
+on dynamically adapting the I/O budget between the wavelet compressors on each node to where it will do the most good.
+</p>
+
+</div>
+
+<div class="news_page_item">
+<div class="news_page_title">Additional Results</div>
+
+<p>
+While our in situ reduction research is deepest on Lagrangian flow and wavelets, 
+we also have considered other approaches. 
+First, 
+<a href="marsaglia.html">Nicole Marsaglia</a> looked at 
+<a href="publications.html#2018_MarsagliaWOIV">using temporal intervals</a>,
+which can be useful for simulations that evolve slowly in time. 
+Second, <a href="kress.html">James Kress</a> considered 
+<a href="publications.html#2018_KressWOIV">binning, and showed its applicability for fusion simulations</a>. 
+Third, <a href="larsen.html">Matt Larsen</a> contributed a 
+ <a href="publications.html#2016_LarsenLDAV">
+new technique for accelerating the rendering of multiple images simultaneously</a>, 
+motivated by the in situ reduction approach taken by the Cinema project (and others) where in situ processing is used to generate thousands of images, rather than save out mesh and field data. 
+Finally, while not a research result, <a href="li.html">Samuel Li</a> 
+produced a very useful survey on data reduction operators for his Area Exam Paper, which was ultimately 
+<a href="publications.html#2018_LiCGF">published in Computer Graphics Forum</a>.
+</p>
+
+
+<div class="news_page_item">
+<div class="news_page_title">CDUX People</div>
+<div style="width:100%;margin-left:auto; margin-right:auto;">
+<div style="float:left;width:200px;min-height:200px;margin:10px;text-align:center;">
+<a href="li.html"><img style="border: none" src="./images/people/li_cropped.png" alt="" width="150"></a>
+<br>
+<a href="li.html"><b>Shaomeng (Samuel) Li</b></a>
+<br>Ph.D. Student (alum)</div>
+<div style="float:left;width:200px;min-height:200px;margin:10px;text-align:center;">
+<a href="sane.html"><img style="border: none" src="./images/people/sane_cropped.png" alt="" width="150"></a>
+<br>
+<a href="sane.html"><b>Sudhanshu Sane</b></a>
+<br>Ph.D. Student (alum)</div>
+<div style="float:left;width:200px;min-height:200px;margin:10px;text-align:center;">
+<a href="marsaglia.html"><img style="border: none" src="./images/people/marsaglia_cropped.png" alt="" width="150"></a>
+<br>
+<a href="marsaglia.html"><b>Nicole Marsaglia</b></a>
+<br>Ph.D. Student (alum)</div>
+<div style="float:left;width:200px;min-height:200px;margin:10px;text-align:center;">
+<a href="larsen.html"><img style="border: none" src="./images/people/larsen_cropped.png" alt="" width="150"></a>
+<br>
+<a href="larsen.html"><b>Matt Larsen </b></a>
+<br>Ph.D. Student (alum)</div>
+<div style="float:left;width:200px;min-height:200px;margin:10px;text-align:center;">
+<a href="kress.html"><img style="border: none" src="./images/people/kress_cropped.png" alt="" width="150"></a>
+<br>
+<a href="kress.html"><b>James Kress</b></a>
+<br>Ph.D. Student (alum)</div>
+<div style="float:left;width:200px;min-height:200px;margin:10px;text-align:center;">
+<a href="yenpure.html"><img style="border: none" src="./images/people/yenpure_cropped.png" alt="" width="150"></a>
+<br>
+<a href="yenpure.html"><b>Abhishek Yenpure</b></a>
+<br>Ph.D. Candidate</div>
+<div style="float:left;width:200px;min-height:200px;margin:10px;text-align:center;">
+<a href="belcher.html"><img style="border: none" src="./images/people/belcher_cropped.png" alt="" width="150"></a>
+<br>
+<a href="belcher.html"><b>Kristi Belcher</b></a>
+<br>M.S. Student (alum)</div>
+<div style="float:left;width:200px;min-height:200px;margin:10px;text-align:center;">
+<a href="childs.html"><img style="border: none" src="./images/people/childs_cropped.png" alt="" width="150"></a>
+<br>
+<a href="childs.html"><b>Hank Childs</b></a>
+<br>CDUX Director</div>
+</div><div class="clearfix"></div>
+</div>
+
+<div class="news_page_item">
+<div class="news_page_title">Publications (Lagrangian Flow)</div>
+<p><table class="TFtable">
+<tr><td>
+<a name="2021_SaneICCS"></a>
+<div style="float: left; width: 125; margin: 5px; padding: 5px">
+<IMG SRC="pubs/SaneICCS_thumb.jpeg" BORDER="0" width="125"></a></div>
+<br>Investigating In Situ Reduction via Lagrangian Representations for Cosmology and Seismology Applications <br>
+<a href="sane.html">Sudhanshu Sane</a>,
+Christopher R. Johnson,
+and <a href="childs.html">Hank Childs</a> <br>
+International Conference on Computational Science (ICCS), Krakow, Poland, June 2021 <br>
+<b><em>Best Paper, Main Track</em></b> <br>
+<br>[<a href="pubs/SaneICCS.pdf">PDF</a>] &nbsp; &nbsp; [<a href="pubs/SaneICCS.bib">BIB</a>]<br>
+</td></tr>
+<tr><td>
+<a name="2021_SaneEGPGV21"></a>
+<div style="float: left; width: 125; margin: 5px; padding: 5px">
+<IMG SRC="pubs/SaneEGPGV21_thumb.jpeg" BORDER="0" width="125"></a></div>
+<br>Scalable In Situ Computation of Lagrangian Representations via Local Flow Maps <br>
+<a href="sane.html">Sudhanshu Sane</a>,
+<a href="yenpure.html">Abhishek Yenpure</a>,
+Roxana Bujack,
+<a href="larsen.html">Matt Larsen</a>,
+Ken Moreland,
+Christoph Garth,
+Christopher R. Johnson,
+and <a href="childs.html">Hank Childs</a> <br>
+Eurographics Symposium on Parallel Graphics and Visualization (EGPGV), Zurich, Switzerland, June 2021 <br>
+<b><em>Best Paper</em></b> <br>
+<br>[<a href="pubs/SaneEGPGV21.pdf">PDF</a>] &nbsp; &nbsp; [<a href="pubs/SaneEGPGV21.bib">BIB</a>]<br>
+</td></tr>
+<tr><td>
+<a name="2019_SaneEGPGV19"></a>
+<div style="float: left; width: 125; margin: 5px; padding: 5px">
+<IMG SRC="pubs/SaneEGPGV19_thumb.jpeg" BORDER="0" width="125"></a></div>
+<br>An Interpolation Scheme for VDVP Lagrangian Basis Flows <br>
+<a href="sane.html">Sudhanshu Sane</a>,
+<a href="childs.html">Hank Childs</a>,
+and Roxana Bujack <br>
+Eurographics Symposium on Parallel Graphics and Visualization (EGPGV), Porto, Portugal, June 2019 <br>
+<br>[<a href="pubs/SaneEGPGV19.pdf">PDF</a>] &nbsp; &nbsp; [<a href="pubs/SaneEGPGV19.bib">BIB</a>]<br>
+</td></tr>
+<tr><td>
+<a name="2018_SaneEGPGV"></a>
+<div style="float: left; width: 125; margin: 5px; padding: 5px">
+<IMG SRC="pubs/SaneEGPGV_thumb.jpeg" BORDER="0" width="125"></a></div>
+<br>Revisiting the Evaluation of In Situ Lagrangian Analysis <br>
+<a href="sane.html">Sudhanshu Sane</a>,
+Roxana Bujack,
+and <a href="childs.html">Hank Childs</a> <br>
+Eurographics Symposium on Parallel Graphics and Visualization (EGPGV), Brno, Czech Republic, June 2018 <br>
+<br>[<a href="pubs/SaneEGPGV.pdf">PDF</a>] &nbsp; &nbsp; [<a href="pubs/SaneEGPGV.bib">BIB</a>]<br>
+</td></tr>
+<tr><td>
+<a name="2014_AgranovskyLDAV"></a>
+<div style="float: left; width: 125; margin: 5px; padding: 5px">
+<IMG SRC="pubs/AgranovskyLDAV_thumb.jpeg" BORDER="0" width="125"></a></div>
+<br>Improved Post Hoc Flow Analysis Via Lagrangian Representations <br>
+Alexy Agranovsky, 
+ David Camp, Christoph Garth, Wes Bethel, Kenneth I. Joy, 
+and <a href="childs.html">Hank Childs</a> <br>
+<a href="http://ldav2014.sci.utah.edu">IEEE Large Data Analysis and Visualization (LDAV)</a>, Paris, France, November 2014 <br>
+<b><em>Best Paper</em></b> <br>
+<br>[<a href="pubs/AgranovskyLDAV.pdf">PDF</a>] &nbsp; &nbsp; [<a href="pubs/AgranovskyLDAV.bib">BIB</a>]<br>
+</td></tr>
+</table>
+</div>
+
+<div class="news_page_item">
+<div class="news_page_title">Publications (Wavelets)</div>
+<p><table class="TFtable">
+<tr><td>
+<a name="2017_LiCluster"></a>
+<div style="float: left; width: 125; margin: 5px; padding: 5px">
+<IMG SRC="pubs/LiCluster_thumb.jpeg" BORDER="0" width="125"></a></div>
+<br>Spatiotemporal Wavelet Compression for Visualization of Scientific Simulation Data <br>
+<a href="li.html">Samuel Li</a>,
+<a href="sane.html">Sudhanshu Sane</a>,
+Leigh Orf, Pablo Mininni, John Clyne, and
+<a href="childs.html">Hank Childs</a> <br>
+<a href="https://cluster17.github.io//">IEEE Cluster Conference</a>, Honolulu, HI, September 2017 <br>
+<br>[<a href="pubs/LiCluster.pdf">PDF</a>] &nbsp; &nbsp; [<a href="pubs/LiCluster.bib">BIB</a>]<br>
+</td></tr>
+<tr><td>
+<a name="2015_LiLDAV"></a>
+<div style="float: left; width: 125; margin: 5px; padding: 5px">
+<IMG SRC="pubs/LiLDAV_thumb.jpeg" BORDER="0" width="125"></a></div>
+<br>Evaluating the Efficacy of Wavelet Configurations on Turbulent-Flow Data <br>
+<a href="li.html">Samuel Li</a>,
+Kenny Gruchalla, Kristi Potter, John Clyne, and
+<a href="childs.html">Hank Childs</a> <br>
+<a href="http://ldav2015.sci.utah.edu/">IEEE Symposium on Large Data Analysis and Visualization (LDAV)</a>, Chicago, IL, October 2015 <br>
+<br>[<a href="pubs/LiLDAV.pdf">PDF</a>] &nbsp; &nbsp; [<a href="pubs/LiLDAV.bib">BIB</a>]<br>
+</td></tr>
+<tr><td>
+<a name="2017_LiEGPGV"></a>
+<div style="float: left; width: 125; margin: 5px; padding: 5px">
+<IMG SRC="pubs/LiEGPGV_thumb.jpeg" BORDER="0" width="125"></a></div>
+<br>Achieving Portable Performance For Wavelet Compression Using Data Parallel Primitives <br>
+<a href="li.html">Samuel Li</a>,
+<a href="marsaglia.html">Nicole Marsaglia</a>,
+Vincent Chen, Christopher Sewell, John Clyne, and
+and <a href="childs.html">Hank Childs</a> <br>
+<a href="http://www.vis.uni-stuttgart.de/egpgv/egpgv2017/">Eurographics Symposium on Parallel Graphics and Visualization (EGPGV)</a>, Barcelona, Spain, June 2017 <br>
+<br>[<a href="pubs/LiEGPGV.pdf">PDF</a>] &nbsp; &nbsp; [<a href="pubs/LiEGPGV.bib">BIB</a>]<br>
+</td></tr>
+<tr><td>
+<a name="2017_LiISAV"></a>
+<div style="float: left; width: 125; margin: 5px; padding: 5px">
+<IMG SRC="pubs/LiISAV_thumb.jpeg" BORDER="0" width="125"></a></div>
+<br>Performance Impacts of In Situ Wavelet Compression on Scientific Simulations <br>
+<a href="li.html">Samuel Li</a>,
+<a href="larsen.html">Matt Larsen</a>,
+John Clyne,
+and <a href="childs.html">Hank Childs</a> <br>
+<a href="http://vis.lbl.gov/Events/ISAV-2017/">ISAV 2017: In Situ Infrastructures for Enabling Extreme-Scale Analysis and Visualization</a>, Denver, CO, November 2017 <br>
+<br>[<a href="pubs/LiISAV.pdf">PDF</a>] &nbsp; &nbsp; [<a href="pubs/LiISAV.bib">BIB</a>]<br>
+</td></tr>
+<tr><td>
+<a name="2019_MarsagliaEGPGV"></a>
+<div style="float: left; width: 125; margin: 5px; padding: 5px">
+<IMG SRC="pubs/MarsagliaEGPGV_thumb.jpeg" BORDER="0" width="125"></a></div>
+<br>Dynamic I/O Budget Reallocation For In Situ Wavelet Compression <br>
+<a href="marsaglia.html">Nicole Marsaglia</a>,
+<a href="li.html">Shaomeng Li</a>,
+<a href="belcher.html">Kristi Belcher</a>,
+<a href="larsen.html">Matt Larsen</a>, and
+<a href="childs.html">Hank Childs</a>, <br>
+Eurographics Symposium on Parallel Graphics and Visualization (EGPGV), Porto, Portugal, June 2019 <br>
+<br>[<a href="pubs/MarsagliaEGPGV.pdf">PDF</a>] &nbsp; &nbsp; [<a href="pubs/MarsagliaEGPGV.bib">BIB</a>]<br>
+</td></tr>
+</table>
+</div>
+
+<div class="news_page_item">
+<div class="news_page_title">Publications (Additional Results)</div>
+<p><table class="TFtable">
+<tr><td>
+<a name="2018_MarsagliaWOIV"></a>
+<div style="float: left; width: 125; margin: 5px; padding: 5px">
+<IMG SRC="pubs/MarsagliaWOIV_thumb.jpeg" BORDER="0" width="125"></a></div>
+<br>Enabling Explorative Visualization With Full Temporal Resolution Via In Situ Calculation Of Temporal Intervals <br>
+<a href="marsaglia.html">Nicole Marsaglia</a>,
+<a href="li.html">Shaomeng Li</a>,
+and <a href="childs.html">Hank Childs</a> <br>
+ISC High Performance 2018 International Workshops (Lecture Notes in Computer Science), Frankfurt, Germany, June 2018 <br>
+<br>[<a href="pubs/MarsagliaWOIV.pdf">PDF</a>] &nbsp; &nbsp; [<a href="pubs/MarsagliaWOIV.bib">BIB</a>]<br>
+</td></tr>
+<tr><td>
+<a name="2018_KressWOIV"></a>
+<div style="float: left; width: 125; margin: 5px; padding: 5px">
+<IMG SRC="pubs/KressWOIV_thumb.jpeg" BORDER="0" width="125"></a></div>
+<br>Binning Based Data Reduction for Vector Field Data of a Particle-In-Cell Fusion Simulation <br>
+<a href="kress.html">James Kress</a>,
+Jong Choi, Scott Klasky, Michael Churchill,
+<a href="childs.html">Hank Childs</a>,
+and David Pugmire <br>
+ISC High Performance 2018 International Workshops (Lecture Notes in Computer Science), Frankfurt, Germany, June 2018 <br>
+<br>[<a href="pubs/KressWOIV.pdf">PDF</a>] &nbsp; &nbsp; [<a href="pubs/KressWOIV.bib">BIB</a>]<br>
+</td></tr>
+<tr><td>
+<a name="2016_LarsenLDAV"></a>
+<div style="float: left; width: 125; margin: 5px; padding: 5px">
+<IMG SRC="pubs/LarsenLDAV_thumb.jpeg" BORDER="0" width="125"></a></div>
+<br>Optimizing Multi-Image Sort-Last Parallel Rendering <br>
+<a href="larsen.html">Matthew Larsen</a>, 
+Ken Moreland, Chris Johnson, and
+<a href="childs.html">Hank Childs</a> <br>
+<a href="http://www.ldav.org/">IEEE Symposium on Large Data Analysis and Visualization (LDAV)</a>, Baltimore, MD, October 2016 <br>
+<br>[<a href="pubs/LarsenLDAV.pdf">PDF</a>] &nbsp; &nbsp; [<a href="pubs/LarsenLDAV.bib">BIB</a>]<br>
+</td></tr>
+<tr><td>
+<a name="2018_LiCGF"></a>
+<div style="float: left; width: 125; margin: 5px; padding: 5px">
+<IMG SRC="pubs/LiCGF_thumb.jpeg" BORDER="0" width="125"></a></div>
+<br>Data Reduction Techniques for Simulation, Visualization, and Data Analysis <br>
+<a href="li.html">Samuel Li</a>,
+<a href="marsaglia.html">Nicole Marsaglia</a>,
+Christoph Garth, Jon Woodring, John Clyne, and
+<a href="childs.html">Hank Childs</a> <br>
+<a href="https://onlinelibrary.wiley.com/journal/14678659">Computer Graphics Forum</a>, September 2018 <br>
+<br>[<a href="pubs/LiCGF.pdf">PDF</a>] &nbsp; &nbsp; [<a href="pubs/LiCGF.bib">BIB</a>]<br>
+</td></tr>
+</table>
+</div>
+
+</td></tr>
+</tbody></table>
+</div>
+
+<div class="footer" style="clear: both">
+Research Group on Computing and Data Understanding at eXtreme Scale &#8226; The University of Oregon &#8226; cdux-info@cs.uoregon.edu
+
+</div>
+
+<!--
+<div class="footer_logo">
+<a href="http://www.ucdavis.edu/"><img border="0" src="./idav_files/ucdavis_logo_png"></a>
+</div>
+-->
+
+
+
+
+</body></html>

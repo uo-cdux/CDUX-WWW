@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+
+<html><head>
+<base href=".">
+<!--<base href="http://cdux.cs.uoregon.edu/">-->
+<!--<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-15">-->
+
+  <title>Efficient Distributed-Memory Parallelism</title>
+
+  <link href="style.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+
+<div class="header">
+
+<style>
+img {
+   padding-bottom: 20px
+}
+</style>
+
+<div class="masthead">
+ <a href="./index.html"><img src="./images/general/cdux-banner.png" alt="" height="150" width="768"></a>
+</div>
+
+<div class="navigation">
+  <a class="item" href="index.html">Home</a>
+  <a class="item" href="news.html">News</a>
+  <a class="item" href="research.html">Research</a>
+  <a class="item" href="publications.html">Publications</a>
+  <a class="item" href="people.html">People</a>
+  <a class="item" href="join.html">Prospective Students</a>
+  <!-- <a class="item" href="social.html">Social Events</a> --!>
+ 
+</div> <!-- end nav -->
+
+</div> <!-- end header -->
+
+<div class="content">
+
+<style>
+div.normal {
+    font-size: 100%;
+}
+div.small {
+    font-size: 75%;
+}
+div.larger {
+    font-size: 125%;
+}
+</style>
+
+
+<table>
+<tbody><tr><td class="mainbar">
+
+
+<td width=100% valign=top id="newsletter-encapsulate">
+<span style="font-size: 24px; font-weight:bold">
+
+<br>
+How should work be divided across the nodes of a supercomputer to achieve good load balance and minimize execution time?
+</span>
+
+<hr size=2 color=black>
+<span style="font-size: 18px">
+
+<p>Supercomputing simulations generate massive data sets, with each time slice
+containing billions or even trillions of cells.
+Such data is so large that it cannot fit into the memory of a single compute node.
+Instead, the data is decomposed into pieces (sometimes called blocks or domains)
+and each compute node works on a subset of the pieces at any given time.
+One processing approach is to parallelize over the pieces.
+In this case, the pieces are partitioned over the compute nodes.
+For example, if there were ten pieces, P0 through P9, and two compute nodes, N0 and N1,
+then N0 could operate on P0 through P4 and N1 could operate on P5 through P9.
+Another approach is to parallelize over the visualization work that needs to be
+performed. 
+In this case, compute nodes would fetch the pieces they need to carry out their work.
+This fetching can be from a disk with post hoc processing or from another compute
+node with in situ processing.
+There are also hybrid approaches that use elements of parallelizing both over
+pieces and over work.
+For each individual visualization algorithm, the key research question is what
+approach will lead to the fastest execution time.
+</p>
+
+<p>Prior to the founding of the CDUX research group, <a href="childs.html">Hank Childs</a>,
+along with collaborators, pursued many works considering efficiently parallelizing
+visualization algorithms
+ for supercomputers,
+including
+<a href="publications.html#2006_ChildsEGPGV06">volume rendering</a>,
+<a href="publications.html#2012_NavratilEGPGV">ray</a>
+<a href="publications.html#2014_NavratilTVCG">tracing</a>,
+<a href="publications.html#2009_PugmireSC09">streamlines</a>,
+and
+<a href="publications.html#2011_HarrisonEGPGV">connected components</a>,
+among others. 
+For many of the works, the unit of parallelization was not obvious, and the contribution was finding a middle ground between two extremes, i.e., a middle ground for volume rendering between parallelizing over samples and over cells, a middle ground for streamlines between parallelizing over particles and over cells, and a middle ground for ray tracing between parallelizing over rays and over cells. 
+A separate research arc considered the effects of incorporating hybrid parallelism (i.e., both shared- and distributed-memory parallelism). 
+The most interesting findings were for algorithms that stressed communication: 
+volume rendering with
+<a href="publications.html#2010_HowisonEGPGV">multi-core</a>
+<a href="publications.html#2012_HowisonTVCG">CPUs</a>
+and 
+<a href="publications.html#2010_FogalHPG">GPUs</a>,
+and 
+ again for particle advection with 
+<a href="publications.html#2011_CampTVCG">multi-core CPUs</a>
+and
+<a href="publications.html#2013_CampEGPGV">GPUs</a>.
+In many of these cases, and in particular in the 
+<a href="publications.html#2011_CampTVCG">TVCG work by Camp et al.</a>,
+these studies found surprising speedups for hybrid parallelism, 
+due to combined effects from increased efficiency within a node and from reduced traffic across nodes. 
+Finally, Childs led a 
+<a href="publications.html#2010_ChildsCGA">scalability study</a> 
+for visualization software processing trillions of
+cells on tens of thousands of cores. The lasting impact of this paper has been to demonstrate the extent that visualization software is I/O-bound, and thus motivate the push to in situ processing.
+</p>
+
+<p>
+CDUX students have continued to innovate new directions for efficient parallelism.
+<a href="binyahib.html">Roba Binyahib</a> 
+did a series of works on efficient parallel particle advection.
+Her <a href="publications.html#2019_BinyahibLDAV">first study</a> extended 
+an existing work stealing approach to use the Lifeline method, earning
+a Best Paper Honorable Mention at LDAV19.
+She then <a href="publications.html#2020_BinyahibCLUSTER">performed a bakeoff study,</a>
+comparing four parallelization approaches, with concurrencies of up to 8192
+cores, data sets as large as 34 billion cells, and as many as 300 million particles.
+Next, Roba designed a new meta-algorithm called <a href="publications.html#2021_BinyahibEGPGV">HyLiPoD</a>, which built on her bakeoff results to design an algorithm that adapts its parallelization based on workload.
+This work was awarded Best Short Paper at EGPGV.
+Her <a href="publications.html#2019_BinyahibISAV">final work</a> on particle advection
+considered in situ settings, and challenged the common assumption that simulation
+data should not be moved.
+Roba also pursued parallelization outside of particle advection,
+extending Hank's volume rendering algorithm 
+<a href="publications.html#2019_BinyahibTVCG">to a TVCG publication</a>. 
+Her study performed experiments that more conclusively demonstrated the benefit of the algorithm, as well as improving on some deficiencies with respect to memory footprint and communication.
+Other CDUX students have also pursued efficient parallelization.
+<a href="schwartz.html">Sam Schwartz</a> also considered parallel particle advection,
+and specifically how 
+<a href="publications.html#2021_SchwartzEGPGV">machine learning can be used to optimize settings for frequency of communication and message size</a>.
+<a href="larsen.html">Matt Larsen</a>
+considered <a href="publications.html#2016_LarsenLDAV">rendering image databases</a>
+and optimizations for communication that are possible when rendering multiple simultaneously.
+Finally, <a href="bleile.html">Ryan Bleile</a> and 
+<a href="weiler.html">Jordan Weiler</a> also 
+<a href="publications.html#2014_HarrisonCCL">improved the state-of-the-art for connected components computations</a> 
+by improving efficiency in communication.
+</p>
+
+
+<div class="news_page_item">
+<div class="news_page_title">CDUX People</div>
+<div style="width:100%;margin-left:auto; margin-right:auto;">
+<div style="float:left;width:200px;min-height:200px;margin:10px;text-align:center;">
+<a href="binyahib.html"><img style="border: none" src="./images/people/binyahib_cropped.png" alt="" width="150"></a>
+<br>
+<a href="binyahib.html"><b>Roba Binyahib</b></a>
+<br>Ph.D. Student (alum)</div>
+<div style="float:left;width:200px;min-height:200px;margin:10px;text-align:center;">
+<a href="larsen.html"><img style="border: none" src="./images/people/larsen_cropped.png" alt="" width="150"></a>
+<br>
+<a href="larsen.html"><b>Matt Larsen </b></a>
+<br>Ph.D. Student (alum)</div>
+<div style="float:left;width:200px;min-height:200px;margin:10px;text-align:center;">
+<a href="bleile.html"><img style="border: none" src="./images/people/bleile_cropped.png" alt="" width="150"></a>
+<br>
+<a href="bleile.html"><b>Ryan Bleile</b></a>
+<br>Ph.D. Student (alum)</div>
+<div style="float:left;width:200px;min-height:200px;margin:10px;text-align:center;">
+<a href="weiler.html"><img style="border: none" src="./images/people/weiler_cropped.png" alt="" width="150"></a>
+<br>
+<a href="weiler.html"><b>Jordan Weiler</b></a>
+<br>M.S. Student (alum)</div>
+<div style="float:left;width:200px;min-height:200px;margin:10px;text-align:center;">
+<a href="childs.html"><img style="border: none" src="./images/people/childs_cropped.png" alt="" width="150"></a>
+<br>
+<a href="childs.html"><b>Hank Childs</b></a>
+<br>CDUX Director</div>
+</div><div class="clearfix"></div>
+</div>
+
+<div class="news_page_item">
+<div class="news_page_title">Publications by CDUX Students</div>
+<p><table class="TFtable">
+<tr><td>
+<a name="2020_BinyahibCLUSTER"></a>
+<div style="float: left; width: 125; margin: 5px; padding: 5px">
+<IMG SRC="pubs/BinyahibCLUSTER_thumb.jpeg" BORDER="0" width="125"></a></div>
+<br>Parallel Particle Advection Bake-Off for Scientific Visualization Workloads <br>
+<a href="binyahib.html">Roba Binyahib</a>,
+David Pugmire,
+<a href="yenpure.html">Abhishek Yenpure</a>,
+and <a href="childs.html">Hank Childs</a> <br>
+<a href="https://clustercomp.org/2020/">IEEE Cluster Conference</a>, Kobe, Japan, September 2020 <br>
+<br>[<a href="pubs/BinyahibCLUSTER.pdf">PDF</a>] &nbsp; &nbsp; [<a href="pubs/BinyahibCLUSTER.bib">BIB</a>]<br>
+</td></tr>
+<tr><td>
+<a name="2019_BinyahibLDAV"></a>
+<div style="float: left; width: 125; margin: 5px; padding: 5px">
+<IMG SRC="pubs/BinyahibLDAV_thumb.jpeg" BORDER="0" width="125"></a></div>
+<br>A Lifeline-Based Approach for Work Requesting and Parallel Particle Advection <br>
+<a href="binyahib.html">Roba Binyahib</a>,
+David Pugmire, Boyana Norris,
+and <a href="childs.html">Hank Childs</a> <br>
+<a href="http://ldav.org">IEEE Symposium on Large Data Analysis and Visualization (LDAV)</a>, Vancouver, Canada, October 2019 <br>
+<b><em>Best Paper Honorable Mention</em></b> <br>
+<br>[<a href="pubs/BinyahibLDAV.pdf">PDF</a>] &nbsp; &nbsp; [<a href="pubs/BinyahibLDAV.bib">BIB</a>]<br>
+</td></tr>
+<tr><td>
+<a name="2021_BinyahibEGPGV"></a>
+<div style="float: left; width: 125; margin: 5px; padding: 5px">
+<IMG SRC="pubs/BinyahibEGPGV_thumb.jpeg" BORDER="0" width="125"></a></div>
+<br>HyLiPoD: Parallel Particle Advection Via a Hybrid of Lifeline Scheduling and Parallelization-Over-Data <br>
+<a href="binyahib.html">Roba Binyahib</a>,
+David Pugmire,
+and
+<a href="childs.html">Hank Childs</a> <br>
+Eurographics Symposium on Parallel Graphics and Visualization (EGPGV), Zurich, Switzerland, June 2021 <br>
+<b><em>Best Short Paper</em></b> <br>
+<br>[<a href="pubs/BinyahibEGPGV.pdf">PDF</a>] &nbsp; &nbsp; [<a href="pubs/BinyahibEGPGV.bib">BIB</a>]<br>
+</td></tr>
+<tr><td>
+<a name="2019_BinyahibTVCG"></a>
+<div style="float: left; width: 125; margin: 5px; padding: 5px">
+<IMG SRC="pubs/BinyahibTVCG_thumb.jpeg" BORDER="0" width="125"></a></div>
+<br>A Scalable Hybrid Scheme for Ray-Casting of Unstructured Volume Data <br>
+<a href="binyahib.html">Roba Binyahib</a>, Tom Peterka,
+<a href="larsen.html">Matthew Larsen</a>,
+Kwan-Liu Ma,
+and <a href="childs.html">Hank Childs</a> <br>
+IEEE Transactions on Visualization and Computer Graphics, July 2019 <br>
+<br>[<a href="pubs/BinyahibTVCG.pdf">PDF</a>] &nbsp; &nbsp; [<a href="pubs/BinyahibTVCG.bib">BIB</a>]<br>
+</td></tr>
+<tr><td>
+<a name="2021_SchwartzEGPGV"></a>
+<div style="float: left; width: 125; margin: 5px; padding: 5px">
+<IMG SRC="pubs/SchwartzEGPGV_thumb.jpeg" BORDER="0" width="125"></a></div>
+<br>Machine Learning-Based Autotuning for Parallel Particle Advection <br>
+<a href="schwartz.html">Samuel D. Schwartz</a>,
+<a href="childs.html">Hank Childs</a>,
+and David Pugmire <br>
+Eurographics Symposium on Parallel Graphics and Visualization (EGPGV), Zurich, Switzerland, June 2021 <br>
+<br>[<a href="pubs/SchwartzEGPGV.pdf">PDF</a>] &nbsp; &nbsp; [<a href="pubs/SchwartzEGPGV.bib">BIB</a>]<br>
+</td></tr>
+<tr><td>
+<a name="2016_LarsenLDAV"></a>
+<div style="float: left; width: 125; margin: 5px; padding: 5px">
+<IMG SRC="pubs/LarsenLDAV_thumb.jpeg" BORDER="0" width="125"></a></div>
+<br>Optimizing Multi-Image Sort-Last Parallel Rendering <br>
+<a href="larsen.html">Matthew Larsen</a>, 
+Ken Moreland, Chris Johnson, and
+<a href="childs.html">Hank Childs</a> <br>
+<a href="http://www.ldav.org/">IEEE Symposium on Large Data Analysis and Visualization (LDAV)</a>, Baltimore, MD, October 2016 <br>
+<br>[<a href="pubs/LarsenLDAV.pdf">PDF</a>] &nbsp; &nbsp; [<a href="pubs/LarsenLDAV.bib">BIB</a>]<br>
+</td></tr>
+<tr><td>
+<a name="2014_HarrisonCCL"></a>
+<div style="float: left; width: 125; margin: 5px; padding: 5px">
+<IMG SRC="pubs/HarrisonCCL_thumb.jpeg" BORDER="0" width="125"></a></div>
+<br>A Distributed-Memory Algorithm for Connected Components Labeling of Simulation Data <br>
+Cyrus Harrison,
+Jordan Weiler, <a href="bleile.html">Ryan Bleile</a>, 
+Kelly Gaither,
+and <a href="childs.html">Hank Childs</a> <br>
+Topological and Statistical Methods for Complex Data, December 2014 <br>
+<br>[<a href="http://www.springer.com/us/book/9783662448991">LINK</a>] &nbsp; &nbsp; [<a href="pubs/HarrisonCCL.bib">BIB</a>]<br>
+</td></tr>
+<tr><td>
+<a name="2019_BinyahibISAV"></a>
+<div style="float: left; width: 125; margin: 5px; padding: 5px">
+<IMG SRC="pubs/BinyahibISAV_thumb.jpeg" BORDER="0" width="125"></a></div>
+<br>In Situ Particle Advection Via Parallelizing Over Particles <br>
+<a href="binyahib.html">Roba Binyahib</a>,
+David Pugmire, and
+<a href="childs.html">Hank Childs</a> <br>
+<a href="http://dav.lbl.gov/events/ISAV2019/">ISAV 2019: In Situ Infrastructures for Enabling Extreme-scale Analysis and Visualization</a>, Denver, CO, November 2019 <br>
+<br>[<a href="pubs/BinyahibISAV.pdf">PDF</a>] &nbsp; &nbsp; [<a href="pubs/BinyahibISAV.bib">BIB</a>]<br>
+</td></tr>
+</table>
+</div>
+
+<div class="news_page_item">
+<div class="news_page_title">Publications Prior to the Founding of CDUX</div>
+<p><table class="TFtable">
+<tr><td>
+<a name="2014_NavratilTVCG"></a>
+<div style="float: left; width: 125; margin: 5px; padding: 5px">
+<IMG SRC="pubs/NavratilTVCG_thumb.jpeg" BORDER="0" width="125"></a></div>
+<br>Exploring the Spectrum of Dynamic Scheduling Algorithms for Scalable Distributed-Memory Ray Tracing <br>
+Paul Navratil,
+<a href="childs.html">Hank Childs</a>,
+Donald Fussell, and Calvin Lin <br>
+IEEE Transactions on Visualization and Computer Graphics (TVCG), June 2014 <br>
+<br>[<a href="pubs/NavratilTVCG.pdf">PDF</a>] &nbsp; &nbsp; [<a href="pubs/NavratilTVCG.bib">BIB</a>]<br>
+</td></tr>
+<tr><td>
+<a name="2013_CampEGPGV"></a>
+<div style="float: left; width: 125; margin: 5px; padding: 5px">
+<IMG SRC="pubs/CampEGPGV_thumb.jpeg" BORDER="0" width="125"></a></div>
+<br>GPU Acceleration of Particle Advection Workloads in a Parallel, Distributed Memory Setting <br>
+David Camp, Hari Krishnan, David Pugmire, Christoph Garth, Ian Johnson, Wes Bethel, Kenneth I. Joy, and
+<a href="childs.html">Hank Childs</a> <br>
+EuroGraphics Symposium on Parallel Graphics and Visualization (EGPGV), Girona, Spain, May 2013 <br>
+<br>[<a href="pubs/CampEGPGV.pdf">PDF</a>] &nbsp; &nbsp; [<a href="pubs/CampEGPGV.bib">BIB</a>]<br>
+</td></tr>
+<tr><td>
+<a name="2012_NavratilEGPGV"></a>
+<div style="float: left; width: 125; margin: 5px; padding: 5px">
+<IMG SRC="pubs/NavratilEGPGV_thumb.jpeg" BORDER="0" width="125"></a></div>
+<br>Dynamic Scheduling for Large-Scale Distributed-Memory Ray Tracing <br>
+<a href="http://pages.tacc.utexas.edu/~pnav/">Paul Navratil</a>, 
+<a href="https://www.cs.utexas.edu/users/fussell/">Donald Fussell</a>,
+<a href="http://www.cs.utexas.edu/~lin/">Calvin Lin</a>,
+and <a href="childs.html">Hank Childs</a> <br>
+<a href="http://www.vis.uni-stuttgart.de/egpgv/egpgv2012/">EGPGV</a>, Cagliari, Italy, May 2012 <br>
+<b><em>Best Paper</em></b> <br>
+<br>[<a href="pubs/NavratilEGPGV.pdf">PDF</a>] &nbsp; &nbsp; [<a href="pubs/NavratilEGPGV.bib">BIB</a>]<br>
+</td></tr>
+<tr><td>
+<a name="2012_HowisonTVCG"></a>
+<div style="float: left; width: 125; margin: 5px; padding: 5px">
+<IMG SRC="pubs/HowisonTVCG_thumb.jpeg" BORDER="0" width="125"></a></div>
+<br>Hybrid Parallelism for Volume Rendering on Large-, Multi-, and Many-Core Systems <br>
+<a href="http://mark.howison.org/">Mark Howison</a>,
+<a href="http://vis.lbl.gov/~wes/">Wes Bethel</a>, and
+<a href="childs.html">Hank Childs</a> <br>
+IEEE Transactions on Visualization and Computer Graphics (TVCG), January 2012 <br>
+<br>[<a href="pubs/HowisonTVCG.pdf">PDF</a>] &nbsp; &nbsp; [<a href="pubs/HowisonTVCG.bib">BIB</a>]<br>
+</td></tr>
+<tr><td>
+<a name="2011_CampTVCG"></a>
+<div style="float: left; width: 125; margin: 5px; padding: 5px">
+<IMG SRC="pubs/CampTVCG_thumb.jpeg" BORDER="0" width="125"></a></div>
+<br>Streamline Integration Using MPI-Hybrid Parallelism on a Large Multicore Architecture <br>
+<a href="http://crd.lbl.gov/departments/data-science-and-technology/data-analytics-and-visualization/staff/david-camp/">David Camp</a>, 
+<a href="http://vis.uni-kl.de/people/garth/">Christoph Garth</a>, 
+<a href="childs.html">Hank Childs</a>,
+<a href="http://climatechangescience.ornl.gov/content/david-r-pugmire">David Pugmire</a>, and
+<a href="http://graphics.cs.ucdavis.edu/~joy/">Kenneth I. Joy</a> <br>
+IEEE Transactions on Visualization and Computer Graphics (TVCG), November 2011 <br>
+<br>[<a href="pubs/CampTVCG.pdf">PDF</a>] &nbsp; &nbsp; [<a href="pubs/CampTVCG.bib">BIB</a>]<br>
+</td></tr>
+<tr><td>
+<a name="2011_HarrisonEGPGV"></a>
+<div style="float: left; width: 125; margin: 5px; padding: 5px">
+<IMG SRC="pubs/HarrisonEGPGV_thumb.jpeg" BORDER="0" width="125"></a></div>
+<br>Data-Parallel Mesh Connected Components Labeling and Analysis <br>
+<a href="http://people.llnl.gov/harrison37">Cyrus Harrison</a>, 
+<a href="childs.html">Hank Childs</a>, and
+<a href="https://www.tacc.utexas.edu/about/directory/kelly-gaither">Kelly Gaither</a> <br>
+EGPGV, Llandudno, Wales, April 2011 <br>
+<br>[<a href="pubs/HarrisonEGPGV.pdf">PDF</a>] &nbsp; &nbsp; [<a href="pubs/HarrisonEGPGV.bib">BIB</a>]<br>
+</td></tr>
+<tr><td>
+<a name="2010_FogalHPG"></a>
+<div style="float: left; width: 125; margin: 5px; padding: 5px">
+<IMG SRC="pubs/FogalHPG_thumb.jpeg" BORDER="0" width="125"></a></div>
+<br>Large Data Visualization on Distributed Memory Multi-GPU Clusters <br>
+Thomas Fogal,
+<a href="childs.html">Hank Childs</a>
+Siddharth Shankar, Jens Krueger, R Daniel Bergeron, Philip Hatcher <br>
+HPG: Proceedings of the Conference on High Performance Graphics, June 2010 <br>
+<br>[<a href="pubs/FogalHPG.pdf">PDF</a>] &nbsp; &nbsp; [<a href="pubs/FogalHPG.bib">BIB</a>]<br>
+</td></tr>
+<tr><td>
+<a name="2010_HowisonEGPGV"></a>
+<div style="float: left; width: 125; margin: 5px; padding: 5px">
+<IMG SRC="pubs/HowisonEGPGV_thumb.jpeg" BORDER="0" width="125"></a></div>
+<br>MPI-hybrid Parallelism for Volume Rendering on Large, Multi-core Systems <br>
+<a href="http://mark.howison.org/">Mark Howison</a>,
+<a href="http://vis.lbl.gov/~wes/">Wes Bethel</a>, and
+<a href="childs.html">Hank Childs</a> <br>
+<a href="http://www.vis.uni-stuttgart.de/egpgv/egpgv2010/">EGPGV</a>, Norrkoping, Sweden, May 2010 <br>
+<b><em>Best Paper</em></b> <br>
+<br>[<a href="pubs/HowisonEGPGV.pdf">PDF</a>] &nbsp; &nbsp; [<a href="pubs/HowisonEGPGV.bib">BIB</a>]<br>
+</td></tr>
+<tr><td>
+<a name="2010_ChildsCGA"></a>
+<div style="float: left; width: 125; margin: 5px; padding: 5px">
+<IMG SRC="pubs/ChildsCGA_thumb.jpeg" BORDER="0" width="125"></a></div>
+<br>Extreme Scaling of Production Visualization Software on Diverse Architectures <br>
+<a href="childs.html">Hank Childs</a>,
+<a href="http://climatechangescience.ornl.gov/content/david-r-pugmire">David Pugmire</a>,
+Sean Ahern,
+Brad Whitlock,
+<a href="http://mark.howison.org/">Mark Howison</a>,
+<a href="http://vis.lbl.gov/~prabhat/">Prabhat</a>,
+<a href="http://crd.lbl.gov/departments/data-science-and-technology/data-analytics-and-visualization/staff/gunther-h-weber/">Gunther Weber</a>, and
+<a href="http://vis.lbl.gov/~wes/">Wes Bethel</a> <br>
+IEEE Computer Graphics and Applications (CG&A), May 2010 <br>
+<br>[<a href="pubs/ChildsCGA.pdf">PDF</a>] &nbsp; &nbsp; [<a href="pubs/ChildsCGA.bib">BIB</a>]<br>
+</td></tr>
+<tr><td>
+<a name="2009_PugmireSC09"></a>
+<div style="float: left; width: 125; margin: 5px; padding: 5px">
+<IMG SRC="pubs/PugmireSC09_thumb.jpeg" BORDER="0" width="125"></a></div>
+<br>Scalable Computation of Streamlines on Very Large Datasets <br>
+<a href="http://climatechangescience.ornl.gov/content/david-r-pugmire">David Pugmire</a>,
+<a href="childs.html">Hank Childs</a>,
+<a href="http://vis.uni-kl.de/people/garth/">Christoph Garth</a>,
+Sean Ahern, and
+<a href="http://crd.lbl.gov/departments/data-science-and-technology/data-analytics-and-visualization/staff/gunther-h-weber/">Gunther Weber</a> <br>
+ACM/IEEE Conference on High Performance Computing (SC09), Portland, OR, November 2009 <br>
+<br>[<a href="pubs/PugmireSC09.pdf">PDF</a>] &nbsp; &nbsp; [<a href="pubs/PugmireSC09.bib">BIB</a>]<br>
+</td></tr>
+<tr><td>
+<a name="2006_ChildsEGPGV06"></a>
+<div style="float: left; width: 125; margin: 5px; padding: 5px">
+<IMG SRC="pubs/ChildsEGPGV06_thumb.jpeg" BORDER="0" width="125"></a></div>
+<br>A Scalable, Hybrid Scheme for Volume Rendering Massive Data Sets <br>
+<a href="childs.html">Hank Childs</a>,
+Mark Duchaineau, and
+<a href="http://web.cs.ucdavis.edu/~ma/">Kwan-Liu Ma</a> <br>
+<a href="http://www4.di.uminho.pt/egpgv06/">EGPGV</a>, Braga, Portugal, May 2006 <br>
+<br>[<a href="pubs/ChildsEGPGV06.pdf">PDF</a>] &nbsp; &nbsp; [<a href="pubs/ChildsEGPGV06.bib">BIB</a>]<br>
+</td></tr>
+</table>
+</div>
+
+</td></tr>
+</tbody></table>
+</div>
+
+<div class="footer" style="clear: both">
+Research Group on Computing and Data Understanding at eXtreme Scale &#8226; The University of Oregon &#8226; cdux-info@cs.uoregon.edu
+
+</div>
+
+<!--
+<div class="footer_logo">
+<a href="http://www.ucdavis.edu/"><img border="0" src="./idav_files/ucdavis_logo_png"></a>
+</div>
+-->
+
+
+
+
+</body></html>

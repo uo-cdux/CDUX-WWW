@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+
+<html><head>
+<base href=".">
+<!--<base href="http://cdux.cs.uoregon.edu/">-->
+<!--<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-15">-->
+
+  <title>Tractography Visualization and Clustering</title>
+
+  <link href="style.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+
+<div class="header">
+
+<style>
+img {
+   padding-bottom: 20px
+}
+</style>
+
+<div class="masthead">
+ <a href="./index.html"><img src="./images/general/cdux-banner.png" alt="" height="150" width="768"></a>
+</div>
+
+<div class="navigation">
+  <a class="item" href="index.html">Home</a>
+  <a class="item" href="news.html">News</a>
+  <a class="item" href="research.html">Research</a>
+  <a class="item" href="publications.html">Publications</a>
+  <a class="item" href="people.html">People</a>
+  <a class="item" href="join.html">Prospective Students</a>
+  <!-- <a class="item" href="social.html">Social Events</a> --!>
+ 
+</div> <!-- end nav -->
+
+</div> <!-- end header -->
+
+<div class="content">
+
+<style>
+div.normal {
+    font-size: 100%;
+}
+div.small {
+    font-size: 75%;
+}
+div.larger {
+    font-size: 125%;
+}
+</style>
+
+
+<table>
+<tbody><tr><td class="mainbar">
+
+
+<td width=100% valign=top id="newsletter-encapsulate">
+<span style="font-size: 24px; font-weight:bold">
+
+Tractography Visualization and Clustering
+
+</span>
+
+<hr size=2 color=black>
+<span style="font-size: 18px">
+
+<img style="border: 1px solid black" src="images/vis/tractography.jpg" width=500 alt="Image" align="right" border="15">
+
+<h2>Problem Overview</h2>
+<p>
+Researchers studying the function and structure of the brain face a difficult imaging and visualization problem due to the complex underlying data. Non-invasive methods, such as Magnetic Resonance Imaging (MRI), have been developed in order to safely generate three-dimensional representations of structural components of the living human brain. Typically, MRI data is used to provide differentiation between various tissue types (grey matter, white matter, and Cerebral Spinal Fluid (CSF)). Diffusion MRI (dMRI) builds on MRI technology to measure the diffusion of water throughout tissue. Since white matter neurons are myelinated, their diffusion characteristics differ substantially from the similar grey matter neurons. Groups of these white matter neurons, or fiber tracts, form the basic connections between distant brain regions. It is believed that studying white matter fiber tracts will enable researchers to better understand the fine structure of the brain leading to a more complete understanding of how it works. 
+</p>
+
+<p>
+While tractography data is clearly useful, the size of this data often makes analysis difficult. A typical tractography data set consists of hundreds of thousands of tracts, and they can sometimes contain much more, even hundreds of millions. Further, each advance in technology allows more and more tracts to be identified. Each individual tract contains multiple line segments, typically around 300. In this research effort we are partnered with Electrical Geodesics, Inc. to find methods of data analysis and visualization that are effective with large scale tractography datasets. The problem with tractography data, then, is two-fold: (1) how to operate on these large data sets? and (2) how to create meaningful results that do not visually overwhelm a medical researcher? Plotting each of the tracts and their line segments on the screen leads to a very complex scene; in the data set described above, there would be 15 line segments for every pixel of a 1000x1000 image. Instead, techniques are needed that make the scale of the data more manageable. Specifically, techniques are needed that make tractography
+data smaller to operate on while also creating scenes that are morecomprehensible for viewers.
+</p>
+
+
+<h2>Results</h2>
+
+<p>
+To address the issues of data size and meaningful representation of tractography data, we developed a novel approach for visualizing tractography data. Previous approaches have utilized clustering based on derived metrics; we built on this approach by taking each cluster and creating a new data set that represents the cluster density. This extension provides significant benefits over previous work. First, the focus on density enables a level of detail approach for adaptively controlling the amount of data displayed. Second, the approach reduces the size of the data, making it easier to work with. Finally, our cluster density representation enables evaluations that were not possible when dealing with tracts. These evaluations help us in two ways: (1) creating a better understanding of the efficacy ofderived metrics that was not previously possible, and (2) allowing our algorithm to choose the best representations of the data. Putting it all together, the contributions of this paper are: (1) a new technique for the visualization of tractography data that reduces its size and provides a level of detail capability and (2) a technique for understanding which derived metrics are most useful for performing clustering.
+</p>
+
+<h2>CDUX People</h2>
+<div style="width:100%;margin-left:auto; margin-right:auto;">
+<div style="float:left;width:200px;min-height:200px;margin:10px;text-align:center;">
+<a href="kress.html"><img style="border: none" src="./images/people/kress_cropped.png" alt="" width="150"></a>
+<br>
+<a href="kress.html"><b>James Kress</b></a>
+<br>Ph.D. Student (alum)</div>
+<div style="float:left;width:200px;min-height:200px;margin:10px;text-align:center;">
+<a href="childs.html"><img style="border: none" src="./images/people/childs_cropped.png" alt="" width="150"></a>
+<br>
+<a href="childs.html"><b>Hank Childs</b></a>
+<br>CDUX Director</div>
+</div><div class="clearfix"></div>
+
+<h2>External Collaborator</h2>
+<ul>
+<li><a href="anderson.html">Erik Anderson</a>, EGI</li>
+</ul>
+
+<h2>Publications</h2>
+
+<p><table class="TFtable">
+<tr><td>
+<a name="2015_KressLDAV"></a>
+<div style="float: left; width: 125; margin: 5px; padding: 5px">
+<IMG SRC="pubs/KressLDAV_thumb.jpeg" BORDER="0" width="125"></a></div>
+<br>A Visualization Pipeline for Large-Scale Tractography Data <br>
+<a href="kress.html">James Kress</a>,
+<a href="anderson.html">Erik Anderson</a>,
+and <a href="childs.html">Hank Childs</a> <br>
+<a href="http://ldav2015.sci.utah.edu/">IEEE Symposium on Large Data Analysis and Visualization (LDAV)</a>, Chicago, IL, October 2015 <br>
+<br>[<a href="pubs/KressLDAV.pdf">PDF</a>] &nbsp; &nbsp; [<a href="pubs/KressLDAV.bib">BIB</a>]<br>
+</td></tr>
+</table>
+</td></tr>
+</tbody></table>
+</div>
+
+<div class="footer" style="clear: both">
+Research Group on Computing and Data Understanding at eXtreme Scale &#8226; The University of Oregon &#8226; cdux-info@cs.uoregon.edu
+
+</div>
+
+<!--
+<div class="footer_logo">
+<a href="http://www.ucdavis.edu/"><img border="0" src="./idav_files/ucdavis_logo_png"></a>
+</div>
+-->
+
+
+
+
+</body></html>

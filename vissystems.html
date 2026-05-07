@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+
+<html><head>
+<base href=".">
+<!--<base href="http://cdux.cs.uoregon.edu/">-->
+<!--<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-15">-->
+
+  <title>Visualization Systems</title>
+
+  <link href="style.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+
+<div class="header">
+
+<style>
+img {
+   padding-bottom: 20px
+}
+</style>
+
+<div class="masthead">
+ <a href="./index.html"><img src="./images/general/cdux-banner.png" alt="" height="150" width="768"></a>
+</div>
+
+<div class="navigation">
+  <a class="item" href="index.html">Home</a>
+  <a class="item" href="news.html">News</a>
+  <a class="item" href="research.html">Research</a>
+  <a class="item" href="publications.html">Publications</a>
+  <a class="item" href="people.html">People</a>
+  <a class="item" href="join.html">Prospective Students</a>
+  <!-- <a class="item" href="social.html">Social Events</a> --!>
+ 
+</div> <!-- end nav -->
+
+</div> <!-- end header -->
+
+<div class="content">
+
+<style>
+div.normal {
+    font-size: 100%;
+}
+div.small {
+    font-size: 75%;
+}
+div.larger {
+    font-size: 125%;
+}
+</style>
+
+
+<table>
+<tbody><tr><td class="mainbar">
+
+
+<td width=100% valign=top id="newsletter-encapsulate">
+<span style="font-size: 24px; font-weight:bold">
+
+<br>
+What visualization system designs are most effective for in situ processing?
+</span>
+
+<hr size=2 color=black>
+<span style="font-size: 18px">
+
+
+
+<p>
+In situ processing creates several new challenges that 
+ will require fresh approaches for visualization systems.
+One challenge is that increased pressure on resources -- 
+an in situ system's use of 
+memory, compute power, energy, or the interconnect network --
+can affect the simulation.
+Another challenge is in integration.
+With post hoc processing, integration occurred via files, i.e., a simulation
+code wrote files and a visualization problem read files.
+In some in situ settings, integrations require linking
+visualization algorithms into the simulation code, requiring each
+simulation code to be extended to invoke in situ APIs and exchange data.
+Further, this approach can lead to practical issues regarding complex
+compilation processes and issues stemming from large binary size.
+</p>
+
+<p>
+This page describes three research thrusts on visualization systems:
+<ul>
+<li>The PaViz framework, led by <a href="labasan.html">Stephanie Labasan</a></li>
+<li>The Ascent framework, principally developed by <a href="larsen.html">Matt Larsen</a></li>
+<li>The VisIt visualization tool, developed by many people, including <a href="childs.html">Hank Childs</a></li>
+</ul>
+</p>
+
+<div class="news_page_item">
+<div class="news_page_title">PaViz</div>
+
+<p>
+The PaViz system was a major part of <a href="labasan.html">Stephanie Labasan's</a> dissertation research, which focused on power/performance tradeoffs for scientific visualization workloads on supercomputers. Her research took two distinct phases. 
+In the first phase, she established that the data-intensive nature of visualization workloads can create useful propositions, e.g., for 10% slower performance, you can save 40% on energy. 
+She did this by 
+<a href="publications.html#2015_LabasanLDAV">first studying one algorithm in depth</a>
+and then performing 
+<a href="publications.html#2019_LabasanIPDPS">
+a more comprehensive study on a wider class of algorithms</a>.
+In the second phase, 
+she considered overprovisioned supercomputers 
+(where there are more compute resources than power) and 
+<a href="publications.html#2017_LabasanEGPGV">designed approaches in the PaViz system</a>
+which direct power to where it will improve overall performance the most. 
+Her approach 
+differed from previous works not only in that it considered visualization, but also in that it used prediction to direct power, as opposed to the standard practice of adaption.
+Stephanie then performed a 
+<a href="publications.html#2021_BrinkPARCO">thorough study</a>
+comparing prediction and adaption for rendering workloads, 
+finding that prediction works best.
+</p>
+</div>
+
+
+<div class="news_page_item">
+<div class="news_page_title">Ascent</div>
+<p>
+The <a href="publications.html#2017_LarsenISAV17">Ascent</a> library has 
+a special focus on
+"flyweight in situ," meaning small API, small binary size, small execution overhead, and small memory footprint. 
+CDUX alumnus <a href="larsen.html">Matt Larsen</a> 
+is the lead developer of Ascent, and the product
+began as during Matt's time as a Ph.D. student as
+<a href="publications.html#2015_LarsenISAV">Strawman</a>,
+a "visualization mini-app."
+Ascent is central part of the Department of Energy’s strategy for in situ visualization at the exascale, and has been integrated with multiple simulation codes. 
+Our students also often perform their research within Ascent, and run with real simulation
+codes on DOE supercomputers.
+This includes the research on <a href="isrphe.html">Lagrangian flow and wavelets</a>
+and the research on <a href="scheduling.html">estimating and optimizing in situ costs</a>.
+Ascent also heavily uses VTK-m, incorporating CDUX results on <a href="dppvis.html">portable performance</a>.
+Finally, CDUX members have researched approaches for 
+"triggers" within Ascent,
+which are mechanisms for adapting when visualization is performed based on simulation properties.
+Specifically, <a href="larsen.html">Matt Larsen</a>, <a href="marsaglia.html">Nicole Marsaglia</a>, and others proposed a <a href="publications.html#2018_LarsenISAV18">system for in situ triggers</a> that was awarded Best Paper at ISAV18.
+More recently, <a href="kawakami.html">Yuya Kawakami</a> led an effort that used this system to begin 
+<a href="publications.html#2020_KawakamiISAV">benchmarking trigger efficacy</a>.
+</div>
+
+
+<div class="news_page_item">
+<div class="news_page_title">VisIt</div>
+<p>
+<a href="publications.html#2011_ChildsSciDAC">VisIt</a> was originally developed by the Department of Energy (DOE) Advanced Simulation and Computing Initiative (ASCI) to visualize and analyze the results of terascale simulations. 
+<a href="childs.html">Hank Childs</a> was a founding member of the VisIt development team, and he served as the project architect 2000-2013. 
+VisIt was designed with a high degree of modularity to support rapid deployment of new visualization technology. This includes a plugin architecture for custom readers, data operators and plots as well as the ability to support multiple different user interfaces. Following a prototyping effort in the summer of 2000, an initial version of VisIt was developed and released in the fall of 2002. Since then, over 100 database readers, 60 operators and 20 plots have been added to the open source code. In addition, commercial, government and academic organizations in the US, Europe and elsewhere have developed and maintained proprietary plugins and user interfaces for their own needs. Although the primary driving force behind the original development of VisIt was for visualizing ASCI terascale data, VisIt has also proven to be well suited for visualizing smaller scale data from simulations on desktop systems. 
+With respect to in situ processing, Brad Whitlock used the VisIt source code to make "LibSim," which was an in situ version of VisIt.
+Finally, Hank's Ph.D. dissertation was built around the research he performed while helping to develop the tool, including a <a href="publications.html#2005_ChildsVIS">contract-based system to adapt which optimizations were applied based on the properties of a data flow network</a>.
+</p>
+
+</div>
+
+<div class="news_page_item">
+<div class="news_page_title">CDUX People</div>
+<div style="width:100%;margin-left:auto; margin-right:auto;">
+<div style="float:left;width:200px;min-height:200px;margin:10px;text-align:center;">
+<a href="labasan.html"><img style="border: none" src="./images/people/labasan_cropped.png" alt="" width="150"></a>
+<br>
+<a href="labasan.html"><b>Stephanie Labasan</b></a>
+<br>Ph.D. Student (alum)</div>
+<div style="float:left;width:200px;min-height:200px;margin:10px;text-align:center;">
+<a href="larsen.html"><img style="border: none" src="./images/people/larsen_cropped.png" alt="" width="150"></a>
+<br>
+<a href="larsen.html"><b>Matt Larsen </b></a>
+<br>Ph.D. Student (alum)</div>
+<div style="float:left;width:200px;min-height:200px;margin:10px;text-align:center;">
+<a href="kawakami.html"><img style="border: none" src="./images/people/kawakami_cropped.png" alt="" width="150"></a>
+<br>
+<a href="kawakami.html"><b>Yuya Kawakami</b></a>
+<br>M.S. Student</div>
+<div style="float:left;width:200px;min-height:200px;margin:10px;text-align:center;">
+<a href="marsaglia.html"><img style="border: none" src="./images/people/marsaglia_cropped.png" alt="" width="150"></a>
+<br>
+<a href="marsaglia.html"><b>Nicole Marsaglia</b></a>
+<br>Ph.D. Student (alum)</div>
+<div style="float:left;width:200px;min-height:200px;margin:10px;text-align:center;">
+<a href="childs.html"><img style="border: none" src="./images/people/childs_cropped.png" alt="" width="150"></a>
+<br>
+<a href="childs.html"><b>Hank Childs</b></a>
+<br>CDUX Director</div>
+</div><div class="clearfix"></div>
+</div>
+
+<div class="news_page_item">
+<div class="news_page_title">Publications</div>
+<p><table class="TFtable">
+<tr><td>
+<a name="2021_BrinkPARCO"></a>
+<div style="float: left; width: 125; margin: 5px; padding: 5px">
+<IMG SRC="pubs/BrinkPARCO_thumb.jpeg" BORDER="0" width="125"></a></div>
+<br>Evaluating Adaptive and Predictive Power Management Strategies for Optimizing Visualization Performance on Supercomputers <br>
+<a href="labasan.html">Stephanie Brink</a>,
+<a href="larsen.html">Matthew Larsen</a>,
+<a href="childs.html">Hank Childs</a>,
+and Barry Rountree <br>
+Parallel Computing, July 2021 <br>
+<br>[<a href="pubs/BrinkPARCO.pdf">PDF</a>] &nbsp; &nbsp; [<a href="pubs/BrinkPARCO.bib">BIB</a>]<br>
+</td></tr>
+<tr><td>
+<a name="2019_LabasanIPDPS"></a>
+<div style="float: left; width: 125; margin: 5px; padding: 5px">
+<IMG SRC="pubs/LabasanIPDPS_thumb.jpeg" BORDER="0" width="125"></a></div>
+<br>Power and Performance Tradeoffs for Visualization Algorithms <br>
+<a href="labasan.html">Stephanie Labasan</a>,
+<a href="larsen.html">Matt Larsen</a>,
+<a href="childs.html">Hank Childs</a>,
+and Barry Rountree <br>
+IEEE International Parallel and Distributed Processing Symposium (IPDPS), Rio de Janeiro, Brazil, May 2019 <br>
+<br>[<a href="pubs/LabasanIPDPS.pdf">PDF</a>] &nbsp; &nbsp; [<a href="pubs/LabasanIPDPS.bib">BIB</a>]<br>
+</td></tr>
+<tr><td>
+<a name="2017_LabasanEGPGV"></a>
+<div style="float: left; width: 125; margin: 5px; padding: 5px">
+<IMG SRC="pubs/LabasanEGPGV_thumb.jpeg" BORDER="0" width="125"></a></div>
+<br>PaViz: A Power-Adaptive Framework for Optimizing Visualization Performance <br>
+<a href="labasan.html">Stephanie Labasan</a>,
+<a href="larsen.html">Matt Larsen</a>,
+<a href="childs.html">Hank Childs</a>,
+and Barry Rountree <br>
+<a href="http://www.vis.uni-stuttgart.de/egpgv/egpgv2017/">Eurographics Symposium on Parallel Graphics and Visualization (EGPGV)</a>, Barcelona, Spain, June 2017 <br>
+<br>[<a href="pubs/LabasanEGPGV.pdf">PDF</a>] &nbsp; &nbsp; [<a href="pubs/LabasanEGPGV.bib">BIB</a>]<br>
+</td></tr>
+<tr><td>
+<a name="2015_LabasanLDAV"></a>
+<div style="float: left; width: 125; margin: 5px; padding: 5px">
+<IMG SRC="pubs/LabasanLDAV_thumb.jpeg" BORDER="0" width="125"></a></div>
+<br>Exploring Tradeoffs Between Power and Performance for a Scientific Visualization Algorithm <br>
+<a href="labasan.html">Stephanie Labasan</a>,
+<a href="larsen.html">Matthew Larsen</a>, 
+and <a href="childs.html">Hank Childs</a> <br>
+<a href="http://ldav2015.sci.utah.edu/">IEEE Symposium on Large Data Analysis and Visualization (LDAV)</a>, Chicago, IL, October 2015 <br>
+<br>[<a href="pubs/LabasanLDAV.pdf">PDF</a>] &nbsp; &nbsp; [<a href="pubs/LabasanLDAV.bib">BIB</a>]<br>
+</td></tr>
+<tr><td>
+<a name="2017_LarsenISAV17"></a>
+<div style="float: left; width: 125; margin: 5px; padding: 5px">
+<IMG SRC="pubs/LarsenISAV17_thumb.jpeg" BORDER="0" width="125"></a></div>
+<br>The ALPINE In Situ Infrastructure: Ascending from the Ashes of Strawman <br>
+<a href="larsen.html">Matt Larsen</a>,
+James Ahrens, Utkarsh Ayachit, Eric Brugger, 
+<a href="childs.html">Hank Childs</a>,
+Berk Geveci, and Cyrus Harrison <br>
+<a href="http://vis.lbl.gov/Events/ISAV-2017/">ISAV 2017: In Situ Infrastructures for Enabling Extreme-scale Analysis and Visualization</a>, Denver, CO, November 2017 <br>
+<br>[<a href="pubs/LarsenISAV17.pdf">PDF</a>] &nbsp; &nbsp; [<a href="pubs/LarsenISAV17.bib">BIB</a>]<br>
+</td></tr>
+<tr><td>
+<a name="2018_LarsenISAV18"></a>
+<div style="float: left; width: 125; margin: 5px; padding: 5px">
+<IMG SRC="pubs/LarsenISAV18_thumb.jpeg" BORDER="0" width="125"></a></div>
+<br>A Flexible System For In Situ Triggers <br>
+<a href="larsen.html">Matt Larsen</a>,
+Amy Woods, <a href="marsaglia.html">Nicole Marsaglia</a>, Ayan Biswas, Soumya Dutta, Cyrus Harrison, and 
+<a href="childs.html">Hank Childs</a> <br>
+<a href="http://dav.lbl.gov/events/ISAV2018/">ISAV 2018: In Situ Infrastructures for Enabling Extreme-scale Analysis and Visualization</a>, Dallas, TX, November 2018 <br>
+<b><em>Best Paper</em></b> <br>
+<br>[<a href="pubs/LarsenISAV18.pdf">PDF</a>] &nbsp; &nbsp; [<a href="pubs/LarsenISAV18.bib">BIB</a>]<br>
+</td></tr>
+<tr><td>
+<a name="2020_KawakamiISAV"></a>
+<div style="float: left; width: 125; margin: 5px; padding: 5px">
+<IMG SRC="pubs/KawakamiISAV_thumb.jpeg" BORDER="0" width="125"></a></div>
+<br>Benchmarking In Situ Triggers Via Reconstruction Error <br>
+<a href="kawakami.html">Yuya Kawakami</a>,
+<a href="marsaglia.html">Nicole Marsaglia</a>,
+<a href="larsen.html">Matt Larsen</a>,
+and
+<a href="childs.html">Hank Childs</a> <br>
+<a href="http://dav.lbl.gov/events/ISAV2020/">ISAV 2020: In Situ Infrastructures for Enabling Extreme-scale Analysis and Visualization</a>, Atlanta GA, November 2020 <br>
+<br>[<a href="pubs/KawakamiISAV.pdf">PDF</a>] &nbsp; &nbsp; [<a href="pubs/KawakamiISAV.bib">BIB</a>]<br>
+</td></tr>
+<tr><td>
+<a name="2015_LarsenISAV"></a>
+<div style="float: left; width: 125; margin: 5px; padding: 5px">
+<IMG SRC="pubs/LarsenISAV_thumb.jpeg" BORDER="0" width="125"></a></div>
+<br>Strawman - A Batch In Situ Visualization and Analysis Infrastructure for Multi-Physics Simulation Codes <br>
+<a href="larsen.html">Matthew Larsen</a>,
+Eric Brugger,
+<a href="childs.html">Hank Childs</a>, 
+Jim Eliot, 
+Kevin Griffin, 
+and Cyrus Harrison <br>
+<a href="http://vis.lbl.gov/Events/ISAV-2015/"> SC15 Workshop on In Situ Infrastructures for Enabling Extreme-scale Analysis and Visualization (ISAV-15)</a>, Austin, TX, November 2015 <br>
+<br>[<a href="pubs/LarsenISAV.pdf">PDF</a>] &nbsp; &nbsp; [<a href="pubs/LarsenISAV.bib">BIB</a>]<br>
+</td></tr>
+<tr><td>
+<a name="2011_ChildsSciDAC"></a>
+<div style="float: left; width: 125; margin: 5px; padding: 5px">
+<IMG SRC="pubs/ChildsSciDAC_thumb.jpeg" BORDER="0" width="125"></a></div>
+<br>VisIt: An End-User Tool For Visualizing and Analyzing Very Large Data <br>
+<a href="childs.html">Hank Childs</a>,
+Eric Brugger, Brad Whitlock, Jeremy Meredith, Sean Ahern, Kathleen Bonnell, Mark Miller, Gunther H. Weber, Cyrus Harrison, David Pugmire, Thomas Fogal, Christoph Garth, Allen Sanderson, E. Wes Bethel, Marc Durant, David Camp, Jean M. Favre, Oliver Ruebel, Paul Navratil, Matthew Wheeler, Paul Selby, and Fabien Vivodtzev <br>
+DOE SciDAC Conference, Denver, CO, July 2011 <br>
+<br>[<a href="pubs/ChildsSciDAC.pdf">PDF</a>] &nbsp; &nbsp; [<a href="pubs/ChildsSciDAC.bib">BIB</a>]<br>
+</td></tr>
+<tr><td>
+<a name="2005_ChildsVis05"></a>
+<div style="float: left; width: 125; margin: 5px; padding: 5px">
+<IMG SRC="pubs/ChildsVis05_thumb.jpeg" BORDER="0" width="125"></a></div>
+<br>A Contract-Based System for Large Data Visualization <br>
+<a href="childs.html">Hank Childs</a>,
+Eric Brugger, Kathleen Bonnell,
+<a href="http://ft.ornl.gov/~jsmeredith/">Jeremy Meredith</a>,
+Mark Miller, Brad Whitlock, and
+<a href="http://engineering.ucdavis.edu/biographies/nelson-max/">Nelson Max</a> <br>
+IEEE Visualization, Minneapolis, MN, October 2005 <br>
+<br>[<a href="pubs/ChildsVis05.pdf">PDF</a>] &nbsp; &nbsp; [<a href="pubs/ChildsVis05.bib">BIB</a>]<br>
+</td></tr>
+</table>
+</div>
+
+
+</td></tr>
+</tbody></table>
+</div>
+
+<div class="footer" style="clear: both">
+Research Group on Computing and Data Understanding at eXtreme Scale &#8226; The University of Oregon &#8226; cdux-info@cs.uoregon.edu
+
+</div>
+
+<!--
+<div class="footer_logo">
+<a href="http://www.ucdavis.edu/"><img border="0" src="./idav_files/ucdavis_logo_png"></a>
+</div>
+-->
+
+
+
+
+</body></html>

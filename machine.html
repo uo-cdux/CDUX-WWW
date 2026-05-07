@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+
+<html><head>
+<base href=".">
+<!--<base href="http://cdux.cs.uoregon.edu/">-->
+<!--<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-15">-->
+
+  <title>Using Alaska, the CDUX Research Cluster</title>
+
+  <link href="style.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+
+<div class="header">
+
+<style>
+img {
+   padding-bottom: 20px
+}
+</style>
+
+<div class="masthead">
+ <a href="./index.html"><img src="./images/general/cdux-banner.png" alt="" height="150" width="768"></a>
+</div>
+
+<div class="navigation">
+  <a class="item" href="index.html">Home</a>
+  <a class="item" href="news.html">News</a>
+  <a class="item" href="research.html">Research</a>
+  <a class="item" href="publications.html">Publications</a>
+  <a class="item" href="people.html">People</a>
+  <a class="item" href="join.html">Prospective Students</a>
+  <!-- <a class="item" href="social.html">Social Events</a> --!>
+ 
+</div> <!-- end nav -->
+
+</div> <!-- end header -->
+
+<div class="content">
+
+<style>
+div.normal {
+    font-size: 100%;
+}
+div.small {
+    font-size: 75%;
+}
+div.larger {
+    font-size: 125%;
+}
+</style>
+
+
+<table>
+<tbody><tr><td class="mainbar">
+
+
+<H2>Introduction</H2>
+
+<p>
+Alaska is the research cluster for CDUX. This document provides basic information about Alaska, as well as how to make use of it. Here is the front and back view of Alaska.
+</p>
+
+
+<div style="float: top; width: 700px;
+  margin: 5px; padding: 5px; border: 1px solid black;">
+<IMG SRC="images/machine/alaska.jpg" BORDER="0" width="700"></a>
+</div>
+
+<br>
+<H2>Hardware and Configurations</H2>
+<p>
+<ul>
+<li>Head node</li>
+<ul>
+<li>Two Xeon E5-2667v3 CPU ( 16 cores @ 3.2GHz)</li>
+<li>256 GB DDR4 memory</li>
+<li>6 HDD in RAID5 configuration, ~18TB</li>
+<li>2 SSD in RAID0 configuration, ~2TB</li>
+</ul>
+<li>Cluster nodes (4 in total)</li>
+<ul>
+<li>One Intel Xeon E5-1650v3 CPU ( 6 cores @ 3.5GHz)</li>
+<li>32 GB DDR4 memory</li>
+<li>1 SSD, ~256 GB</li>
+</ul>
+<li>Hostnames</li>
+	<ul>
+	<li>The head node has hostname <b>Alaska</b>.</li>
+	<li>The cluster nodes have hostnames <b>cn1, cn2, cn3, cn4</b>.</li>
+	</ul>
+<li>Filesystem</li>
+	<ul>
+	<li><b>$HOME</b> is accessable from all nodes. This is the main storage space.</li>
+	<li><b>/flash_buffer</b> is accessable from all nodes. This is a fast I/O space. 
+		It's capacity is limited to 2TB though.</li>
+	<li><b>/opt</b> is accessable from all nodes but read-only. It keeps a few libraries 
+		and packages to be used by environment modules.</li>
+	<li><b>/Research_Data</b> is accessable from all nodes but read-only. It keeps
+		a few data sets that might be useful for our group. 
+		(Note: this disks experiments the 
+		<a href="https://btrfs.wiki.kernel.org/index.php/Main_Page">btrfs</a>
+		file system with transparent compression. As a result, this disk could hold
+		a little more data than its real capacity: 2TB.)</li>
+	</ul>
+<li>10Gb ethernet connection among these nodes.</li>
+<li>Ubuntu 14.04 LTS on all machines.</li>
+</ul>
+</p>
+
+
+
+<br>
+<H2>Login</H2>
+<p>
+<ul>
+<li>Authenticated users use their ix usernames and passwords to log onto Alaska:</li>
+	<ul>
+	<li><b>ssh &lt username &gt@alaska.cs.uoregon.edu</b></li>
+	</ul>
+<li>Users need to first log onto Alaska, and then from Alaska to log onto cluster nodes (cn1 - cn4).</li>
+<li>Logging onto the cluster nodes can be as simple as <b>ssh cn1</b>, for example.</li>
+</ul>
+</p>
+
+
+
+<br>
+<H2>Environment Modules</H2>
+<p>
+<ul>
+<li>Modules are used to manage environment variables on Alaska. In fact, they secretely
+    manipulate your environment variables such as $PATH, $LD_LIBRARY_PATH, etc.</li>
+<li>Usage of Modules on Alaska is similar to this 
+	<a href="http://www.nersc.gov/users/software/nersc-user-environment/modules/">post</a> 
+	from Nersc.</li>
+<li>Modules are grouped into different versions of compilers. It is strongly recommended 
+  to use the same version of compiler for your code, dependency libraries, and 
+  MPI implementation.</li>
+<li>The combinations of compilers and MPI implementations are a little tricky 
+	on Alaska. Here is a list of valid combinations:</li>
+	<ul>
+	<li>Not loading any modules (you're using gcc-4.8 and openmpi-1.6); </li>
+	<li>Only loading <b>gcc-4.8/openmpi-1.8</b> (you're using gcc-4.8 and openmpi-1.8); </li>
+	<li>Loading both <b>gcc-5.3/gcc-5.3.0</b> and <b>gcc-5.3/openmpi-1.10.2</b>
+		(you're using gcc-5.3 and openmpi-1.10). </li>
+	</ul>
+</ul>
+</p>
+
+
+
+<br>
+<H2>Launch MPI jobs</H2>
+<p>
+<ul>
+<li>Before you run MPI jobs across multiple nodes, please make sure you have 
+completed the following tasks:</li>
+	<ul>
+	<li>Have set up authentication keys to enable passwordless login for all compute nodes
+		(a tutorial could be found <a href="https://www.digitalocean.com/community/tutorials/how-to-set-up-ssh-keys--2">here</a>).</li> 
+	<li>After the above step, you basically have both your private key (e.g. id_rsa)
+		and public key in your <b>~/.ssh</b> folder. 
+		Don't panic, your private key is ONLY visible to you by default.</li>
+	<li>Manually logged onto all the nodes, so the machines keep each other's fingerprints.</li>
+	</ul>
+<li>Alaska has OpenMPI installed. Instead of using a job scheduler to allocate resources, here we use a text file to specify where to run a job: <b>hostfile</b>.</li>
+	<ul>
+	<li>A sample hostfile can be found at: <b>/opt/hostfile</b>.</li>
+	<li>A hostfile is passed into mpirun through the <b>--hostfile</b> option. For example: <b>mpirun -n 32 --hostfile hostfile ./my_program</b> .</li>
+	</ul>
+</ul>
+</p>
+
+
+<br>
+<H2>GPU Computing with CUDA</H2>
+<p>
+<ul>
+<li>An Nvidia Tesla K40 GPU is installed in the <b>cn4</b> node. You can access it by logging onto <b>cn4</b>.</li>
+
+<li>An Nvidia Geforce 610 card is also installed in the <b>cn3</b> node. 
+Though CUDA capable, this card is probably only fast enough for debugging.</li>
+
+<li>Nvidia Profiler (nvprof) and Nvidia Visual Profiler (nvvp) are good tools to profile your CUDA program. Note nvvp requires X11 window to run.</li>
+
+</ul>
+</p>
+
+
+<br>
+<H2> Utility Programs </H2>
+<p>
+These utility programs are available from the headnode, Alaska, and/or 
+certain cluster nodes if specified.
+Some of them require X11 to use.
+<ul>
+	<li> <b>latex</b>: pdflatex, etc. (cn1)
+	<li> <b>eog</b>: eye of gnome image viewer. (X11)
+	<li> <b>mupdf</b>: (super fast) pdf viewer. (X11)
+	<li> <b>qpdfview</b>: pdf viewer. (X11)
+	<li> <b>meld</b>: beautiful visual diff tool. (X11)
+	<li> <b>fldiff</b>: fast visual diff tool. (X11)
+	<li> <b>retext</b>: markdown viewer/editor. (X11)
+	<li> <b>gnuplot</b>: making plots from data. (X11)
+	<li> <b>ghex</b>: gnome hex editor. (X11)
+	<li> <b>w3m</b>: command line html viewer.
+	<li> <b>imagemagick</b>: image manipulator. 
+	<li> <b>nvprof</b>: nvidia profiler. (cn4)
+	<li> <b>nvvp</b>: nvidia visual profiler. (cn4, X11)
+</ul>
+</p>
+
+
+
+<br>
+<H2> Q&A</H2>
+<p>
+<ul>
+	<li> <b>Q</b>: Alaska seems pretty heavy loaded with little CPU resource left. What should I do?
+		<ul><li> <b>A</b>: Try one of the cluster nodes (<b>cn1</b> through <b>cn4</b>).
+						   Your programming environment is expected to be the same as on Alaska,
+						   plus you have a good chance to occupy that node by yourself!
+		</ul>
+	<br>
+
+	<li> <b>Q</b>: I set up <b>LD_LIBRARY_PATH</b> to point to a custom directory on 
+		the head node.  However, other nodes still have trouble finding the runtime 
+		libraries when I invoke my program with MPIRUN. What can I do?
+		<ul><li> <b>A</b>: Use <b>-x</b> option with MPIRUN. 
+			MPIRUN takes a -x option to export a specified environment 
+			variables to the remote nodes before executing a program. 
+			For example, <b>mpirun -x LD_LIBRARY_PATH -n 32 ./my_program</b> .
+		</ul>
+	<br>
+
+	<li> <b>Q</b>: What should I do when I need a specific python package?
+		<ul><li> <b>A</b>: Use <a href="https://en.wikipedia.org/wiki/Pip_(package_manager)"><b>pip</b></a>.
+		You can even specify where to install a package using the <b>--target</b> option.
+		For example, <b>pip install --target=/path/to/my/python/directory package_name</b> .
+		</ul>
+	<br>
+
+	<li> <b>Q</b>: The disk seems to be too slow for me. What can I do?
+		<ul><li> <b>A</b>: 
+			You can move the I/O-heavy task to the solid state drives of Alaska. 
+			There are two possibilities. First is to use <b>/flash_buffer</b>,
+			which is globally accessable from all nodes with ~2TB capacity. 
+			Second is to use <b>/local_buffer</b>, which is local in respect to 
+		  cn1 through cn2 with ~180GB capacity each.
+		</ul>
+	<br>
+		</ul>
+</ul>
+</p>
+</td></tr>
+</tbody></table>
+</div>
+
+<div class="footer" style="clear: both">
+Research Group on Computing and Data Understanding at eXtreme Scale &#8226; The University of Oregon &#8226; cdux-info@cs.uoregon.edu
+
+</div>
+
+<!--
+<div class="footer_logo">
+<a href="http://www.ucdavis.edu/"><img border="0" src="./idav_files/ucdavis_logo_png"></a>
+</div>
+-->
+
+
+
+
+</body></html>

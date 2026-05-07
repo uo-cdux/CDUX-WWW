@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+
+<html><head>
+<base href=".">
+<!--<base href="http://cdux.cs.uoregon.edu/">-->
+<!--<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-15">-->
+
+  <title>In Situ Calculation of Finite-Time Lyapunov Exponents (FTLE)</title>
+
+  <link href="style.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+
+<div class="header">
+
+<style>
+img {
+   padding-bottom: 20px
+}
+</style>
+
+<div class="masthead">
+ <a href="./index.html"><img src="./images/general/cdux-banner.png" alt="" height="150" width="768"></a>
+</div>
+
+<div class="navigation">
+  <a class="item" href="index.html">Home</a>
+  <a class="item" href="news.html">News</a>
+  <a class="item" href="research.html">Research</a>
+  <a class="item" href="publications.html">Publications</a>
+  <a class="item" href="people.html">People</a>
+  <a class="item" href="join.html">Prospective Students</a>
+  <!-- <a class="item" href="social.html">Social Events</a> --!>
+ 
+</div> <!-- end nav -->
+
+</div> <!-- end header -->
+
+<div class="content">
+
+<style>
+div.normal {
+    font-size: 100%;
+}
+div.small {
+    font-size: 75%;
+}
+div.larger {
+    font-size: 125%;
+}
+</style>
+
+
+<table>
+<tbody><tr><td class="mainbar">
+
+
+<td width=100% valign=top id="newsletter-encapsulate">
+<span style="font-size: 24px; font-weight:bold">
+
+<br>
+In Situ Calculation of Finite-Time Lyapunov Exponents (FTLE)
+
+</span>
+
+<hr size=2 color=black>
+<span style="font-size: 18px">
+
+<img style="border: 1px solid black" src="images/vis/ftle_mid.png" alt="Image" align="right" border="2">
+
+<h2>Problem Overview</h2>
+
+<p>
+Finite-Time Lyapunov Exponents (FTLE) inform the extent that flow through a
+volume is separating. 
+The technique quantifies the separation at every location
+in physical space.
+In practice, this is done via particle advection (i.e., displacing a
+massless particle so that it is always tangent to the velocity).
+One particle is placed at each mesh point, and advected for a period,
+and the separation between the resulting positions of adjacent points is 
+measured.
+This technique is highly valued in the ocean modeling community, fusion
+community, and others, since it locates the areas with similar flow patterns,
+as well as those with very different flow patterns.
+</p>
+
+<p>
+Computing an FTLE can become very expensive however, especially when it is 
+computed on the native resolution of a dense mesh.
+On very large meshes, the technique may involve billions of particles
+going very long distances, and thus solving trillions of ordinary
+differential equations.
+Calculating FTLE in situ (meaning performing the FTLE calculation concurrent
+with the simulation code) is particularly difficult, since the 
+execution time, memory requirements, and communication patterns must
+fit within the constraints of the simulation code.
+However, in situ calculation provides new opportunities 
+for directing the simulation code itself toward the best strategy for
+adapting its computation over time.
+Specifically, this information can be used to find computational islands,
+ and may be able to 
+provide insight into optimally load balancing the simulation into regions 
+which require very little communication with each other. 
+</p>
+
+
+<p>
+This research project endeavors to accomplish many connected tasks. 
+First, to find better ways of improving the current implementations of the 
+FTLE in tools such as VisIt for use in post processing of simulation data. 
+Second, to analyze the results and assist in discoveries in fusion.
+Third, to test new methods for parallelizing FTLE computation for 
+in situ processing. 
+And, fourth, to deploy these techniques into M3D, 
+a tokamak fusion code used to understand nuclear plasmas. 
+</p>
+
+<p>
+The image on this page shows the result of an FTLE calculation on a
+cross-section of a tokamak from an M3D simulation.  
+The red and white areas are where flow separates the most, while
+the blue and green areas are where particles stay mostly together.
+</p>
+
+
+<h2>CDUX People</h2>
+
+<div style="width:100%;margin-left:auto; margin-right:auto;">
+<div style="float:left;width:200px;min-height:200px;margin:10px;text-align:center;">
+<a href="bleile.html"><img style="border: none" src="./images/people/bleile_cropped.png" alt="" width="150"></a>
+<br>
+<a href="bleile.html"><b>Ryan Bleile</b></a>
+<br>Ph.D. Student (alum)</div>
+<div style="float:left;width:200px;min-height:200px;margin:10px;text-align:center;">
+<a href="childs.html"><img style="border: none" src="./images/people/childs_cropped.png" alt="" width="150"></a>
+<br>
+<a href="childs.html"><b>Hank Childs</b></a>
+<br>CDUX Director</div>
+</div><div class="clearfix"></div>
+
+<h2>External Collaborator</h2>
+<ul>
+<li>Linda Sugiyama, MIT</li>
+</ul>
+</td></tr>
+</tbody></table>
+</div>
+
+<div class="footer" style="clear: both">
+Research Group on Computing and Data Understanding at eXtreme Scale &#8226; The University of Oregon &#8226; cdux-info@cs.uoregon.edu
+
+</div>
+
+<!--
+<div class="footer_logo">
+<a href="http://www.ucdavis.edu/"><img border="0" src="./idav_files/ucdavis_logo_png"></a>
+</div>
+-->
+
+
+
+
+</body></html>

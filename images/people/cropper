@@ -1,0 +1,16 @@
+#pngtopnm < kress.png | pnmcut 330 190 240 320 | pnmscale -xsize 150 -ysize 200 | pnmtopng > kress_cropped.png
+#pngtopnm < childs.png | pnmscale -xsize 150 | pnmcut 0 0 150 200 | pnmtopng > childs_cropped.png
+#pngtopnm < potter.png | pnmcut 8 0 150 200 | pnmtopng > potter_cropped.png
+#pngtopnm < weiler.png | pnmcut 20 0 150 200 | pnmtopng > weiler_cropped.png
+#jpegtopnm < li.jpg | pnmcut 275 300 450 600 | pnmscale -xsize 150 -ysize 200 | pnmtopng > li_cropped.png
+#pngtopnm < anderson.png | pnmcut 17 10 150 200 | pnmtopng > anderson_cropped.png
+#jpegtopnm < larsen.jpg | pnmcut 240 14 300 400  | pnmscale -xsize 150 -ysize 200 | pnmtopng > larsen_cropped.png
+#jpegtopnm < labasan.jpg | pnmcut 370 52 375 500  | pnmscale -xsize 150 -ysize 200 | pnmtopng > labasan_cropped.png
+#jpegtopnm < bleile.jpg | pnmscale -xsize 150 | pnmcut 0 0 150 200 | pnmtopng > bleile_cropped.png
+#jpegtopnm < bleile.jpg | pnmcut 380 150 180 240 | pnmscale -xsize 150 -ysize 200 | pnmtopng > bleile_cropped.png 
+#  pngtopnm < belcher.png | pnmcut 40 40 690 920 | pnmscale -xsize 150 -ysize 200 | pnmtopng > belcher_cropped.png
+
+
+#jpegtopnm < dawes.jpg | pnmcut 82 0 150 200 | pnmtopng > dawes_cropped.png 
+#jpegtopnm < sane.jpg | pnmcut 120 100 540 720 | pnmscale -xsize 150 -ysize 200 | pnmtopng > sane_cropped.png
+jpegtopnm < marsaglia.jpg | pnmcut 100 0 750 960  | pnmscale -xsize 150 -ysize 200 | pnmtopng > marsaglia_cropped.png

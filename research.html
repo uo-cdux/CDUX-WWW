@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+
+<html><head>
+<base href=".">
+<!--<base href="http://cdux.cs.uoregon.edu/">-->
+<!--<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-15">-->
+
+  <title>CDUX: Research</title>
+
+  <link href="style.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+
+<div class="header">
+
+<style>
+img {
+   padding-bottom: 20px
+}
+</style>
+
+<div class="masthead">
+ <a href="./index.html"><img src="./images/general/cdux-banner.png" alt="" height="150" width="768"></a>
+</div>
+
+<div class="navigation">
+  <a class="item" href="index.html">Home</a>
+  <a class="item" href="news.html">News</a>
+  <a class="item" href="research.html">Research</a>
+  <a class="item" href="publications.html">Publications</a>
+  <a class="item" href="people.html">People</a>
+  <a class="item" href="join.html">Prospective Students</a>
+  <!-- <a class="item" href="social.html">Social Events</a> --!>
+ 
+</div> <!-- end nav -->
+
+</div> <!-- end header -->
+
+<div class="content">
+
+<style>
+div.normal {
+    font-size: 100%;
+}
+div.small {
+    font-size: 75%;
+}
+div.larger {
+    font-size: 125%;
+}
+</style>
+
+
+<table>
+<tbody><tr><td class="mainbar">
+
+
+<div class="larger">
+
+<p>
+The CDUX group pursues research in scientific visualization, high-performance computing, computational science, and computer graphics, and especially focuses on problems where these areas intersect. 
+That said, much of our group's results to date have considered visualization on supercomputers.  This page provides more background on this topic, and concludes with links to pages summarizing some research highlights from CDUX members.
+</p>
+
+<div class="news_page_item">
+<div class="news_page_title">What Is Scientific Visualization?</div>
+<p>
+Visualization is the branch of computer science devoted to analyzing data by visual means. The visualization field is frequently segmented into two sub-disciplines: scientific visualization and information visualization. The primary distinction between the two is that scientific visualization data normally has an implied spatial layout, and information visualization data does not. With scientific visualization, techniques can exploit the spatial properties of the information (meshes, grids, vectors, tensors, etc.) and utilize the three-dimensional capabilities of today’s graphics engines to help visually present their analysis. The types of data associated with scientific visualization are often "scientific" in nature: engineering, climate, medical, etc. With information visualization, the data has no accompanying spatial information, and so the resulting visualizations have more flexibility in how to arrange data. The types of data associated with information visualization are diverse: tax records, twitter feed information, network usage statistics, etc. For both scientific visualization and information visualization, however, the goal is to enable insight into data.
+</p>
+</div>
+
+<div class="news_page_item">
+<div class="news_page_title">General Challenges for Large-Data Scientific Visualization</div>
+<p>
+Large data visualization is the area of visualization devoted to very large and complex data sets. There are two key challenges with large-data visualization:
+<ul>
+<li>The first challenge is obvious: how to process the scale of large data? How to load a terabyte (or petabyte, or exabyte), apply an algorithm to it, and render the result?</li>
+<li>The second challenge is more subtle: how to gain insight from large data? That is, assuming that techniques do exist for processing very large data sets, then how do we ensure that the resulting visualizations do not produce images beyond what the human brain’s visual processing system can interpret?</li>
+</ul>
+</p>
+</div>
+
+<div class="news_page_item">
+<div class="news_page_title">Challenges for Visualization on Supercomputers: In Situ Processing, Massive Parallelism, and Many-Core Nodes</div>
+<p>
+While large scientific data sets can come from experimental or observational sources, such as medical instrumentation or sensor networks, they often come from simulation, and specifically from simulations on supercomputers. In this case, data sets are often stored on the supercomputers where they were generated, and the typical processing approach is to use parallel techniques on the supercomputer itself. Traditionally, the processing paradigm for visualization on supercomputers has been post hoc, i.e., a simulation program saves its data to a disk, and, later, a visualization program loads this data and operates on it. However, supercomputing trends are favoring compute capability over I/O bandwidth — disks speeds are getting faster, but not when compared to increases in the ability to generate data. Worse, visualization performance on supercomputers was already frequently limited by the time it takes to read data from disk, so increased data load times significantly worsen overall execution time. Taken altogether, post hoc processing is falling out of favor with our community. Instead, we are moving towards in situ processing, i.e., visualizing data as it is generated. Finally, leading-edge supercomputers are made up of many nodes, each of which contains multiple GPUs, and, with in situ processing, our visualization algorithms need to run on these architectures.  This complex setting requires innovation to achieve high efficiency. 
+</p>
+
+These supercomputing trends have led to many interesting research questions for visualization:
+<ul>
+<li>Efficient execution on supercomputers:</li>
+<ul>
+<li>Within a node: <a href="dppvis.html">How can visualization software run efficiently on diverse many-core architectures, including GPUs?</a></li>
+<li>Across nodes: <a href="mpivis.html">How should work be divided across the nodes of a supercomputer to achieve good load balance and minimize execution time?</a></li>
+</ul>
+<li><a href="scheduling.html">How should in situ processing be scheduled on supercomputers and in what form?</a></li>
+<li><a href="vissystems.html">What system designs are most effective for in situ processing?</a></li>
+<li><a href="isrphe.html">How can in situ processing occur effectively when there is no human in the loop? What should
+we do when our stakeholders (domain scientists) do not know what they want to visualize a priori?</a></li>
+</ul>
+</p>
+
+<p>
+Finally, CDUX personnel have contributed to several resources which are useful for learning more about in situ processing on supercomputers:
+<ul>
+<li>The <a href="publications.html#2016_BauerSTAR">state-of-the-art</a> report on in situ processing</li>
+<li>The <a href="publications.html#2019_BennettDagstuhl">workshop report</a> from the 2018 Dagstuhl seminar on in situ processing, as well as the <a href="publications.html#2019_ChildsCGA19">follow-on article</a> summarizing the report.</li>
+<li>The <a href="publications.html#2020_ChildsIJHPCA">community paper</a> on the possible forms of in situ processing and a terminology for describing them.</li>
+</ul>
+</p>
+</div>
+
+</div>
+
+
+
+</td></tr>
+</tbody></table>
+</div>
+
+<div class="footer" style="clear: both">
+Research Group on Computing and Data Understanding at eXtreme Scale &#8226; The University of Oregon &#8226; cdux-info@cs.uoregon.edu
+
+</div>
+
+<!--
+<div class="footer_logo">
+<a href="http://www.ucdavis.edu/"><img border="0" src="./idav_files/ucdavis_logo_png"></a>
+</div>
+-->
+
+
+
+
+</body></html>

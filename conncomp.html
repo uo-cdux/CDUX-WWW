@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+
+<html><head>
+<base href=".">
+<!--<base href="http://cdux.cs.uoregon.edu/">-->
+<!--<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-15">-->
+
+  <title>Parallel Connected Components</title>
+
+  <link href="style.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+
+<div class="header">
+
+<style>
+img {
+   padding-bottom: 20px
+}
+</style>
+
+<div class="masthead">
+ <a href="./index.html"><img src="./images/general/cdux-banner.png" alt="" height="150" width="768"></a>
+</div>
+
+<div class="navigation">
+  <a class="item" href="index.html">Home</a>
+  <a class="item" href="news.html">News</a>
+  <a class="item" href="research.html">Research</a>
+  <a class="item" href="publications.html">Publications</a>
+  <a class="item" href="people.html">People</a>
+  <a class="item" href="join.html">Prospective Students</a>
+  <!-- <a class="item" href="social.html">Social Events</a> --!>
+ 
+</div> <!-- end nav -->
+
+</div> <!-- end header -->
+
+<div class="content">
+
+<style>
+div.normal {
+    font-size: 100%;
+}
+div.small {
+    font-size: 75%;
+}
+div.larger {
+    font-size: 125%;
+}
+</style>
+
+
+<table>
+<tbody><tr><td class="mainbar">
+
+
+<td width=100% valign=top id="newsletter-encapsulate">
+<span style="font-size: 24px; font-weight:bold">
+<br>
+Parallel Connected Components
+
+</span>
+
+<hr size=2 color=black>
+<span style="font-size: 18px">
+
+<img style="border: 1px solid black" src="images/vis/conncomp.png" width=500 alt="Image" align="right" border="2">
+
+<h2>Problem Overview</h2>
+
+<p>
+Parallel scientific simulations running on today's state of the art 
+petascale computing platforms generate massive quantities of high resolution 
+mesh-based data. 
+Scientists often analyze this data by eliminating portions and visualizing 
+what remains, through operations such as isosurfacing, selecting 
+certain materials and discarding the others, isolating hot spots, etc. 
+These approaches can generate complex derived geometry with intricate 
+structures that require further techniques for effective analysis, 
+especially in the context of massive data.
+</p>
+
+<p>
+In these instances, representations of the topological structure of a mesh is 
+often helpful. 
+Specifically, a labeling of the connected components in a mesh provides a 
+simple and intuitive topological characterization of which parts of the mesh 
+are connected to each other. 
+These unique sub-meshes contain a subset of cells that are directly or 
+indirectly connected via series of cell abutments.
+</p>
+
+<p>
+The global nature of connectivity poses a challenge in distributed-memory 
+parallel environments, which are the most common setting for analyzing massive 
+data. 
+This is because massive data sets are typically too large to fit into the 
+memory of a single processor, so pieces of the mesh are distributed across 
+processors. 
+Cells comprising connected sub-meshes may span any of the processors, 
+but the relationships of how cells abut across processors frequently has to 
+be derived. 
+To deal with this problem, sophisticated techniques to resolve connectivity are necessary.
+</p>
+
+<h2>Results</h2>
+
+<p>
+We have published several papers on this topic:
+<ul>
+<li>An efficient
+algorithm for distributed-memory parallelism provided ghost data
+is present (Harrison/EGPGV11).</li>
+<li>An extended algorithm that works on all data, whether or not
+ghost data is present (Harrison/TSMCD14).</li>
+<li>An applications paper studying turbulent flow that depended on
+connected component calculation (Gaither/CGA12).</li>
+</ul>
+</p>
+
+<h2>CDUX People</h2>
+
+<div style="width:100%;margin-left:auto; margin-right:auto;">
+<div style="float:left;width:200px;min-height:200px;margin:10px;text-align:center;">
+<a href="bleile.html"><img style="border: none" src="./images/people/bleile_cropped.png" alt="" width="150"></a>
+<br>
+<a href="bleile.html"><b>Ryan Bleile</b></a>
+<br>Ph.D. Student (alum)</div>
+<div style="float:left;width:200px;min-height:200px;margin:10px;text-align:center;">
+<a href="childs.html"><img style="border: none" src="./images/people/childs_cropped.png" alt="" width="150"></a>
+<br>
+<a href="childs.html"><b>Hank Childs</b></a>
+<br>CDUX Director</div>
+</div><div class="clearfix"></div>
+
+<h2>External Collaborators</h2>
+<ul>
+<li><a href="http://people.llnl.gov/harrison37">Cyrus Harrison</a>, LLNL</li>
+<li><a href="weiler.html">Jordan Weiler</a>, CDUX Alum</li>
+<li><a href="https://www.tacc.utexas.edu/staff/kelly-gaither">Kelly Gaither</a>, TACC</li>
+</ul>
+
+<h2>Publications</h2>
+
+<p><table class="TFtable">
+<tr><td>
+<a name="2014_HarrisonCCL"></a>
+<div style="float: left; width: 125; margin: 5px; padding: 5px">
+<IMG SRC="pubs/HarrisonCCL_thumb.jpeg" BORDER="0" width="125"></a></div>
+<br>A Distributed-Memory Algorithm for Connected Components Labeling of Simulation Data <br>
+<a href="http://people.llnl.gov/harrison37">Cyrus Harrison</a>, Jordan Weiler, <a href="bleile.html">Ryan Bleile</a>, <a href="https://www.tacc.utexas.edu/about/directory/kelly-gaither">Kelly Gaither</a>, and <a href="childs.html">Hank Childs</a> <br>
+Topological and Statistical Methods for Complex Data, December 2014 <br>
+<br>[<a href="http://www.springer.com/us/book/9783662448991">LINK</a>] &nbsp; &nbsp; [<a href="pubs/HarrisonCCL.bib">BIB</a>]<br>
+</td></tr>
+<tr><td>
+<a name="2012_GaitherCGA"></a>
+<div style="float: left; width: 125; margin: 5px; padding: 5px">
+<IMG SRC="pubs/GaitherCGA_thumb.jpeg" BORDER="0" width="125"></a></div>
+<br>Using Visualization and Data Analysis to Understand Critical Structures in Massive Time Varying Turbulent Flow Simulations <br>
+<a href="https://www.tacc.utexas.edu/about/directory/kelly-gaither">Kelly Gaither</a>,
+<a href="childs.html">Hank Childs</a>,
+Karl Schulz,
+<a href="http://people.llnl.gov/harrison37">Cyrus Harrison</a>, 
+Bill Barth, Diego Donzis, and P.K. Yeung <br>
+IEEE Computer Graphics and Applications (CG&A), July 2012 <br>
+<br>[<a href="pubs/GaitherCGA.pdf">PDF</a>] &nbsp; &nbsp; [<a href="pubs/GaitherCGA.bib">BIB</a>]<br>
+</td></tr>
+<tr><td>
+<a name="2011_HarrisonEGPGV"></a>
+<div style="float: left; width: 125; margin: 5px; padding: 5px">
+<IMG SRC="pubs/HarrisonEGPGV_thumb.jpeg" BORDER="0" width="125"></a></div>
+<br>Data-Parallel Mesh Connected Components Labeling and Analysis <br>
+<a href="http://people.llnl.gov/harrison37">Cyrus Harrison</a>, 
+<a href="childs.html">Hank Childs</a>, and
+<a href="https://www.tacc.utexas.edu/about/directory/kelly-gaither">Kelly Gaither</a> <br>
+EGPGV, Llandudno, Wales, April 2011 <br>
+<br>[<a href="pubs/HarrisonEGPGV.pdf">PDF</a>] &nbsp; &nbsp; [<a href="pubs/HarrisonEGPGV.bib">BIB</a>]<br>
+</td></tr>
+</table>
+
+</td></tr>
+</tbody></table>
+</div>
+
+<div class="footer" style="clear: both">
+Research Group on Computing and Data Understanding at eXtreme Scale &#8226; The University of Oregon &#8226; cdux-info@cs.uoregon.edu
+
+</div>
+
+<!--
+<div class="footer_logo">
+<a href="http://www.ucdavis.edu/"><img border="0" src="./idav_files/ucdavis_logo_png"></a>
+</div>
+-->
+
+
+
+
+</body></html>

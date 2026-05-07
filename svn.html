@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+
+<html><head>
+<base href=".">
+<!--<base href="http://cdux.cs.uoregon.edu/">-->
+<!--<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-15">-->
+
+  <title>Subversion Usage</title>
+
+  <link href="style.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+
+<div class="header">
+
+<style>
+img {
+   padding-bottom: 20px
+}
+</style>
+
+<div class="masthead">
+ <a href="./index.html"><img src="./images/general/cdux-banner.png" alt="" height="150" width="768"></a>
+</div>
+
+<div class="navigation">
+  <a class="item" href="index.html">Home</a>
+  <a class="item" href="news.html">News</a>
+  <a class="item" href="research.html">Research</a>
+  <a class="item" href="publications.html">Publications</a>
+  <a class="item" href="people.html">People</a>
+  <a class="item" href="join.html">Prospective Students</a>
+  <!-- <a class="item" href="social.html">Social Events</a> --!>
+ 
+</div> <!-- end nav -->
+
+</div> <!-- end header -->
+
+<div class="content">
+
+<style>
+div.normal {
+    font-size: 100%;
+}
+div.small {
+    font-size: 75%;
+}
+div.larger {
+    font-size: 125%;
+}
+</style>
+
+
+<table>
+<tbody><tr><td class="mainbar">
+
+
+<H2>Basic Information</H2>
+
+<p>
+Subversion (SVN) is a revision control system.  
+SVN usage is well documented on the internet, including
+<a href="https://www.cl.cam.ac.uk/local/web/subversion/linux/basicusage.html">
+this page</a> which shows the basics.
+</p>
+
+<p>
+CDUX hosts four separate SVN repositories:
+<ul>
+<li><b>Papers</b>: dedicated to publications at conferences/journals/workshops.</li>
+<li><b>Code</b>: dedicated to code shared between team members.</li>
+<li><b>Milestones</b>: dedicated to documents for milestones.</li>
+<li><b>WWW</b>: dedicated to our team website.</li>
+</ul>
+Please make sure you use the correct repository, i.e., add publications only to the <b>Papers</b> repo, your code only to the <b>Code</b> repo, etc.
+</p>
+
+<br>
+
+<p>
+All SVN repositories are stored on ix, in the directory /home/users/hank/SVN.
+In order to access the repositories, you need:
+<ul>
+<li>An account on ix.cs.uoregon.edu</li>
+<li>Membership in the Unix group hanksvn.  You can check whether you are in
+this group by logging into ix and running the Unix command "groups".  
+If you are not in hanksvn, email Hank and ask him to add you.</li>
+</ul>
+
+<br>
+
+<p>
+Our SVN repos are accessed via the svn+ssh protocol.  Example usage includes:
+<ul>
+<li>svn ls svn+ssh://&lt YOUR IX USER NAME &gt @ix.cs.uoregon.edu/home/users/hank/SVN/&lt REPO &gt</li>
+<li>svn co svn+ssh://&lt YOUR IX USER NAME &gt @ix.cs.uoregon.edu/home/users/hank/SVN/&lt REPO &gt</li>
+<ul>
+<li>Note: svn co with the svn+ssh protocol requires you to issue your password twice.</li>
+<li>Note 2: this command would check out the whole repository.  Often you will only want sub-directories.</li>
+</ul>
+</ul>
+
+
+How to add and access:
+<ul>
+<li><a href="svn.html#papers">Papers</a></li>
+<li><a href="svn.html#code">Code</a></li>
+<li><a href="svn.html#milestones">Milestone Documents</a></li>
+<li><a href="extend.html">Team Website</a></li>
+</ul>
+
+<br>
+<a name="papers"></a>
+<H2>Papers</H2>
+
+<p>
+The Papers repo is organized by year.  If your last name is Smith and you
+ wanted to create a publication that would be published in 2016 at venue
+VenueName, then the publication should be stored in directory
+2016/SmithVenueName.
+If you have multiple publications at that event, then you can append 'A', 'B', etc.
+It is fine (and expected) for VenueName to be abbreviated to some short form.
+Note that this naming convention 
+has not been well followed up until this point.
+</p>
+
+<p>
+Creating a directory for your publication in the SVN repo:
+<br>
+svn mkdir 
+svn+ssh:// &lt USERNAME &gt @ix.cs.uoregon.edu/home/users/hank/SVN/Papers/2016/SmithVenueName
+</p>
+
+<p>
+Accessing your directory:
+<br>
+svn co 
+svn+ssh:// &lt USERNAME &gt @ix.cs.uoregon.edu/home/users/hank/SVN/Papers/2016/SmithVenueName
+<br>
+(Note: must enter password twice!)
+</p>
+
+<p>
+Also: I have noticed that many folks are downloading template LaTeX files
+from conference websites, and leave the "template" name for their paper.
+I encourage you to rename "template" to a more meaningful name for two
+reasons:
+<ul>
+<li>The name "template.pdf" is not unique, and can collide with other publications,
+including your own (when you start publishing multiple papers).  This can come back to bite you in multiple ways.</li>
+<li>Reviewers can sometimes see the names you give your submission.  If they seem the name "template.pdf", it gives a sloppy impression.</li>
+</ul>
+
+<br>
+<a name="code"></a>
+<H2>Code</H2>
+
+<p>
+Code is placed at a top-level directory.  Try to pick a short-ish name
+for your directory.
+</p>
+
+<p>
+Creating a directory for your code in the SVN repo:
+<br>
+svn mkdir 
+svn+ssh:// &lt USERNAME &gt @ix.cs.uoregon.edu/home/users/hank/SVN/code/&lt NAME &gt
+</p>
+
+<p>
+Accessing your directory:
+<br>
+svn co 
+svn+ssh:// &lt USERNAME &gt @ix.cs.uoregon.edu/home/users/hank/SVN/code/&lt NAME &gt
+<br>
+(Note: must enter password twice!)
+</p>
+
+
+<br>
+<a name="milestones"></a>
+<H2>Milestone Documents</H2>
+
+<p>
+Milestone documents are stored in their own directory.
+For a milestone document of type TYPE, in year YEAR, and for student
+STUDENT, then the directory should be TYPE/YEAR/STUDENT.
+</p>
+
+<p>
+Creating a directory for your code in the SVN repo:
+<br>
+svn mkdir 
+svn+ssh:// &lt USERNAME &gt @ix.cs.uoregon.edu/home/users/hank/SVN/Milestones/TYPE/YEAR/STUDENT
+</p>
+
+<p>
+Accessing your directory:
+<br>
+svn co 
+svn+ssh:// &lt USERNAME &gt @ix.cs.uoregon.edu/home/users/hank/SVN/Milestones/TYPE/YEAR/STUDENT
+<br>
+(Note: must enter password twice!)
+</p>
+
+<p>
+The types of milestone documents are:
+<ul>
+<li><b>DRP_Proposal</b>: DRP proposals</li>
+<li><b>DRP_Report</b>: DRP reports</li>
+<li><b>Orals_StudyPlan</b>: Study plans for the Oral Exam</li>
+<li><b>Orals_Report</b>: Oral exam reports</li>
+<li><b>Thesis</b>: Theses</li>
+</ul>
+</p>
+
+<br>
+<a name="www"></a>
+<H2>WWW</H2>
+
+<p>See <a href="extend.html">here</a>.</p>
+</td></tr>
+</tbody></table>
+</div>
+
+<div class="footer" style="clear: both">
+Research Group on Computing and Data Understanding at eXtreme Scale &#8226; The University of Oregon &#8226; cdux-info@cs.uoregon.edu
+
+</div>
+
+<!--
+<div class="footer_logo">
+<a href="http://www.ucdavis.edu/"><img border="0" src="./idav_files/ucdavis_logo_png"></a>
+</div>
+-->
+
+
+
+
+</body></html>

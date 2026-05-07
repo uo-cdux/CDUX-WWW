@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+
+<html><head>
+<base href=".">
+<!--<base href="http://cdux.cs.uoregon.edu/">-->
+<!--<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-15">-->
+
+  <title>Power-Constrained High-Performance Computing</title>
+
+  <link href="style.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+
+<div class="header">
+
+<style>
+img {
+   padding-bottom: 20px
+}
+</style>
+
+<div class="masthead">
+ <a href="./index.html"><img src="./images/general/cdux-banner.png" alt="" height="150" width="768"></a>
+</div>
+
+<div class="navigation">
+  <a class="item" href="index.html">Home</a>
+  <a class="item" href="news.html">News</a>
+  <a class="item" href="research.html">Research</a>
+  <a class="item" href="publications.html">Publications</a>
+  <a class="item" href="people.html">People</a>
+  <a class="item" href="join.html">Prospective Students</a>
+  <!-- <a class="item" href="social.html">Social Events</a> --!>
+ 
+</div> <!-- end nav -->
+
+</div> <!-- end header -->
+
+<div class="content">
+
+<style>
+div.normal {
+    font-size: 100%;
+}
+div.small {
+    font-size: 75%;
+}
+div.larger {
+    font-size: 125%;
+}
+</style>
+
+
+<table>
+<tbody><tr><td class="mainbar">
+
+
+<td width=100% valign=top id="newsletter-encapsulate">
+<span style="font-size: 24px; font-weight:bold">
+
+<br>
+Power-Constrained High-Performance Computing
+
+</span>
+
+<hr size=2 color=black>
+<span style="font-size: 18px">
+
+<img style="border: 1px solid black" src="images/vis/powerDataSet.png" width=500 alt="Image" align="right" border="2">
+
+<h2>Problem Overview</h2>
+
+<p>
+Many scientific fields, such as climate change and computational fluid dynamics,
+use high-performance computing (HPC) as an essential component for advancing on
+their most important challenges. These fields are requiring greater and greater
+computational power to solve their next set of challenges, which in turn has led
+to the study of Exascale systems: machines capable of 10^18 floating point 
+operations per second (FLOPS). The transition to Exascale will create many new 
+challenges, but the most significant challenges will center around power usage
+and energy consumption, more specifically how to maximize throughput under a
+power bound. While presently users request resources on supercomputers by
+specifying a time length for their job, future systems will likely require
+users to specify the number of Watts required to run their job.  Comparing to
+the current generation of supercomputers, Exascale systems will need to achieve
+three orders of magnitude more floating point operations and can use only one
+order of magnitude more power to do so. As a result, every part of the HPC
+ecosystem needs to be re-designed with power-efficiency in mind.
+</p>
+
+<p>
+The power and performance tradeoffs of tunable system knobs, such as disabling
+certain cores and varying core frequencies, has been studied over the years,
+more recently since power is becoming a constrained resource in HPC systems.
+While these optimizations have worked thus far to reduce energy, Exascale
+systems may also require energy-efficient software techniques in order to reach
+our computational goals. Examples of such knobs would include data block sizes,
+execution strategies, and controls over hardware execution. With our research,
+we are focusing on the effects of these knobs on visualization and analysis
+routines, which are significantly more data-intensive than many other typical
+HPC workloads run on supercomputers. Our ultimate goal is to understand the
+tradeoffs between power and performance. Ideally, we will find techniques that
+minimize energy usage and power consumption and maximize performance.  However,
+we believe that providing controls to energy-aware simulations that enable the
+simulation to adapt the performance and power usage of a visualization routine
+would also be very valuable.
+</p>
+
+<h2>Results To Date</h2>
+
+<p>
+We have been conducting various experiments to develop a database of tunable
+systema and software knobs and their power and performance tradeoffs. We wrote
+multiple VTK programs to study the power implications of different algorithms
+and have found that the impacts vary widely across several factors including
+algorithm implementation, concurrency, data set, parallel programming modelm
+and hardware architecture. Depending on the architecture, we leverage Intel's
+Running Average Power Limit (RAPL) technology or other power management
+packages to measure the energy consumption of these workloads and use various
+Linux APIs to modify the CPU frequency. Future goals include:
+<li>Porting these workloads to the latest generation in visualization libraries
+for modern architectures, including VTK-m, 
+<a href="http://www.daxtoolkit.org/index.php/Main_Page"></a>, 
+<a href="http://ft.ornl.gov/eavl/">EAVL</a>, or 
+<a href="http://viz.lanl.gov/projects/PISTON.html">PISTON</a>
+These libraries are designed to provide portable performance on architectures
+ranging from multi-core nodes (10s of cores per node) to many-core nodes (100s
+to 1000s of cores per node).</li>
+<li>Looking at how these power and performance tradeoffs change on different
+architectures, such as Intel Xeon Phi. Understanding this will help in
+developing our algorithms for future </li>
+<li>Developing a theoretical power model that can be used to predict the power
+trends of various workloads. By knowing when a workload may require more or
+less power, users could re-direct power during the simulation to achieve the
+desired result.</li>
+</p>
+
+<p>
+The image on this page shows the impacts of one potential software knob on the
+tradeoffs between runtime and energy. We investigate the achieved energy
+savings for performing an isosurface on data sets of varying sizes and level of
+data-intensity when decreasing the CPU clock frequency. In our experiment, we
+had 8 different data sets originating from two simulations. We had data sets of
+four different sizes, listed here in increasing size -- Enzo-1M, Enzo-10M,
+Nek5000, Enzo-80M.  Then, we wanted to investigate the effects of a data set
+with increased data intensity, so we randomized the point indices of the
+aforementioned data sets -- REnzo-1M, REnzo-10M, RNek5000, REnzo-80M. The
+figure shows that for our smallest and least complex data set, Enzo-1M, our
+algorithm has the largest increase in runtime and has the least savings in
+energy. As we increase the size and intensity of our data sets, we see smaller
+impacts to runtime with a greater savings in energy. In the future, we want to
+apply this software knob a wider range of visualization algorithms to see if
+our findings hold.
+</p>
+
+<h2>People</h2>
+
+<div style="width:100%;margin-left:auto; margin-right:auto;">
+<div style="float:left;width:200px;min-height:200px;margin:10px;text-align:center;">
+<a href="labasan.html"><img style="border: none" src="./images/people/labasan_cropped.png" alt="" width="150"></a>
+<br>
+<a href="labasan.html"><b>Stephanie Labasan</b></a>
+<br>Ph.D. Student (alum)</div>
+<div style="float:left;width:200px;min-height:200px;margin:10px;text-align:center;">
+<a href="larsen.html"><img style="border: none" src="./images/people/larsen_cropped.png" alt="" width="150"></a>
+<br>
+<a href="larsen.html"><b>Matt Larsen </b></a>
+<br>Ph.D. Student (alum)</div>
+<div style="float:left;width:200px;min-height:200px;margin:10px;text-align:center;">
+<a href="childs.html"><img style="border: none" src="./images/people/childs_cropped.png" alt="" width="150"></a>
+<br>
+<a href="childs.html"><b>Hank Childs</b></a>
+<br>CDUX Director</div>
+</div><div class="clearfix"></div>
+
+<h2>Publications</h2>
+
+<p><table class="TFtable">
+<tr><td>
+<a name="2015_LabasanLDAV"></a>
+<div style="float: left; width: 125; margin: 5px; padding: 5px">
+<IMG SRC="pubs/LabasanLDAV_thumb.jpeg" BORDER="0" width="125"></a></div>
+<br>Exploring Tradeoffs Between Power and Performance for a Scientific Visualization Algorithm <br>
+<a href="labasan.html">Stephanie Labasan</a>,
+<a href="larsen.html">Matthew Larsen</a>, 
+and <a href="childs.html">Hank Childs</a> <br>
+<a href="http://ldav2015.sci.utah.edu/">IEEE Symposium on Large Data Analysis and Visualization (LDAV)</a>, Chicago, IL, October 2015 <br>
+<br>[<a href="pubs/LabasanLDAV.pdf">PDF</a>] &nbsp; &nbsp; [<a href="pubs/LabasanLDAV.bib">BIB</a>]<br>
+</td></tr>
+</table>
+</td></tr>
+</tbody></table>
+</div>
+
+<div class="footer" style="clear: both">
+Research Group on Computing and Data Understanding at eXtreme Scale &#8226; The University of Oregon &#8226; cdux-info@cs.uoregon.edu
+
+</div>
+
+<!--
+<div class="footer_logo">
+<a href="http://www.ucdavis.edu/"><img border="0" src="./idav_files/ucdavis_logo_png"></a>
+</div>
+-->
+
+
+
+
+</body></html>

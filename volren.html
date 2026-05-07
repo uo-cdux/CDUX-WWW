@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+
+<html><head>
+<base href=".">
+<!--<base href="http://cdux.cs.uoregon.edu/">-->
+<!--<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-15">-->
+
+  <title>Parallel Volume Rendering</title>
+
+  <link href="style.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+
+<div class="header">
+
+<style>
+img {
+   padding-bottom: 20px
+}
+</style>
+
+<div class="masthead">
+ <a href="./index.html"><img src="./images/general/cdux-banner.png" alt="" height="150" width="768"></a>
+</div>
+
+<div class="navigation">
+  <a class="item" href="index.html">Home</a>
+  <a class="item" href="news.html">News</a>
+  <a class="item" href="research.html">Research</a>
+  <a class="item" href="publications.html">Publications</a>
+  <a class="item" href="people.html">People</a>
+  <a class="item" href="join.html">Prospective Students</a>
+  <!-- <a class="item" href="social.html">Social Events</a> --!>
+ 
+</div> <!-- end nav -->
+
+</div> <!-- end header -->
+
+<div class="content">
+
+<style>
+div.normal {
+    font-size: 100%;
+}
+div.small {
+    font-size: 75%;
+}
+div.larger {
+    font-size: 125%;
+}
+</style>
+
+
+<table>
+<tbody><tr><td class="mainbar">
+
+
+<td width=100% valign=top id="newsletter-encapsulate">
+<span style="font-size: 24px; font-weight:bold">
+
+<br>
+Parallel Volume Rendering
+
+</span>
+
+<hr size=2 color=black>
+<span style="font-size: 18px">
+
+<img style="border: 1px solid black" src="images/vis/volren.png" width=500 alt="Image" align="right" border="15">
+
+<h2>Problem Overview</h2>
+
+<p>
+Volume rendering is a visualization technique that uses
+a combination of color and opacity to allow an entire three-dimensional
+volume to be viewed at one time.
+In a parallel setting, the technique must employ special strategies, since 
+each processor typically cannot generate an image for its own
+data in a way that can be combined with results from other processors.
+Instead, especially for unstructured data with complex overlaps
+between processors, partial results must be generated that can 
+be merged with other processors' results to form a final image to form a final image.
+</p>
+
+<h2>Results</h2>
+
+<p>
+We have published multiple papers on this topic.
+Highlights include:
+<ul>
+<li>A three-dimensional rasterization technique that works on
+unstructured grids and avoids issues with load balancing and sorting,
+provided that a large buffer can be distributed over many processors
+(Childs/EGPGV06).</li>
+<li>A study of how the three-dimensional rasterization technique can
+be mapped onto data-parallel primitives (Larsen/EGPGV15).</li>
+<li>A study of how this algorithm scales at tens of thousands of
+cores and on data sets of trillions of cells (Childs/CGA10).</li>
+<li>Two studies of the impacts of hybrid parallelism when using tens
+of thousands of cores and trillions of cores (Howison/TVCG12, Howison/EGPGV10).</li>
+</ul>
+
+<h2>People</h2>
+
+<div style="width:100%;margin-left:auto; margin-right:auto;">
+<div style="float:left;width:200px;min-height:200px;margin:10px;text-align:center;">
+<a href="binyahib.html"><img style="border: none" src="./images/people/binyahib_cropped.png" alt="" width="150"></a>
+<br>
+<a href="binyahib.html"><b>Roba Binyahib</b></a>
+<br>Ph.D. Student (alum)</div>
+<div style="float:left;width:200px;min-height:200px;margin:10px;text-align:center;">
+<a href="larsen.html"><img style="border: none" src="./images/people/larsen_cropped.png" alt="" width="150"></a>
+<br>
+<a href="larsen.html"><b>Matt Larsen </b></a>
+<br>Ph.D. Student (alum)</div>
+<div style="float:left;width:200px;min-height:200px;margin:10px;text-align:center;">
+<a href="childs.html"><img style="border: none" src="./images/people/childs_cropped.png" alt="" width="150"></a>
+<br>
+<a href="childs.html"><b>Hank Childs</b></a>
+<br>CDUX Director</div>
+</div><div class="clearfix"></div>
+
+<h2>Publications</h2>
+
+<p><table class="TFtable">
+<tr><td>
+<a name="2019_BinyahibLDAV"></a>
+<div style="float: left; width: 125; margin: 5px; padding: 5px">
+<IMG SRC="pubs/BinyahibLDAV_thumb.jpeg" BORDER="0" width="125"></a></div>
+<br>A Lifeline-Based Approach for Work Requesting and Parallel Particle Advection <br>
+<a href="binyahib.html">Roba Binyahib</a>,
+David Pugmire, Boyana Norris,
+and <a href="childs.html">Hank Childs</a> <br>
+<a href="http://ldav.org">IEEE Symposium on Large Data Analysis and Visualization (LDAV)</a>, Vancouver, Canada, October 2019 <br>
+<b><em>Best Paper Honorable Mention</em></b> <br>
+<br>[<a href="pubs/BinyahibLDAV.pdf">PDF</a>] &nbsp; &nbsp; [<a href="pubs/BinyahibLDAV.bib">BIB</a>]<br>
+</td></tr>
+<tr><td>
+<a name="2015_LarsenEGPGV"></a>
+<div style="float: left; width: 125; margin: 5px; padding: 5px">
+<IMG SRC="pubs/LarsenEGPGV_thumb.jpeg" BORDER="0" width="125"></a></div>
+<br>Volume Rendering Via Data-Parallel Primitives <br>
+<a href="larsen.html">Matthew Larsen</a>, <a href="labasan.html">Stephanie Labasan</a>, <a href="http://pages.tacc.utexas.edu/~pnav/">Paul Navratil</a>, <a href="http://ft.ornl.gov/~jsmeredith/">Jeremy Meredith</a>, and <a href="childs.html">Hank Childs</a> <br>
+<a href="http://www.vis.uni-stuttgart.de/egpgv/egpgv2015/">EuroGraphics Symposium on Parallel Graphics and Visualization (EGPGV)</a>, Cagliari, Italy, May 2015 <br>
+<br>[<a href="pubs/LarsenEGPGV.pdf">PDF</a>] &nbsp; &nbsp; [<a href="pubs/LarsenEGPGV.bib">BIB</a>]<br>
+</td></tr>
+<tr><td>
+<a name="2006_ChildsEGPGV06"></a>
+<div style="float: left; width: 125; margin: 5px; padding: 5px">
+<IMG SRC="pubs/ChildsEGPGV06_thumb.jpeg" BORDER="0" width="125"></a></div>
+<br>A Scalable, Hybrid Scheme for Volume Rendering Massive Data Sets <br>
+<a href="childs.html">Hank Childs</a>,
+Mark Duchaineau, and
+<a href="http://web.cs.ucdavis.edu/~ma/">Kwan-Liu Ma</a> <br>
+<a href="http://www4.di.uminho.pt/egpgv06/">EGPGV</a>, Braga, Portugal, May 2006 <br>
+<br>[<a href="pubs/ChildsEGPGV06.pdf">PDF</a>] &nbsp; &nbsp; [<a href="pubs/ChildsEGPGV06.bib">BIB</a>]<br>
+</td></tr>
+<tr><td>
+<a name="2010_ChildsCGA"></a>
+<div style="float: left; width: 125; margin: 5px; padding: 5px">
+<IMG SRC="pubs/ChildsCGA_thumb.jpeg" BORDER="0" width="125"></a></div>
+<br>Extreme Scaling of Production Visualization Software on Diverse Architectures <br>
+<a href="childs.html">Hank Childs</a>,
+<a href="http://climatechangescience.ornl.gov/content/david-r-pugmire">David Pugmire</a>,
+Sean Ahern,
+Brad Whitlock,
+<a href="http://mark.howison.org/">Mark Howison</a>,
+<a href="http://vis.lbl.gov/~prabhat/">Prabhat</a>,
+<a href="http://crd.lbl.gov/departments/data-science-and-technology/data-analytics-and-visualization/staff/gunther-h-weber/">Gunther Weber</a>, and
+<a href="http://vis.lbl.gov/~wes/">Wes Bethel</a> <br>
+IEEE Computer Graphics and Applications (CG&A), May 2010 <br>
+<br>[<a href="pubs/ChildsCGA.pdf">PDF</a>] &nbsp; &nbsp; [<a href="pubs/ChildsCGA.bib">BIB</a>]<br>
+</td></tr>
+<tr><td>
+<a name="2012_HowisonTVCG"></a>
+<div style="float: left; width: 125; margin: 5px; padding: 5px">
+<IMG SRC="pubs/HowisonTVCG_thumb.jpeg" BORDER="0" width="125"></a></div>
+<br>Hybrid Parallelism for Volume Rendering on Large-, Multi-, and Many-Core Systems <br>
+<a href="http://mark.howison.org/">Mark Howison</a>,
+<a href="http://vis.lbl.gov/~wes/">Wes Bethel</a>, and
+<a href="childs.html">Hank Childs</a> <br>
+IEEE Transactions on Visualization and Computer Graphics (TVCG), January 2012 <br>
+<br>[<a href="pubs/HowisonTVCG.pdf">PDF</a>] &nbsp; &nbsp; [<a href="pubs/HowisonTVCG.bib">BIB</a>]<br>
+</td></tr>
+<tr><td>
+<a name="2010_HowisonEGPGV"></a>
+<div style="float: left; width: 125; margin: 5px; padding: 5px">
+<IMG SRC="pubs/HowisonEGPGV_thumb.jpeg" BORDER="0" width="125"></a></div>
+<br>MPI-hybrid Parallelism for Volume Rendering on Large, Multi-core Systems <br>
+<a href="http://mark.howison.org/">Mark Howison</a>,
+<a href="http://vis.lbl.gov/~wes/">Wes Bethel</a>, and
+<a href="childs.html">Hank Childs</a> <br>
+<a href="http://www.vis.uni-stuttgart.de/egpgv/egpgv2010/">EGPGV</a>, Norrkoping, Sweden, May 2010 <br>
+<b><em>Best Paper</em></b> <br>
+<br>[<a href="pubs/HowisonEGPGV.pdf">PDF</a>] &nbsp; &nbsp; [<a href="pubs/HowisonEGPGV.bib">BIB</a>]<br>
+</td></tr>
+</table>
+</div>
+
+</td></tr>
+</tbody></table>
+</div>
+
+<div class="footer" style="clear: both">
+Research Group on Computing and Data Understanding at eXtreme Scale &#8226; The University of Oregon &#8226; cdux-info@cs.uoregon.edu
+
+</div>
+
+<!--
+<div class="footer_logo">
+<a href="http://www.ucdavis.edu/"><img border="0" src="./idav_files/ucdavis_logo_png"></a>
+</div>
+-->
+
+
+
+
+</body></html>

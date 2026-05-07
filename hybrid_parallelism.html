@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+
+<html><head>
+<base href=".">
+<!--<base href="http://cdux.cs.uoregon.edu/">-->
+<!--<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-15">-->
+
+  <title>Hybrid Parallelism and Visualization</title>
+
+  <link href="style.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+
+<div class="header">
+
+<style>
+img {
+   padding-bottom: 20px
+}
+</style>
+
+<div class="masthead">
+ <a href="./index.html"><img src="./images/general/cdux-banner.png" alt="" height="150" width="768"></a>
+</div>
+
+<div class="navigation">
+  <a class="item" href="index.html">Home</a>
+  <a class="item" href="news.html">News</a>
+  <a class="item" href="research.html">Research</a>
+  <a class="item" href="publications.html">Publications</a>
+  <a class="item" href="people.html">People</a>
+  <a class="item" href="join.html">Prospective Students</a>
+  <!-- <a class="item" href="social.html">Social Events</a> --!>
+ 
+</div> <!-- end nav -->
+
+</div> <!-- end header -->
+
+<div class="content">
+
+<style>
+div.normal {
+    font-size: 100%;
+}
+div.small {
+    font-size: 75%;
+}
+div.larger {
+    font-size: 125%;
+}
+</style>
+
+
+<table>
+<tbody><tr><td class="mainbar">
+
+
+<td width=100% valign=top id="newsletter-encapsulate">
+<span style="font-size: 24px; font-weight:bold">
+
+<br>
+Hybrid Parallelism and Visualization
+
+</span>
+
+<hr size=2 color=black>
+<span style="font-size: 18px">
+
+<img style="border: 1px solid black" src="images/vis/combustion.png" width=250 alt="Image" align="right" border="15">
+
+Until recently, production visualization software has achieved parallelism
+by focusing on distributed-memory concepts.
+When faced with multi-core nodes, visualization software has maintained
+its distributed-memory approach, 
+treating each core on a node as its own process, and thereby losing
+opportunities available from shared-memory parallelism.
+With this work, we explore approaches for hybrid parallelism -- i.e.,
+approaches that incorporate 
+both distributed-memory and shared-memory parallelism --
+and its benefits, which include both improved performance and
+reduced memory footprint.
+In terms of findings, we learned that, for some
+algorithms, multiple beneficial factors can combine leading to
+dramatic improvements.
+For example, for some streamline configurations, we found that
+using shared-memory parallelism with nodes containing only four cores
+can still reap speedups of over 10X (see Camp, TVCG, 2011).
+Further, we used our lessons learned to extend VisIt to work in 
+a hybrid parallel mode, and observed good speedups (see Camp, DFM, 2013). 
+
+
+
+<h2>People</h2>
+<ul>
+<li><a href="childs.html">Hank Childs</a></li>
+<li><a href="http://vis.lbl.gov/~wes/">Wes Bethel</a>, Lawrence Berkeley</li>
+<li><a href="http://crd.lbl.gov/about/staff/cds/visualization-vis/david-camp/">David Camp</a>, Lawrence Berkeley</li>
+<li><a href="http://vis.uni-kl.de/people/garth/">Christoph Garth</a>, University of Kaiserslautern</li>
+<li><a href="http://climatechangescience.ornl.gov/content/david-r-pugmire">David Pugmire</a>, Oak Ridge</li>
+</ul>
+
+<h2>Publications</h2>
+
+<p><table class="TFtable">
+<tr><td>
+<a name="2014_ChildsHiPC"></a>
+<div style="float: left; width: 125; margin: 5px; padding: 5px">
+<IMG SRC="pubs/ChildsHiPC_thumb.jpeg" BORDER="0" width="125"></a></div>
+<br>Particle Advection Performance Over Varied Architectures and Workloads <br>
+<a href="childs.html">Hank Childs</a>, Scott Biersdorff, David Poliakoff, <a href="http://crd.lbl.gov/departments/data-science-and-technology/data-analytics-and-visualization/staff/david-camp/">David Camp</a>, and <a href="https://www.cs.uoregon.edu/People/Faculty/Allen_Malony.php">Allen D. Malony</a> <br>
+<a href="http://www.hipc.org/hipc2014/">IEEE Conference on High Performance Computing</a>, Goa, India, December 2014 <br>
+<br>[<a href="pubs/ChildsHiPC.pdf">PDF</a>] &nbsp; &nbsp; [<a href="pubs/ChildsHiPC.bib">BIB</a>]<br>
+</td></tr>
+<tr><td>
+<a name="2013_CampDFM"></a>
+<div style="float: left; width: 125; margin: 5px; padding: 5px">
+<IMG SRC="pubs/CampDFM_thumb.jpeg" BORDER="0" width="125"></a></div>
+<br>Transitioning Data Flow-Based Visualization Software to Multi-Core Hybrid Parallelism <br>
+<a href="http://crd.lbl.gov/departments/data-science-and-technology/data-analytics-and-visualization/staff/david-camp/">David Camp</a>, 
+<a href="http://vis.lbl.gov/~wes/">Wes Bethel</a>, and
+<a href="childs.html">Hank Childs</a> <br>
+Workshop on Data-Flow Execution Models for Extreme Scale Computing (DFM 2013), Edinburgh, Scotland, September 2013 <br>
+<br>[<a href="pubs/CampDFM.pdf">PDF</a>] &nbsp; &nbsp; [<a href="pubs/CampDFM.bib">BIB</a>]<br>
+</td></tr>
+<tr><td>
+<a name="2013_CampEGPGV"></a>
+<div style="float: left; width: 125; margin: 5px; padding: 5px">
+<IMG SRC="pubs/CampEGPGV_thumb.jpeg" BORDER="0" width="125"></a></div>
+<br>GPU Acceleration of Particle Advection Workloads in a Parallel, Distributed Memory Setting <br>
+<a href="http://crd.lbl.gov/departments/data-science-and-technology/data-analytics-and-visualization/staff/david-camp/">David Camp</a>, 
+<a href="http://crd.lbl.gov/departments/data-science-and-technology/data-analytics-and-visualization/staff/hari-krishnan/">Hari Krishnan</a>,
+<a href="http://climatechangescience.ornl.gov/content/david-r-pugmire">David Pugmire</a>,
+<a href="http://vis.uni-kl.de/people/garth/">Christoph Garth</a>, 
+Ian Johnson,
+<a href="http://vis.lbl.gov/~wes/">Wes Bethel</a>, 
+<a href="http://graphics.cs.ucdavis.edu/~joy/">Kenneth I. Joy</a>, and
+<a href="childs.html">Hank Childs</a> <br>
+EuroGraphics Symposium on Parallel Graphics and Visualization (EGPGV), Girona, Spain, May 2013 <br>
+<br>[<a href="pubs/CampEGPGV.pdf">PDF</a>] &nbsp; &nbsp; [<a href="pubs/CampEGPGV.bib">BIB</a>]<br>
+</td></tr>
+<tr><td>
+<a name="2012_HowisonTVCG"></a>
+<div style="float: left; width: 125; margin: 5px; padding: 5px">
+<IMG SRC="pubs/HowisonTVCG_thumb.jpeg" BORDER="0" width="125"></a></div>
+<br>Hybrid Parallelism for Volume Rendering on Large-, Multi-, and Many-Core Systems <br>
+<a href="http://mark.howison.org/">Mark Howison</a>,
+<a href="http://vis.lbl.gov/~wes/">Wes Bethel</a>, and
+<a href="childs.html">Hank Childs</a> <br>
+IEEE Transactions on Visualization and Computer Graphics (TVCG), January 2012 <br>
+<br>[<a href="pubs/HowisonTVCG.pdf">PDF</a>] &nbsp; &nbsp; [<a href="pubs/HowisonTVCG.bib">BIB</a>]<br>
+</td></tr>
+<tr><td>
+<a name="2011_CampTVCG"></a>
+<div style="float: left; width: 125; margin: 5px; padding: 5px">
+<IMG SRC="pubs/CampTVCG_thumb.jpeg" BORDER="0" width="125"></a></div>
+<br>Streamline Integration Using MPI-Hybrid Parallelism on a Large Multicore Architecture <br>
+<a href="http://crd.lbl.gov/departments/data-science-and-technology/data-analytics-and-visualization/staff/david-camp/">David Camp</a>, 
+<a href="http://vis.uni-kl.de/people/garth/">Christoph Garth</a>, 
+<a href="childs.html">Hank Childs</a>,
+<a href="http://climatechangescience.ornl.gov/content/david-r-pugmire">David Pugmire</a>, and
+<a href="http://graphics.cs.ucdavis.edu/~joy/">Kenneth I. Joy</a> <br>
+IEEE Transactions on Visualization and Computer Graphics (TVCG), November 2011 <br>
+<br>[<a href="pubs/CampTVCG.pdf">PDF</a>] &nbsp; &nbsp; [<a href="pubs/CampTVCG.bib">BIB</a>]<br>
+</td></tr>
+<tr><td>
+<a name="2010_HowisonEGPGV"></a>
+<div style="float: left; width: 125; margin: 5px; padding: 5px">
+<IMG SRC="pubs/HowisonEGPGV_thumb.jpeg" BORDER="0" width="125"></a></div>
+<br>MPI-hybrid Parallelism for Volume Rendering on Large, Multi-core Systems <br>
+<a href="http://mark.howison.org/">Mark Howison</a>,
+<a href="http://vis.lbl.gov/~wes/">Wes Bethel</a>, and
+<a href="childs.html">Hank Childs</a> <br>
+<a href="http://www.vis.uni-stuttgart.de/egpgv/egpgv2010/">EGPGV</a>, Norrkoping, Sweden, May 2010 <br>
+<b><em>Best Paper</em></b> <br>
+<br>[<a href="pubs/HowisonEGPGV.pdf">PDF</a>] &nbsp; &nbsp; [<a href="pubs/HowisonEGPGV.bib">BIB</a>]<br>
+</td></tr>
+</table>
+</td></tr>
+</tbody></table>
+</div>
+
+<div class="footer" style="clear: both">
+Research Group on Computing and Data Understanding at eXtreme Scale &#8226; The University of Oregon &#8226; cdux-info@cs.uoregon.edu
+
+</div>
+
+<!--
+<div class="footer_logo">
+<a href="http://www.ucdavis.edu/"><img border="0" src="./idav_files/ucdavis_logo_png"></a>
+</div>
+-->
+
+
+
+
+</body></html>

@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+
+<html><head>
+<base href=".">
+<!--<base href="http://cdux.cs.uoregon.edu/">-->
+<!--<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-15">-->
+
+  <title> How to Extend This Website</title>
+
+  <link href="style.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+
+<div class="header">
+
+<style>
+img {
+   padding-bottom: 20px
+}
+</style>
+
+<div class="masthead">
+ <a href="./index.html"><img src="./images/general/cdux-banner.png" alt="" height="150" width="768"></a>
+</div>
+
+<div class="navigation">
+  <a class="item" href="index.html">Home</a>
+  <a class="item" href="news.html">News</a>
+  <a class="item" href="research.html">Research</a>
+  <a class="item" href="publications.html">Publications</a>
+  <a class="item" href="people.html">People</a>
+  <a class="item" href="join.html">Prospective Students</a>
+  <!-- <a class="item" href="social.html">Social Events</a> --!>
+ 
+</div> <!-- end nav -->
+
+</div> <!-- end header -->
+
+<div class="content">
+
+<style>
+div.normal {
+    font-size: 100%;
+}
+div.small {
+    font-size: 75%;
+}
+div.larger {
+    font-size: 125%;
+}
+</style>
+
+
+<table>
+<tbody><tr><td class="mainbar">
+
+
+<div class="news_page_item">
+<div class="news_page_title"> <font size="+1"> Overview</div>
+
+<p>
+This website can only be modified by CDUX students.  Its source is accessed through Subversion.
+(See <a href="svn.html">here</a> for more information on Subversion usage.)
+</p>
+<p>
+The command to check out the website is:
+<br>
+svn co svn+ssh:// &lt your ix username &gt @ix.cs.uoregon.edu/home/users/hank/SVN/WWW
+</p>
+<p>
+To keep the website look and feel consistent, a script automatically adds headers and footers, and automates all references to
+people, publications, and research projects.
+You can invoke the script by calling "make".  The Makefile does several actions, including calling a script
+called "generator".
+It places the resulting HTML files in a directory called "www".  
+The root of the website is called index.html, and so (on macs) you can access the website created
+by make with "open www/index.html".  
+</p>
+<p>
+Note that students only have access to checkout the source for the website, make modifications, look at their
+local copy of the website (made via "make"), and commit their modifications.  
+Students cannot install their local copy onto the team's webpage (http://cdux.cs.uoregon.edu), since that requires
+Unix permissions that only Hank has.  Therefore, the pattern for development is one where Hank and students
+make changes to the webpage regularly, and that Hank pushes the resulting webpages live when appropriate.
+(If you want a news item or research result to get published on the website, then, you should make changes on SVN
+and email Hank and ask him to push the changes live.)
+</p>
+
+How to:
+<ul>
+<li>Add your <a href="extend.html#homepage">home page</a></li>
+<li>Add a <a href="extend.html#pubs">publication</a></li>
+<li>Add a <a href="extend.html#news">news item</a></li>
+</ul>
+<br>
+
+</div>
+
+<a name="homepage"></a>
+<div class="news_page_item">
+<div class="news_page_title">Adding a Home Page</div>
+
+<p>
+<ul>
+<li>Your home page should go in the directory WWW/people/yourLastNameInLowerCase/</li>
+<li>There should be two files in that directory:</li>
+<ul>
+<li>page: contains the contents of your home page</li>
+<li>thumb: contains information to make a thumbnail (used for other pages)</li>
+</ul>
+<li>You also should place images in images/people.</li>
+<ul>
+<li>One image must be exactly 150 pixels in width and 200 pixels in height.  This image is used for your thumbnail.  In case you don't feel comfortable with image manipulation, the script WWW/images/people/cropper contains some examples of how I used the PNM tool to extract thumbnails from full-size images.</li>
+<li>Many folks also have a larger sized image for their homepages.</li>
+<li>The image must be exactly 150x200.  Other sizes will cause formatting errors.</li>
+<li>Note: do not only add one (large) image and use that image as a thumbnail.  This leads to slow page load times.</li>
+</ul>
+<li>After your home page is added, the final step is to insert links to yourself on other pages.  You should definitely
+add a link on our people page (found in WWW/top/people) and also in individual research projects that you are working on
+(found in WWW/research/TheResearchProjectName/page).  You do this by inserting a macro that will be replaced by the "generator" script.  Your
+macro is PER<!--defeatmacro--->SON:yourLastNameInLowerCase.</li>
+</ul>
+</p>
+
+<H4>Contents of thumb file</H4>
+
+The thumb file should contain exactly three lines:
+<ul>
+<li>Line 1: Your name as you would like it to appear</li>
+<li>Line 2: the name of the 150x200 image in the images/people directory.</li>
+<li>Line 3: your title.  If your title needs multiple lines, then use the &lt br &gt command.</li>
+</ul>
+
+<p>
+Example:
+<br>
+Charlotte Childs<br>
+childs_cropped.png<br>
+Undergrad Researcher<br>
+</p>
+
+<p>
+Also, if you are a student, please use one of the following titles:
+<ul>
+<li>Undergrad Researcher</li>
+<li>M.S. Student</li>
+<li>Ph.D. Student</li>
+<li>Ph.D. Candidate</li>
+</ul>
+</p>
+
+<H4>Contents of page file</H4>
+
+<p>
+The easiest way to create this file is to copy an existing file and modify it.
+Further, I recommend you follow a style similar to the ones already in use.
+</p>
+<br>
+
+</div>
+<a name="pubs"></a>
+
+<div class="news_page_item">
+<div class="news_page_title">Adding a Publication</div>
+
+<p>
+Publications are stored in the WWW/pubs directory.  They are divided by publication year, and then each publication gets
+its own subdirectory.  The subdirectory should have the first author's last name followed by the venue.  
+So a 2015 publication by Hank at LDAV would be in WWW/pubs/2015/ChildsLDAV.  If you have multiple publications, then
+you can add a "A" or "B" to the end.  (I.e., this about a consistent convention and not about macros.)
+</p>
+
+<H4>Files for Setting Up a Publication</H4>
+
+Publication directories (e.g., WWW/pubs/2015/ChildsLDAV) must contain specific files:
+<ul>
+<li><b>authors</b>: an ASCII text file containing the authors of the paper.  
+This file can be multiple lines long.
+This can have links encoded.  Note that the form for
+encoding links to CDUX authors (which can be relative links) is different than external collaborators.  See WWW/pubs/2015/LarsenPacVis for an example of authors that have both relative links and absolute links.  </li>
+<li><b>bib</b>: an ASCII text file containing the bibtex citation information.</li>
+<li><b>venue</b>: an ASCII text file containing the name of the venue the work was published at.  This may contain links.  See WWW/pubs/2015/LarsenPacVis for details.</li>
+<li><b>title</b>: an ASCII text file containing the title of the work.</li>
+<li><b>thumb.jpeg</b>: a JPEG file containing a 125x125 pixel image to serve as a thumbnail.</li>
+<ul>
+<li>Note: many directories also contain a second image file with the original image that the thumbnail was derived from.  This is not required for the website, but keeping the original image around is a good practice.</li>
+</ul>
+<li>A reference to the paper.  This can take one of two forms:</li>
+<ul>
+<li>A PDF of the paper.  If the directory is ChildsLDAV, then the file must be called <b>ChildsLDAV.pdf</b>.</li>
+<li>An ASCII text file with a link to a place to obtain the paper.  If the directory is ChildsLDAV, then the file must be called <b>ChildsLDAV.link</b>.  The contents of the file are a single line containing a website, e.g., http://www.ldav.org.</li>
+</ul>
+<li><b>note</b>: This is an optional file for annotating your publication with a note.  Examples include "Best Paper" or "Accepted for Publication".</li>
+</ul>
+
+<H4>Making Your Publication Show Up on the Website</H4>
+
+When adding a publication, you should consider adding it to three types of pages:
+<ul>
+<li>Your home page.</li>
+<li>The research page associated with the publication.  This page will be located at WWW/research/projectName/page.</li>
+<li>The CDUX publications page at top/publications.</li>
+<li>(Do not automatically add the paper to Hank's personal home page.  He will do this on his own from time to time.)</li>
+</ul>
+
+<p>
+You should add your publication using its macro.  The macro for a publication located in directory WWW/pubs/2015/ChildsLDAV is
+PUBLIC<!---macrodefeater--->ACTION:2015/ChildsLDAV.  Each publication turns into an HTML table entry.  If you are adding 
+publications where none have previously been location, then you will need to use the START<!---macrodefeater--->_CTABLE
+and END<!----macrodefeater--->_TABLE macros before and after the publication macro.
+</p>
+
+
+<H4>Advanced Copies of Your Publication</H4>
+
+<p>
+If your paper has been accepted and you want it to appear on the website, then that is fine.  It is your choice on
+whether to include the PDF, but I personally recommend you just add a link to the venue that will publish it (and not
+the PDF until it is published).
+Also, feel free to add the publication to your home page, and to the corresponding research page.  However, do not add
+it to the team's publication page until it is published and there is a PDF.
+</p>
+<br>
+</div>
+
+<a name="news"></a>
+<div class="news_page_item">
+<div class="news_page_title">Adding a News Item</div>
+<br>
+Steps for adding a news item:
+<ul>
+<li>Make a directory under WWW/news/YEAR/newsItem.  Replace YEAR with the correct year and newsItem with a short descriptor for your news item.</li>
+<li>Add files to your new directory:</li>
+<ul>
+<li><b>date</b>: the date when the event happened.  Please follow a form of Month Day, Year with no abbreviations.  E.g., October 31, 2015.</li>
+<li><b>title</b>: the title for your news item.  This should be no more than 80 characters.</li>
+<li><b>body</b>: the body of your news item.  This may include links, HTML code (typically bullets), etc.</li>
+<li><b>tags</b>: a file containing describing the categories for your news item.  By default, your news item will go in the "all" page.  But there are also sub-pages that focus on news items in particular categories.  The tags file describes which of these sub-pages your news item should go in.  The available tags are:
+<ul>
+<li><b>student</b>: used for the "Student Successes" sub-page.</li>
+<li><b>awards</b>: used for the "Awards and Recognition" sub-page.</li>
+<li><b>funding</b>: used for the "Funding" sub-page.</li>
+<li><b>outreach</b>: used for the "Outreach and Leadership" sub-page.</li>
+<li><b>personnel</b>: used for the "Personnel" sub-page.</li>
+</ul>
+If your news item is appropriate for multiple categories, then you should list multiple tags in your file.  They can be one per line, or all on one line.</li>
+<li><b>image</b> (optional): an image to include.  The file should be an ASCII text file and contain exactly two lines.  The first line should be the location of the image, presumably in WWW/images/events.  The path should be relative to WWW, e.g., a file in WWW/images/events/party.png would be represented as "images/events/party.png" in the first line of the file.  The second line is the width of the image in pixels.</li>
+</ul>
+<li>Add your news item to the file top/news (which contains the web page for all news items).  Your news item
+should be inserted as a macro.  The "generator" script will replace your macro with HTML code corresponding
+to the title/body/date/image files.  The macro for your news item is: "NE<!---macrodefeater--->WS:YEAR/newsItem".</li>
+</ul>
+
+
+</div>
+</td></tr>
+</tbody></table>
+</div>
+
+<div class="footer" style="clear: both">
+Research Group on Computing and Data Understanding at eXtreme Scale &#8226; The University of Oregon &#8226; cdux-info@cs.uoregon.edu
+
+</div>
+
+<!--
+<div class="footer_logo">
+<a href="http://www.ucdavis.edu/"><img border="0" src="./idav_files/ucdavis_logo_png"></a>
+</div>
+-->
+
+
+
+
+</body></html>

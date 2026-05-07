@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+
+<html><head>
+<base href=".">
+<!--<base href="http://cdux.cs.uoregon.edu/">-->
+<!--<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-15">-->
+
+  <title>Parallel Flow Visualization</title>
+
+  <link href="style.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+
+<div class="header">
+
+<style>
+img {
+   padding-bottom: 20px
+}
+</style>
+
+<div class="masthead">
+ <a href="./index.html"><img src="./images/general/cdux-banner.png" alt="" height="150" width="768"></a>
+</div>
+
+<div class="navigation">
+  <a class="item" href="index.html">Home</a>
+  <a class="item" href="news.html">News</a>
+  <a class="item" href="research.html">Research</a>
+  <a class="item" href="publications.html">Publications</a>
+  <a class="item" href="people.html">People</a>
+  <a class="item" href="join.html">Prospective Students</a>
+  <!-- <a class="item" href="social.html">Social Events</a> --!>
+ 
+</div> <!-- end nav -->
+
+</div> <!-- end header -->
+
+<div class="content">
+
+<style>
+div.normal {
+    font-size: 100%;
+}
+div.small {
+    font-size: 75%;
+}
+div.larger {
+    font-size: 125%;
+}
+</style>
+
+
+<table>
+<tbody><tr><td class="mainbar">
+
+
+<td width=100% valign=top id="newsletter-encapsulate">
+<span style="font-size: 24px; font-weight:bold">
+
+<br>
+Parallel Flow Visualization
+
+</span>
+
+<hr size=2 color=black>
+<span style="font-size: 18px">
+
+<img style="border: 1px solid black" src="images/vis/gpu_pa.png" width=500 alt="Image" align="right" border="15">
+
+<h2>Problem Overview</h2>
+
+<p>
+Particle advection, i.e., displacing 
+particles so that they are tangent to the velocity field,
+is a foundational element for many visualization algorithms 
+for flow analysis, including streamlines, pathlines, stream surfaces, and 
+Finite-Time Lyapunov Exponents (FTLE) calculation. 
+Particle advection is a particularly difficult form of a non-embarrassingly 
+parallel algorithm, as the work needed to complete the problem is 
+data dependent and thus not known a priori. 
+Further, the workload across particle advection problems can change 
+dramatically. 
+For example, streamline calculation typically involves advecting few particles 
+for long 
+distances, while FTLE calculation typically involves advecting many particles 
+for short distances. 
+Therefore, research on this problem should examine a range of scenarios, 
+considering variation in 
+particle count, distance traveled, and vector field. 
+Finally, visualization and analysis is increasingly being performed in an in 
+situ setting, where visualization and
+analysis is performed at the same time as the simulation, and using some of 
+its resources. 
+This usage modality increases the need for understanding 
+particle advection over many architectures, and at many concurrencies.
+</p>
+
+<h2>Results</h2>
+
+<p>
+We have published multiple papers on this topic.
+Highlights include:
+<ul>
+<li>Exploration-oriented usage from interpolating over 
+Lagrangian tracer particles extracted in situ 
+can be faster, more accurate, and take less storage than the traditional
+post hoc model where time slices are saved to disk (Agranovsky/LDAV14).</li>
+<li>Parallelism approaches between parallelize-over-data and parallelize-over-seeds
+may be better than the commonly used approaches at the two ends of the spectrum (Pugmire/SC09).</li>
+<li><a href="hybrid_parallelism.html">Hybrid parallelism</a> 
+can benefit flow visualization problems significantly, including speedups
+of more than 10X on nodes with only four cores (Camp/TVCG11).</li>
+<li>The ability of an architecture to operate efficiently is 
+dependent on the particle advection workload (Childs/HiPC14, Camp/EGPGV13).</li>
+<li>SSDs on supercomputers can be used to accelerate some particle advection approaches, specifically those that load data repeatedly (Camp/LDAV11).</li>
+</ul>
+</p>
+
+<h2>People</h2>
+<div style="width:100%;margin-left:auto; margin-right:auto;">
+<div style="float:left;width:200px;min-height:200px;margin:10px;text-align:center;">
+<a href="sane.html"><img style="border: none" src="./images/people/sane_cropped.png" alt="" width="150"></a>
+<br>
+<a href="sane.html"><b>Sudhanshu Sane</b></a>
+<br>Ph.D. Student (alum)</div>
+<div style="float:left;width:200px;min-height:200px;margin:10px;text-align:center;">
+<a href="schwartz.html"><img style="border: none" src="./images/people/schwartz_cropped.png" alt="" width="150"></a>
+<br>
+<a href="schwartz.html"><b>Sam Schwartz</b></a>
+<br>Ph.D. Student</div>
+<div style="float:left;width:200px;min-height:200px;margin:10px;text-align:center;">
+<a href="yenpure.html"><img style="border: none" src="./images/people/yenpure_cropped.png" alt="" width="150"></a>
+<br>
+<a href="yenpure.html"><b>Abhishek Yenpure</b></a>
+<br>Ph.D. Candidate</div>
+<div style="float:left;width:200px;min-height:200px;margin:10px;text-align:center;">
+<a href="binyahib.html"><img style="border: none" src="./images/people/binyahib_cropped.png" alt="" width="150"></a>
+<br>
+<a href="binyahib.html"><b>Roba Binyahib</b></a>
+<br>Ph.D. Student (alum)</div>
+<div style="float:left;width:200px;min-height:200px;margin:10px;text-align:center;">
+<a href="childs.html"><img style="border: none" src="./images/people/childs_cropped.png" alt="" width="150"></a>
+<br>
+<a href="childs.html"><b>Hank Childs</b></a>
+<br>CDUX Director</div>
+</div><div class="clearfix"></div>
+
+<h2>External Collaborators</h2>
+<ul>
+<li><a href="http://climatechangescience.ornl.gov/content/david-r-pugmire">David Pugmire</a>, Oak Ridge</li>
+<li><a href="http://vis.uni-kl.de/people/garth/">Christoph Garth</a>, University of Kaiserslautern</li>
+<li><a href="http://crd.lbl.gov/about/staff/cds/visualization-vis/david-camp/">David Camp</a>, Lawrence Berkeley</li>
+</ul>
+
+<h2>Publications</h2>
+
+<p><table class="TFtable">
+<tr><td>
+<a name="2020_SaneCGF"></a>
+<div style="float: left; width: 125; margin: 5px; padding: 5px">
+<IMG SRC="pubs/SaneCGF_thumb.jpeg" BORDER="0" width="125"></a></div>
+<br>A Survey of Seed Placement and Streamline Selection Techniques <br>
+<a href="sane.html">Sudhanshu Sane</a>,
+Roxana Bujack,
+Christoph Garth,
+and <a href="childs.html">Hank Childs</a> <br>
+Computer Graphics Forum (EuroVis State-of-the-Art Report), Norrkoping, Sweden, May 2020 <br>
+<br>[<a href="pubs/SaneCGF.pdf">PDF</a>] &nbsp; &nbsp; [<a href="pubs/SaneCGF.bib">BIB</a>]<br>
+</td></tr>
+<tr><td>
+<a name="2019_BinyahibLDAV"></a>
+<div style="float: left; width: 125; margin: 5px; padding: 5px">
+<IMG SRC="pubs/BinyahibLDAV_thumb.jpeg" BORDER="0" width="125"></a></div>
+<br>A Lifeline-Based Approach for Work Requesting and Parallel Particle Advection <br>
+<a href="binyahib.html">Roba Binyahib</a>,
+David Pugmire, Boyana Norris,
+and <a href="childs.html">Hank Childs</a> <br>
+<a href="http://ldav.org">IEEE Symposium on Large Data Analysis and Visualization (LDAV)</a>, Vancouver, Canada, October 2019 <br>
+<b><em>Best Paper Honorable Mention</em></b> <br>
+<br>[<a href="pubs/BinyahibLDAV.pdf">PDF</a>] &nbsp; &nbsp; [<a href="pubs/BinyahibLDAV.bib">BIB</a>]<br>
+</td></tr>
+<tr><td>
+<a name="2019_SaneEGPGV19"></a>
+<div style="float: left; width: 125; margin: 5px; padding: 5px">
+<IMG SRC="pubs/SaneEGPGV19_thumb.jpeg" BORDER="0" width="125"></a></div>
+<br>An Interpolation Scheme for VDVP Lagrangian Basis Flows <br>
+<a href="sane.html">Sudhanshu Sane</a>,
+<a href="childs.html">Hank Childs</a>,
+and Roxana Bujack <br>
+Eurographics Symposium on Parallel Graphics and Visualization (EGPGV), Porto, Portugal, June 2019 <br>
+<br>[<a href="pubs/SaneEGPGV19.pdf">PDF</a>] &nbsp; &nbsp; [<a href="pubs/SaneEGPGV19.bib">BIB</a>]<br>
+</td></tr>
+<tr><td>
+<a name="2018_SaneEGPGV"></a>
+<div style="float: left; width: 125; margin: 5px; padding: 5px">
+<IMG SRC="pubs/SaneEGPGV_thumb.jpeg" BORDER="0" width="125"></a></div>
+<br>Revisiting the Evaluation of In Situ Lagrangian Analysis <br>
+<a href="sane.html">Sudhanshu Sane</a>,
+Roxana Bujack,
+and <a href="childs.html">Hank Childs</a> <br>
+Eurographics Symposium on Parallel Graphics and Visualization (EGPGV), Brno, Czech Republic, June 2018 <br>
+<br>[<a href="pubs/SaneEGPGV.pdf">PDF</a>] &nbsp; &nbsp; [<a href="pubs/SaneEGPGV.bib">BIB</a>]<br>
+</td></tr>
+<tr><td>
+<a name="2018_PugmireEGPGV"></a>
+<div style="float: left; width: 125; margin: 5px; padding: 5px">
+<IMG SRC="pubs/PugmireEGPGV_thumb.jpeg" BORDER="0" width="125"></a></div>
+<br>Performance-Portable Particle Advection with VTK-m <br>
+David Pugmire, 
+<a href="yenpure.html">Abhishek Yenpure</a>,
+Mark Kim,
+<a href="kress.html">James Kress</a>,
+Robert Maynard,
+<a href="childs.html">Hank Childs</a>,
+and Bernd Hentschel <br>
+Eurographics Symposium on Parallel Graphics and Visualization (EGPGV), Brno, Czech Republic, June 2018 <br>
+<br>[<a href="pubs/PugmireEGPGV.pdf">PDF</a>] &nbsp; &nbsp; [<a href="pubs/PugmireEGPGV.bib">BIB</a>]<br>
+</td></tr>
+<tr><td>
+<a name="2017_LiCluster"></a>
+<div style="float: left; width: 125; margin: 5px; padding: 5px">
+<IMG SRC="pubs/LiCluster_thumb.jpeg" BORDER="0" width="125"></a></div>
+<br>Spatiotemporal Wavelet Compression for Visualization of Scientific Simulation Data <br>
+<a href="li.html">Samuel Li</a>,
+<a href="sane.html">Sudhanshu Sane</a>,
+<a href="http://orf.media/">Leigh Orf</a>, 
+<a href="http://wp.df.uba.ar/mininni/">Pablo Mininni</a>, 
+<a href="http://staff.ucar.edu/users/clyne">John Clyne</a>, 
+and <a href="childs.html">Hank Childs</a> <br>
+<a href="https://cluster17.github.io//">IEEE Cluster Conference</a>, Honolulu, HI, September 2017 <br>
+<br>[<a href="pubs/LiCluster.pdf">PDF</a>] &nbsp; &nbsp; [<a href="pubs/LiCluster.bib">BIB</a>]<br>
+</td></tr>
+<tr><td>
+<a name="2017_BleileVDA"></a>
+<div style="float: left; width: 125; margin: 5px; padding: 5px">
+<IMG SRC="pubs/BleileVDA_thumb.jpeg" BORDER="0" width="125"></a></div>
+<br>Accelerating Advection Via Approximate Block Exterior Flow Maps <br>
+<a href="bleile.html">Ryan Bleile</a>,
+Linda Sugiyama,
+Christoph Garth,
+and 
+<a href="childs.html">Hank Childs</a> <br>
+<a href="http://www.imaging.org/Site/IST/Conferences/EI_2017/Conference/C_VDA.aspx"> SPIE Visualization and Data Analysis (VDA)</a>, San Francisco, CA, February 2017 <br>
+<br>[<a href="pubs/BleileVDA.pdf">PDF</a>] &nbsp; &nbsp; [<a href="pubs/BleileVDA.bib">BIB</a>]<br>
+</td></tr>
+<tr><td>
+<a name="2015_AgranovskyVDA"></a>
+<div style="float: left; width: 125; margin: 5px; padding: 5px">
+<IMG SRC="pubs/AgranovskyVDA_thumb.jpeg" BORDER="0" width="125"></a></div>
+<br>Subsampling-Based Compression and Flow Visualization <br>
+Alexy Agranovsky, <a href="http://crd.lbl.gov/departments/data-science-and-technology/data-analytics-and-visualization/staff/david-camp/">David Camp</a>, <a href="http://graphics.cs.ucdavis.edu/~joy/">Kenneth I. Joy</a>, and <a href="childs.html">Hank Childs</a> <br>
+<a href="http://vda-conference.org/2015/">SPIE Visualization and Data Analysis (VDA)</a>, San Francisco, CA, February 2015 <br>
+<br>[<a href="pubs/AgranovskyVDA.pdf">PDF</a>] &nbsp; &nbsp; [<a href="pubs/AgranovskyVDA.bib">BIB</a>]<br>
+</td></tr>
+<tr><td>
+<a name="2014_AgranovskyLDAV"></a>
+<div style="float: left; width: 125; margin: 5px; padding: 5px">
+<IMG SRC="pubs/AgranovskyLDAV_thumb.jpeg" BORDER="0" width="125"></a></div>
+<br>Improved Post Hoc Flow Analysis Via Lagrangian Representations <br>
+Alexy Agranovsky, <a href="http://crd.lbl.gov/departments/data-science-and-technology/data-analytics-and-visualization/staff/david-camp/">David Camp</a>, <a href="http://vis.uni-kl.de/people/garth/">Christoph Garth</a>, <a href="http://vis.lbl.gov/~wes/">Wes Bethel</a>, <a href="http://graphics.cs.ucdavis.edu/~joy/">Kenneth I. Joy</a>, and <a href="childs.html">Hank Childs</a> <br>
+<a href="http://ldav2014.sci.utah.edu">IEEE Large Data Analysis and Visualization (LDAV)</a>, Paris, France, November 2014 <br>
+<b><em>Best Paper</em></b> <br>
+<br>[<a href="pubs/AgranovskyLDAV.pdf">PDF</a>] &nbsp; &nbsp; [<a href="pubs/AgranovskyLDAV.bib">BIB</a>]<br>
+</td></tr>
+<tr><td>
+<a name="2009_PugmireSC09"></a>
+<div style="float: left; width: 125; margin: 5px; padding: 5px">
+<IMG SRC="pubs/PugmireSC09_thumb.jpeg" BORDER="0" width="125"></a></div>
+<br>Scalable Computation of Streamlines on Very Large Datasets <br>
+<a href="http://climatechangescience.ornl.gov/content/david-r-pugmire">David Pugmire</a>,
+<a href="childs.html">Hank Childs</a>,
+<a href="http://vis.uni-kl.de/people/garth/">Christoph Garth</a>,
+Sean Ahern, and
+<a href="http://crd.lbl.gov/departments/data-science-and-technology/data-analytics-and-visualization/staff/gunther-h-weber/">Gunther Weber</a> <br>
+ACM/IEEE Conference on High Performance Computing (SC09), Portland, OR, November 2009 <br>
+<br>[<a href="pubs/PugmireSC09.pdf">PDF</a>] &nbsp; &nbsp; [<a href="pubs/PugmireSC09.bib">BIB</a>]<br>
+</td></tr>
+<tr><td>
+<a name="2011_CampTVCG"></a>
+<div style="float: left; width: 125; margin: 5px; padding: 5px">
+<IMG SRC="pubs/CampTVCG_thumb.jpeg" BORDER="0" width="125"></a></div>
+<br>Streamline Integration Using MPI-Hybrid Parallelism on a Large Multicore Architecture <br>
+<a href="http://crd.lbl.gov/departments/data-science-and-technology/data-analytics-and-visualization/staff/david-camp/">David Camp</a>, 
+<a href="http://vis.uni-kl.de/people/garth/">Christoph Garth</a>, 
+<a href="childs.html">Hank Childs</a>,
+<a href="http://climatechangescience.ornl.gov/content/david-r-pugmire">David Pugmire</a>, and
+<a href="http://graphics.cs.ucdavis.edu/~joy/">Kenneth I. Joy</a> <br>
+IEEE Transactions on Visualization and Computer Graphics (TVCG), November 2011 <br>
+<br>[<a href="pubs/CampTVCG.pdf">PDF</a>] &nbsp; &nbsp; [<a href="pubs/CampTVCG.bib">BIB</a>]<br>
+</td></tr>
+<tr><td>
+<a name="2014_ChildsHiPC"></a>
+<div style="float: left; width: 125; margin: 5px; padding: 5px">
+<IMG SRC="pubs/ChildsHiPC_thumb.jpeg" BORDER="0" width="125"></a></div>
+<br>Particle Advection Performance Over Varied Architectures and Workloads <br>
+<a href="childs.html">Hank Childs</a>, Scott Biersdorff, David Poliakoff, <a href="http://crd.lbl.gov/departments/data-science-and-technology/data-analytics-and-visualization/staff/david-camp/">David Camp</a>, and <a href="https://www.cs.uoregon.edu/People/Faculty/Allen_Malony.php">Allen D. Malony</a> <br>
+<a href="http://www.hipc.org/hipc2014/">IEEE Conference on High Performance Computing</a>, Goa, India, December 2014 <br>
+<br>[<a href="pubs/ChildsHiPC.pdf">PDF</a>] &nbsp; &nbsp; [<a href="pubs/ChildsHiPC.bib">BIB</a>]<br>
+</td></tr>
+<tr><td>
+<a name="2013_CampEGPGV"></a>
+<div style="float: left; width: 125; margin: 5px; padding: 5px">
+<IMG SRC="pubs/CampEGPGV_thumb.jpeg" BORDER="0" width="125"></a></div>
+<br>GPU Acceleration of Particle Advection Workloads in a Parallel, Distributed Memory Setting <br>
+<a href="http://crd.lbl.gov/departments/data-science-and-technology/data-analytics-and-visualization/staff/david-camp/">David Camp</a>, 
+<a href="http://crd.lbl.gov/departments/data-science-and-technology/data-analytics-and-visualization/staff/hari-krishnan/">Hari Krishnan</a>,
+<a href="http://climatechangescience.ornl.gov/content/david-r-pugmire">David Pugmire</a>,
+<a href="http://vis.uni-kl.de/people/garth/">Christoph Garth</a>, 
+Ian Johnson,
+<a href="http://vis.lbl.gov/~wes/">Wes Bethel</a>, 
+<a href="http://graphics.cs.ucdavis.edu/~joy/">Kenneth I. Joy</a>, and
+<a href="childs.html">Hank Childs</a> <br>
+EuroGraphics Symposium on Parallel Graphics and Visualization (EGPGV), Girona, Spain, May 2013 <br>
+<br>[<a href="pubs/CampEGPGV.pdf">PDF</a>] &nbsp; &nbsp; [<a href="pubs/CampEGPGV.bib">BIB</a>]<br>
+</td></tr>
+<tr><td>
+<a name="2011_CampLDAV11"></a>
+<div style="float: left; width: 125; margin: 5px; padding: 5px">
+<IMG SRC="pubs/CampLDAV11_thumb.jpeg" BORDER="0" width="125"></a></div>
+<br>Evaluating the Benefits of An Extended Memory Hierarchy for Parallel Streamline Algorithms <br>
+<a href="http://crd.lbl.gov/departments/data-science-and-technology/data-analytics-and-visualization/staff/david-camp/">David Camp</a>, 
+<a href="childs.html">Hank Childs</a>,
+<a href="http://users.sdsc.edu/~amit/web/">Amit Chourasia</a>,
+<a href="http://vis.uni-kl.de/people/garth/">Christoph Garth</a>, and
+<a href="http://graphics.cs.ucdavis.edu/~joy/">Kenneth I. Joy</a> <br>
+IEEE Large Data Visualization and Analysis (LDAV), Providence, RI, October 2011 <br>
+<br>[<a href="pubs/CampLDAV11.pdf">PDF</a>] &nbsp; &nbsp; [<a href="pubs/CampLDAV11.bib">BIB</a>]<br>
+</td></tr>
+<tr><td>
+<a name="2012_CampLDAV12"></a>
+<div style="float: left; width: 125; margin: 5px; padding: 5px">
+<IMG SRC="pubs/CampLDAV12_thumb.jpeg" BORDER="0" width="125"></a></div>
+<br>Parallel Stream Surface Computation for Large Data Sets <br>
+<a href="http://crd.lbl.gov/departments/data-science-and-technology/data-analytics-and-visualization/staff/david-camp/">David Camp</a>, 
+<a href="childs.html">Hank Childs</a>,
+<a href="http://vis.uni-kl.de/people/garth/">Christoph Garth</a>, 
+<a href="http://climatechangescience.ornl.gov/content/david-r-pugmire">David Pugmire</a>,
+and
+<a href="http://graphics.cs.ucdavis.edu/~joy/">Kenneth I. Joy</a> <br>
+IEEE Large Data Analysis and Visualization (LDAV), Seattle, WA, October 2012 <br>
+<br>[<a href="pubs/CampLDAV12.pdf">PDF</a>] &nbsp; &nbsp; [<a href="pubs/CampLDAV12.bib">BIB</a>]<br>
+</td></tr>
+<tr><td>
+<a name="2015_AgranovskyVDA"></a>
+<div style="float: left; width: 125; margin: 5px; padding: 5px">
+<IMG SRC="pubs/AgranovskyVDA_thumb.jpeg" BORDER="0" width="125"></a></div>
+<br>Subsampling-Based Compression and Flow Visualization <br>
+Alexy Agranovsky, <a href="http://crd.lbl.gov/departments/data-science-and-technology/data-analytics-and-visualization/staff/david-camp/">David Camp</a>, <a href="http://graphics.cs.ucdavis.edu/~joy/">Kenneth I. Joy</a>, and <a href="childs.html">Hank Childs</a> <br>
+<a href="http://vda-conference.org/2015/">SPIE Visualization and Data Analysis (VDA)</a>, San Francisco, CA, February 2015 <br>
+<br>[<a href="pubs/AgranovskyVDA.pdf">PDF</a>] &nbsp; &nbsp; [<a href="pubs/AgranovskyVDA.bib">BIB</a>]<br>
+</td></tr>
+</table>
+</div>
+
+</td></tr>
+</tbody></table>
+</div>
+
+<div class="footer" style="clear: both">
+Research Group on Computing and Data Understanding at eXtreme Scale &#8226; The University of Oregon &#8226; cdux-info@cs.uoregon.edu
+
+</div>
+
+<!--
+<div class="footer_logo">
+<a href="http://www.ucdavis.edu/"><img border="0" src="./idav_files/ucdavis_logo_png"></a>
+</div>
+-->
+
+
+
+
+</body></html>

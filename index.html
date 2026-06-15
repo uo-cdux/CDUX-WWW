@@ -25,11 +25,11 @@ img {
 </div>
 
 <div class="navigation">
-  <a class="item" href="index.html">Home</a>
+  <a class="item active" href="index.html">Home</a>
+  <a class="item" href="index.html#people">People</a>
   <a class="item" href="news.html">News</a>
   <a class="item" href="research.html">Research</a>
   <a class="item" href="publications.html">Publications</a>
-  <a class="item" href="people.html">People</a>
   <a class="item" href="join.html">Prospective Students</a>
   <!-- <a class="item" href="social.html">Social Events</a> --!>
  
@@ -49,6 +49,27 @@ div.small {
 div.larger {
     font-size: 125%;
 }
+.expertise-tags {
+    margin-top: 6px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    justify-content: center;
+}
+.tag {
+    background: #004F27;
+    color: #ffffff;
+    font-size: 70%;
+    padding: 2px 8px;
+    border-radius: 10px;
+    white-space: nowrap;
+}
+/* People headshots: rounded rectangle with a soft drop shadow */
+#people-section img {
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
+    padding-bottom: 0;
+}
 </style>
 
 
@@ -58,63 +79,484 @@ div.larger {
 
 <div class="larger">
 <p>
-The research group on Computing and Data Understanding at eXtreme Scale (CDUX)
-pursues problems in scientific visualization, high-performance computing,
-computational science, and computer graphics, 
-and especially focuses on problems where these areas intersect.
+The research group on Computing and Data Understanding at eXtreme Scale (CDUX), co-directed by Prof. Hank Childs and Prof. Jieyang Chen, pursues problems at the intersection of High-Performance Computing (HPC), Artificial Intelligence (AI), scientific visualization and analysis, scientific data reduction, computational science, and computer graphics.
 We have performed research for many sponsors, including
-the <a href="http://energy.gov">Department of Energy</a>, 
+the <a href="http://energy.gov">Department of Energy</a>,
 the <a href="http://nsf.gov">National Science Foundation</a>,
 and private industry.
-This research is often delivered in software tools, like
-<a href="http://www.llnl.gov/visit">VisIt</a>, a popular open source
-visualization tool for large data, 
-<a href="http://m.vtk.org/index.php/Main_Page">VTK-m</a>, a visualization library for many-core architectures, and
-<a href="https://ascent.readthedocs.io/en/latest/">Ascent</a>, 
-a flyweight in situ visualization library.
-The results of our research have appeared at premier venues,
-like the <a href="http://ieeevis.org">IEEE 
-Visualization</a> 
-and <a href="http://supercomputing.org">ACM/IEEE SuperComputing (SC)</a> conferences.
+The results of our research have appeared at premier venues, including
+<a href="http://ieeevis.org">IEEE VIS</a>,
+<a href="http://supercomputing.org">ACM/IEEE SC</a>,
+<a href="https://www.sigplan.org/Conferences/PPoPP/">ACM PPoPP</a>,
+<a href="https://www.hpdc.org">ACM HPDC</a>,
+<a href="https://www.ipdps.org">IEEE IPDPS</a>,
+<a href="https://ldav.org">IEEE LDAV</a>,
+<a href="https://www.computer.org/csdl/journal/tg">IEEE TVCG</a> and
+<a href="https://www.computer.org/csdl/journal/td">IEEE TPDS</a>.
 </p>
 <p>
-CDUX is part of the <a href="http://cs.uoregon.edu/">Computer and Information
-Science Department</a> at the <a href="http://uoregon.edu">University of 
-Oregon</a>.
+CDUX is part of the <a href="http://cs.uoregon.edu/">Computer Science Department</a> at the <a href="http://uoregon.edu">University of Oregon</a>.
 </p>
 
 </div>
 
-<br>
-<div class="clearfix"></div>
+</td><td style="vertical-align:top; text-align:center; padding:1em; width:440px;">
+<canvas id="cdux-viz" width="420" height="370" style="display:block; margin:0 auto; max-width:100%; -webkit-user-select:none; user-select:none; touch-action:none;"></canvas>
+<p style="text-align:center; font-size:11px; color:#666; margin:4px 0 0 0; font-style:italic;">Drag nodes to explore</p>
+<script>
+(function () {
+  // Cancel any animation loop left over from a previous SPA visit to this page.
+  if (window.__cduxVizRAF) cancelAnimationFrame(window.__cduxVizRAF);
+  var canvas = document.getElementById('cdux-viz');
+  var ctx = canvas.getContext('2d');
+  var W = canvas.width, H = canvas.height;
+  var CX = W / 2, CY = H / 2;
+  var REST = 143, K = 0.018, DAMP = 0.86;
 
+  // c1 = highlight (inner), c2 = base (outer), rgb = matching tint for the link
+  var nodeData = [
+    { lines: ['HPC'],                  c1: '#43a047', c2: '#1b5e20', rgb: '67,160,71' },
+    { lines: ['GPU', 'Computing'],     c1: '#1e88e5', c2: '#0d47a1', rgb: '30,136,229' },
+    { lines: ['AI / ML'],              c1: '#8e24aa', c2: '#4a148c', rgb: '142,36,170' },
+    { lines: ['Sci.', 'Visualization'], c1: '#26a69a', c2: '#00695c', rgb: '38,166,154' },
+    { lines: ['Data', 'Reduction'],    c1: '#f4511e', c2: '#bf360c', rgb: '244,81,30' },
+    { lines: ['Perf.', 'Analysis'],    c1: '#c9a227', c2: '#8d6e00', rgb: '201,162,39' }
+  ];
+
+  var nodes = nodeData.map(function (d, i) {
+    var angle = (i / nodeData.length) * Math.PI * 2 - Math.PI / 2;
+    return {
+      lines: d.lines,
+      c1: d.c1, c2: d.c2, rgb: d.rgb,
+      x: CX + Math.cos(angle) * REST,
+      y: CY + Math.sin(angle) * REST,
+      vx: (Math.random() - 0.5) * 0.8,
+      vy: (Math.random() - 0.5) * 0.8,
+      r: 36
+    };
+  });
+
+  var dragNode = null, hovNode = null;
+
+  function coords(e) {
+    var r = canvas.getBoundingClientRect();
+    var src = e.touches ? e.touches[0] : e;
+    return [src.clientX - r.left, src.clientY - r.top];
+  }
+  function getHit(mx, my) {
+    for (var i = nodes.length - 1; i >= 0; i--)
+      if (Math.hypot(mx - nodes[i].x, my - nodes[i].y) <= nodes[i].r + 4) return nodes[i];
+    return null;
+  }
+
+  canvas.addEventListener('mousedown', function (e) { e.preventDefault(); var c = coords(e); dragNode = getHit(c[0], c[1]); });
+  canvas.addEventListener('mousemove', function (e) {
+    var c = coords(e);
+    if (dragNode) { dragNode.x = c[0]; dragNode.y = c[1]; dragNode.vx = dragNode.vy = 0; }
+    hovNode = getHit(c[0], c[1]);
+    canvas.style.cursor = dragNode ? 'grabbing' : hovNode ? 'grab' : 'default';
+  });
+  canvas.addEventListener('mouseup', function () { dragNode = null; });
+  canvas.addEventListener('mouseleave', function () { dragNode = null; hovNode = null; });
+  canvas.addEventListener('touchstart', function (e) { e.preventDefault(); var c = coords(e); dragNode = getHit(c[0], c[1]); }, { passive: false });
+  canvas.addEventListener('touchmove', function (e) { e.preventDefault(); var c = coords(e); if (dragNode) { dragNode.x = c[0]; dragNode.y = c[1]; dragNode.vx = dragNode.vy = 0; } }, { passive: false });
+  canvas.addEventListener('touchend', function () { dragNode = null; });
+
+  var tick = 0;
+
+  function update() {
+    tick++;
+    nodes.forEach(function (n, i) {
+      if (n === dragNode) return;
+      var dx = n.x - CX, dy = n.y - CY;
+      var dist = Math.hypot(dx, dy) || 1;
+      var f = (dist - REST) * K;
+      n.vx -= dx / dist * f;
+      n.vy -= dy / dist * f;
+      n.vx += Math.sin(tick * 0.008 + i * 1.1) * 0.04;
+      n.vy += Math.cos(tick * 0.006 + i * 0.9) * 0.04;
+      n.vx *= DAMP; n.vy *= DAMP;
+      var pad = n.r + 8;
+      if (n.x < pad) n.vx += 1; if (n.x > W - pad) n.vx -= 1;
+      if (n.y < pad) n.vy += 1; if (n.y > H - pad) n.vy -= 1;
+      n.x += n.vx; n.y += n.vy;
+    });
+  }
+
+  function drawLine(n) {
+    var dx = n.x - CX, dy = n.y - CY;
+    var dist = Math.hypot(dx, dy) || 1;
+    var stretch = (dist - REST) / REST;
+    var px = -dy / dist, py = dx / dist;
+    var amp = stretch * 45;
+    var cpx = (CX + n.x) / 2 + px * amp;
+    var cpy = (CY + n.y) / 2 + py * amp;
+    ctx.beginPath();
+    ctx.moveTo(CX, CY);
+    ctx.quadraticCurveTo(cpx, cpy, n.x, n.y);
+    ctx.lineWidth = Math.min(1.5 + Math.abs(stretch) * 4, 5);
+    var alpha = Math.min(0.95, 0.55 + Math.abs(stretch) * 0.5);
+    var g = ctx.createLinearGradient(CX, CY, n.x, n.y);
+    g.addColorStop(0, 'rgba(255,204,0,' + alpha + ')');
+    g.addColorStop(1, 'rgba(' + n.rgb + ',' + alpha + ')');
+    ctx.strokeStyle = g;
+    ctx.stroke();
+  }
+
+  function drawNode(n) {
+    var hov = n === hovNode || n === dragNode;
+    ctx.save();
+    if (hov) { ctx.shadowColor = '#FFCC00'; ctx.shadowBlur = 16; }
+    ctx.beginPath();
+    ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2);
+    var g = ctx.createRadialGradient(n.x - n.r * 0.3, n.y - n.r * 0.3, 2, n.x, n.y, n.r);
+    g.addColorStop(0, n.c1);
+    g.addColorStop(1, n.c2);
+    ctx.fillStyle = g;
+    ctx.fill();
+    ctx.strokeStyle = hov ? '#FFCC00' : '#cc9900';
+    ctx.lineWidth = hov ? 2.5 : 1.5;
+    ctx.stroke();
+    ctx.restore();
+    ctx.fillStyle = '#ffffff';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    var lh = 13;
+    ctx.font = 'bold ' + (n.lines.length > 1 ? '10' : '12') + 'px arial, sans-serif';
+    n.lines.forEach(function (line, li) {
+      ctx.fillText(line, n.x, n.y + (li - (n.lines.length - 1) / 2) * lh);
+    });
+  }
+
+  function drawCenter() {
+    ctx.save();
+    ctx.shadowColor = '#FFCC00';
+    ctx.shadowBlur = 20;
+    ctx.beginPath();
+    ctx.arc(CX, CY, 55, 0, Math.PI * 2);
+    ctx.strokeStyle = 'rgba(255,204,0,0.25)';
+    ctx.lineWidth = 7;
+    ctx.stroke();
+    ctx.shadowBlur = 0;
+    ctx.beginPath();
+    ctx.arc(CX, CY, 48, 0, Math.PI * 2);
+    var g = ctx.createRadialGradient(CX - 16, CY - 16, 4, CX, CY, 48);
+    g.addColorStop(0, '#006633');
+    g.addColorStop(1, '#002a13');
+    ctx.fillStyle = g;
+    ctx.fill();
+    ctx.strokeStyle = '#FFCC00';
+    ctx.lineWidth = 2.5;
+    ctx.stroke();
+    ctx.restore();
+    ctx.fillStyle = '#FFCC00';
+    ctx.font = 'bold 22px arial, sans-serif';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText('CDUX', CX, CY);
+  }
+
+  function loop() {
+    ctx.clearRect(0, 0, W, H);
+    nodes.forEach(drawLine);
+    nodes.forEach(drawNode);
+    drawCenter();
+    update();
+    window.__cduxVizRAF = requestAnimationFrame(loop);
+  }
+
+  loop();
+})();
+</script>
+<!-- no close td since footer does this -->
+
+
+</td>
+<td class="sidebar">
 <div class="news_page_item">
 <div class="news_page_title">Top Headlines</div>
 <br>
 <ul>
-<li>May 2019: Brent Lessley <a href="news.html#2019_verbLessley"> accepts position</a> at Verb Surgical</li>
-<li>Apr. 2019: <a href="news.html#2019_llnlLabasan">Staff position at LLNL</a> for Stephanie Labasan</li>
-<li>Nov. 2018: Matt Larsen wins <a href="news.html#2018_ISAV">Best Paper</a> at ISAV Workshop</li>
-<li>Apr. 2018: <a href="news.html#2018_llnlBleile">Staff position at LLNL</a> for Ryan Bleile</li>
-<li>Apr. 2017: Kristi Belcher wins <a href="news.html#2017_belcherPhD"> NSF Graduate Research Fellowship</a></li>
-<li>Dec. 2016: <a href="news.html#2016_ornlKress">Staff position at ORNL</a> for James Kress</li>
-<li>Sep. 2016: <a href="news.html#2016_ncarLi">Staff position at NCAR</a> for Samuel Li</li>
-<li>June 2016: <a href="news.html#2016_sc16BPF">Best Paper Finalist</a> at SC16</li>
-<li>Jan. 2016: <a href="news.html#2016_llnlLarsen">Staff position at LLNL</a> for Matt Larsen</li>
-<li>June 2015: Hank Childs wins <a href="news.html#2015_researchAward">research</a> and 
-<a href="news.html#2015_teachingAward">teaching</a> awards</li>
-<li>May 2015: <a href="news.html#2015_lgsf">Lawrence Graduate Fellowships</a> for two CDUX students</li>
-<li>Feb. 2015: <a href="news.html#2015_vda">Best Paper</a> at SPIE Visualization and Data Analysis Conference</li>
-<li>Nov. 2014: <a href="news.html#2014_ldav">Best Paper</a> at IEEE Symposium on Large Data Analysis and Visualization</li>
+<li>Mar. 2026: Jieyang Chen receives <a href="news.html#2026_chenCareer">NSF CAREER Award</a></li>
+<li>Mar. 2026: Jieyang Chen receives <a href="news.html#2026_chenORNL">ORNL research support</a></li>
+<li>Nov. 2025: <a href="news.html#2025_atherDefense">Ph.D. for Hammad Ather</a>, who joins Meta</li>
+<li>Nov. 2025: Yanliang Li <a href="news.html#2025_yanliangSC">presents a paper at SC25</a></li>
+<li>Mar. 2025: Yuhang Liang <a href="news.html#2025_yuhangPPoPP">presents a paper at PPoPP 2025</a></li>
+<li>Jan. 2025: <a href="news.html#2025_chenCodirector">Jieyang Chen joins CDUX as Co-Director</a></li>
+<li>May 2024: Hammad Ather <a href="news.html#2024_atherIPDPS">presents a paper at IPDPS 2024</a></li>
+<li>Oct. 2023: Manish Mathai <a href="news.html#2023_mathaiLDAV">presents a paper at LDAV 2023</a></li>
+<li>May 2023: Hammad Ather <a href="news.html#2023_atherISC">presents a paper at ISC 2023</a></li>
+<li>Dec. 2022: <a href="news.html#2022_yenpureDefense">Ph.D. for Abhishek Yenpure</a>, who joins Kitware (now NVIDIA)</li>
+<li>Jun. 2022: <a href="news.html#2022_kawakamiGrad">Yuya Kawakami completes M.S.</a>, heads to Ph.D. at UC Davis</li>
+<li>Mar. 2022: <a href="news.html#2022_marsagliaDefense">Ph.D. for Nicole Marsaglia</a>, who joins Lawrence Livermore</li>
 </ul>
+<p style="text-align:right;"><a href="news.html">See all news &#x2192;</a></p>
+</div>
+</td>
+</tr>
+</tbody></table>
+
+<div class="clearfix"></div>
+
+<a name="people"></a>
+<div class="mainbar" id="people-section">
+
+<div class="news_page_item">
+<div class="news_page_title">Faculty Members</div>
+
+
+<div style="width:100%;margin-left:auto; margin-right:auto;">
+
+<div style="float:left;width:200px;min-height:200px;margin:10px;text-align:center;">
+<a href="people/faculty/chen.html"><img style="border: none" src="./images/people/jieyang_cropped.png" alt="" width="150"></a>
+<br>
+<a href="people/faculty/chen.html"><b>Jieyang Chen</b></a>
+<br>Assistant Professor, <a href="http://cs.uoregon.edu">CS</a>
+<br>CDUX Co-Director</br>
+<div class="expertise-tags">
+  <span class="tag">HPC</span>
+  <span class="tag">ML System Optimizations</span>
+  <span class="tag">GPU</span>
+  <span class="tag">Scientific Data</span>
+</div></div>
+
+<div style="float:left;width:200px;min-height:200px;margin:10px;text-align:center;">
+<a href="people/faculty/childs.html"><img style="border: none" src="./images/people/childs_cropped.png" alt="" width="150"></a>
+<br>
+<a href="people/faculty/childs.html"><b>Hank Childs</b></a>
+<br>Professor, <a href="http://cs.uoregon.edu">CS</a>
+<br>CDUX Co-Director</br>
+<div class="expertise-tags">
+  <span class="tag">HPC</span>
+  <span class="tag">Scientific Visualization</span>
+  <span class="tag">AI for HPC</span>
+  <span class="tag">Scientific Workflows</span>
+</div></div>
+</div><div class="clearfix"></div>
+
 </div>
 
-</td><td class="sidebar">
-<img width="450" src="./images/vis/rti.jpeg" alt="" style="float:right">
-<!-- no close td since footer does this -->
+<div class="news_page_item">
+<div class="news_page_title">Current Student Members</div>
 
-</td></tr>
-</tbody></table>
+
+<div style="width:100%;margin-left:auto; margin-right:auto;">
+
+<div style="float:left;width:200px;min-height:200px;margin:10px;text-align:center;">
+<a href="./people/phd/yuhang.html"><img src="./images/people/yuhang_cropped.png" alt="" height="200" width="150"></a>
+<br>
+<a href="./people/phd/yuhang.html"><b> Yuhang Liang</b></a>
+<br>Ph.D. Student
+<div class="expertise-tags">
+  <span class="tag">LLM</span>
+  <span class="tag">System Optimization</span>
+  <span class="tag">GPU</span>
+  <span class="tag">Fault Tolerance</span>
+</div></div>
+
+<div style="float:left;width:200px;min-height:200px;margin:10px;text-align:center;">
+<a href="./people/phd/leonli.html"><img src="./images/people/yanliang_cropped.png" alt="" height="200" width="150"></a>
+<br>
+<a href="./people/phd/leonli.html"><b> Leon (Yanliang) Li</b></a>
+<br>Ph.D. Student
+<div class="expertise-tags">
+  <span class="tag">Scientific Data Compression</span>
+  <span class="tag">HPC</span>
+  <span class="tag">GPU</span>
+</div></div>
+
+<div style="float:left;width:200px;min-height:200px;margin:10px;text-align:center;">
+<a href="./people/phd/huy.html"><img src="./images/people/huy_cropped.png" alt="" height="200" width="150"></a>
+<br>
+<a href="./people/phd/huy.html"><b>Huy Nguyen</b></a>
+<br>Ph.D. Student
+<div class="expertise-tags">
+  <span class="tag">LLM</span>
+  <span class="tag">Sparse Attention</span>
+  <span class="tag">GPU Kernels</span>
+</div></div>
+
+<div style="float:left;width:200px;min-height:200px;margin:10px;text-align:center;">
+<a href="people/phd/aliza.html"><img style="border: none" src="./images/people/aliza_cropped.png" alt="" width="150"></a>
+<br>
+<a href="people/phd/aliza.html"><b> Aliza Lisan</b></a>
+<br>Ph.D. Student <br>
+<div class="expertise-tags">
+  <span class="tag">HPC Performance Analysis</span>
+  <span class="tag">AI/ML-coupled Scientific Workflows</span>
+</div></div>
+
+<div style="float:left;width:200px;min-height:200px;margin:10px;text-align:center;">
+<a href="people/phd/mathai.html"><img style="border: none" src="./images/people/mmathai_cropped.png" alt="" width="150"></a>
+<br>
+<a href="people/phd/mathai.html"><b>Manish Mathai</b></a>
+<br>Ph.D. Student <br>
+<div class="expertise-tags">
+  <span class="tag">HPC</span>
+  <span class="tag">Scientific Visualization</span>
+  <span class="tag">AI for Visualization Rendering</span>
+</div></div>
+
+</div><div class="clearfix"></div>
+
+</div>
+
+<div class="news_page_item">
+<div class="news_page_title">Ph.D. Alumni</div>
+
+<div style="width:100%;margin-left:auto; margin-right:auto;">
+
+<div style="float:left;width:200px;min-height:200px;margin:10px;text-align:center;">
+<a href="people/phd/ather.html"><img style="border: none" src="./images/people/ather_cropped.png" alt="" width="150"></a>
+<br>
+<a href="people/phd/ather.html"><b>Hammad Ather</b></a>
+<br>Ph.D. 2025 &#x2192;<br>Meta</div>
+
+<div style="float:left;width:200px;min-height:200px;margin:10px;text-align:center;">
+<a href="people/phd/yenpure.html"><img style="border: none" src="./images/people/yenpure_cropped.png" alt="" width="150"></a>
+<br>
+<a href="people/phd/yenpure.html"><b>Abhishek Yenpure</b></a>
+<br>Ph.D. 2022 &#x2192;<br>Kitware &#x2192; Nvidia</div>
+
+<div style="float:left;width:200px;min-height:200px;margin:10px;text-align:center;">
+<a href="people/phd/marsaglia.html"><img style="border: none" src="./images/people/marsaglia_cropped.png" alt="" width="150"></a>
+<br>
+<a href="people/phd/marsaglia.html"><b>Nicole Marsaglia</b></a>
+<br>Ph.D. 2022 &#x2192;<br>LLNL Staff</div>
+
+<div style="float:left;width:200px;min-height:200px;margin:10px;text-align:center;">
+<a href="people/phd/bleile.html"><img style="border: none" src="./images/people/bleile_cropped.png" alt="" width="150"></a>
+<br>
+<a href="people/phd/bleile.html"><b>Ryan Bleile</b></a>
+<br>Ph.D. 2021 &#x2192;<br>LLNL Staff</div>
+
+<div style="float:left;width:200px;min-height:200px;margin:10px;text-align:center;">
+<a href="people/phd/sane.html"><img style="border: none" src="./images/people/sane_cropped.png" alt="" width="150"></a>
+<br>
+<a href="people/phd/sane.html"><b>Sudhanshu Sane</b></a>
+<br>Ph.D. 2020 &#x2192;<br>U. Utah Post-Doc</div>
+
+<div style="float:left;width:200px;min-height:200px;margin:10px;text-align:center;">
+<a href="people/phd/binyahib.html"><img style="border: none" src="./images/people/binyahib_cropped.png" alt="" width="150"></a>
+<br>
+<a href="people/phd/binyahib.html"><b>Roba Binyahib</b></a>
+<br>Ph.D. 2020 &#x2192;<br>NREL <small>&#x2192;</small> Intel </div>
+<div style="float:left;width:200px;min-height:200px;margin:10px;text-align:center;">
+<a href="people/phd/kress.html"><img style="border: none" src="./images/people/kress_cropped.png" alt="" width="150"></a>
+<br>
+<a href="people/phd/kress.html"><b>James Kress</b></a>
+<br>Ph.D. 2020 &#x2192;<br>ORNL Staff</div>
+
+<div style="float:left;width:200px;min-height:200px;margin:10px;text-align:center;">
+<a href="people/phd/labasan.html"><img style="border: none" src="./images/people/labasan_cropped.png" alt="" width="150"></a>
+<br>
+<a href="people/phd/labasan.html"><b>Stephanie Labasan</b></a>
+<br>Ph.D. 2019 &#x2192;<br>LLNL Staff</div>
+
+<div style="float:left;width:200px;min-height:200px;margin:10px;text-align:center;">
+<a href="people/phd/lessley.html"><img style="border: none" src="./images/people/lessley_cropped.png" alt="" width="150"></a>
+<br>
+<a href="people/phd/lessley.html"><b>Brent Lessley</b></a>
+<br>Ph.D. 2019 &#x2192;<br>Verb Surgical</div>
+
+<div style="float:left;width:200px;min-height:200px;margin:10px;text-align:center;">
+<a href="people/phd/li.html"><img style="border: none" src="./images/people/li_cropped.png" alt="" width="150"></a>
+<br>
+<a href="people/phd/li.html"><b>Shaomeng (Samuel) Li</b></a>
+<br>Ph.D. 2017 &#x2192;<br>NCAR Staff</div>
+
+<div style="float:left;width:200px;min-height:200px;margin:10px;text-align:center;">
+<a href="people/phd/larsen.html"><img style="border: none" src="./images/people/larsen_cropped.png" alt="" width="150"></a>
+<br>
+<a href="people/phd/larsen.html"><b>Matt Larsen </b></a>
+<br>Ph.D. 2016 &#x2192;<br>LLNL Staff</div>
+
+</div><div class="clearfix"></div>
+
+
+<div class="news_page_item">
+<div class="news_page_title">M.S. Alumni</div>
+
+<div style="float:left;width:200px;min-height:200px;margin:10px;text-align:center;">
+<a href="people/ms/majumder.html"><img style="border: none" src="./images/people/majumder_cropped.png" alt="" width="150"></a>
+<br>
+<a href="people/ms/majumder.html"><b>Meghanto Majumder</b></a>
+<br>M.S. 2025&#x2192;<br>PhD at U. Houston</div>
+
+<div style="float:left;width:200px;min-height:200px;margin:10px;text-align:center;">
+<a href="people/ms/kawakami.html"><img style="border: none" src="./images/people/kawakami_cropped.png" alt="" width="150"></a>
+<br>
+<a href="people/ms/kawakami.html"><b>Yuya Kawakami</b></a>
+<br>M.S. 2022 &#x2192;<br>PhD at UC Davis</div>
+
+<div style="width:100%;margin-left:auto; margin-right:auto;">
+<div style="float:left;width:200px;min-height:200px;margin:10px;text-align:center;">
+<a href="people/ms/belcher.html"><img style="border: none" src="./images/people/belcher_cropped.png" alt="" width="150"></a>
+<br>
+<a href="people/ms/belcher.html"><b>Kristi Belcher</b></a>
+<br>M.S. 2020 &#x2192;<br>LLNL Staff</div>
+<div style="float:left;width:200px;min-height:200px;margin:10px;text-align:center;">
+<a href="people/ms/mathai18.html"><img style="border: none" src="./images/people/mathai_cropped.png" alt="" width="150"></a>
+<br>
+<a href="people/ms/mathai18.html"><b>Manish Mathai</b></a>
+<br>M.S. 2018 &#x2192;<br>Microsoft</div>
+<div style="float:left;width:200px;min-height:200px;margin:10px;text-align:center;">
+<a href="people/ms/morrison.html"><img style="border: none" src="./images/people/morrison_cropped.png" alt="" width="150"></a>
+<br>
+<a href="people/ms/morrison.html"><b>Garrett Morrison</b></a>
+<br>M.S. 2018 &#x2192;<br>LLNL Intern &#x2192; Staff</div>
+<div style="float:left;width:200px;min-height:200px;margin:10px;text-align:center;">
+<a href="people/ms/weiler.html"><img style="border: none" src="./images/people/weiler_cropped.png" alt="" width="150"></a>
+<br>
+<a href="people/ms/weiler.html"><b>Jordan Weiler</b></a>
+<br>M.S. 2014 &#x2192;<br>Emberex</div>
+</div><div class="clearfix"></div>
+
+<div class="news_page_item">
+<div class="news_page_title">B.S. Alumni</div>
+
+<div style="width:100%;margin-left:auto; margin-right:auto;">
+<div style="float:left;width:200px;min-height:200px;margin:10px;text-align:center;">
+<a href="people/undergrad/makani.html"><img style="border: none" src="./images/people/makani_cropped.png" alt="" width="150"></a>
+<br>
+<a href="people/undergrad/makani.html"><b>Makani Buckley</b></a>
+<br>B.S. 2026</div>
+<div style="float:left;width:200px;min-height:200px;margin:10px;text-align:center;">
+<a href="people/undergrad/brennan.html"><img style="border: none" src="./images/people/brennan_cropped.jpg" alt="" width="150"></a>
+<br>
+<a href="people/undergrad/brennan.html"><b>Jeremy Brennan</b></a>
+<br>B.S. 2017 &#x2192;<br>Intel Corp.</div>
+<div style="float:left;width:200px;min-height:200px;margin:10px;text-align:center;">
+<a href="people/undergrad/maguire.html"><img style="border: none" src="./images/people/maguire_cropped.jpg" alt="" width="150"></a>
+<br>
+<a href="people/undergrad/maguire.html"><b>Alister Maguire</b></a>
+<br>B.S. 2017 &#x2192;<br>LLNL Staff</div>
+<div style="float:left;width:200px;min-height:200px;margin:10px;text-align:center;">
+<a href="people/undergrad/dawes.html"><img style="border: none" src="./images/people/dawes_cropped.png" alt="" width="150"></a>
+<br>
+<a href="people/undergrad/dawes.html"><b>Kirsten Dawes</b></a>
+<br>B.S. 2016 &#x2192;<br>M.S. student at U. Tenn.</div>
+<div style="float:left;width:200px;min-height:200px;margin:10px;text-align:center;">
+<a href="people/undergrad/ouermi.html"><img style="border: none" src="./images/people/ouermi_cropped.png" alt="" width="150"></a>
+<br>
+<a href="people/undergrad/ouermi.html"><b>TAJO Ouermi</b></a>
+<br>B.S. 2016 &#x2192;<br>Ph.D. student at U. Utah</div>
+</div><div class="clearfix"></div>
+
+<div class="news_page_item">
+<div class="news_page_title">Staff Alumni</div>
+
+<div style="width:100%;margin-left:auto; margin-right:auto;">
+<div style="float:left;width:200px;min-height:200px;margin:10px;text-align:center;">
+<a href="people/staff/potter.html"><img style="border: none" src="./images/people/potter_cropped.png" alt="" width="150"></a>
+<br>
+<a href="people/staff/potter.html"><b>Kristi Potter</b></a>
+<br>CDUX Co-Director &#x2192;<br>NREL Staff</div>
+</div><div class="clearfix"></div>
+
+</div>
+
+</div><!-- end people mainbar -->
 </div>
 
 <div class="footer" style="clear: both">
@@ -128,7 +570,6 @@ Research Group on Computing and Data Understanding at eXtreme Scale &#8226; The 
 </div>
 -->
 
-
-
+<script src="spa.js"></script>
 
 </body></html>

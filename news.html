@@ -26,10 +26,10 @@ img {
 
 <div class="navigation">
   <a class="item" href="index.html">Home</a>
-  <a class="item" href="news.html">News</a>
+  <a class="item" href="index.html#people">People</a>
+  <a class="item active" href="news.html">News</a>
   <a class="item" href="research.html">Research</a>
   <a class="item" href="publications.html">Publications</a>
-  <a class="item" href="people.html">People</a>
   <a class="item" href="join.html">Prospective Students</a>
   <!-- <a class="item" href="social.html">Social Events</a> --!>
  
@@ -49,6 +49,67 @@ div.small {
 div.larger {
     font-size: 125%;
 }
+.news-filter {
+    margin: 6px 0 18px 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+}
+.news-filter .label {
+    font-weight: bold;
+    margin-right: 4px;
+}
+.news-tag {
+    background: #eee;
+    color: #555;
+    border: 1px solid #999;
+    font-size: 90%;
+    padding: 4px 12px;
+    border-radius: 14px;
+    cursor: pointer;
+    user-select: none;
+    transition: background 0.15s, color 0.15s;
+}
+.news-tag:hover {
+    filter: brightness(0.95);
+}
+/* Per-category accent colors */
+.news-tag.t-student   { color: #2e7d32; border-color: #2e7d32; }
+.news-tag.t-awards    { color: #b8860b; border-color: #b8860b; }
+.news-tag.t-funding   { color: #1565c0; border-color: #1565c0; }
+.news-tag.t-outreach  { color: #6a1b9a; border-color: #6a1b9a; }
+.news-tag.t-personnel { color: #c2410c; border-color: #c2410c; }
+.news-tag.active            { background: #004F27; color: #ffffff; border-color: #004F27; }
+.news-tag.t-student.active   { background: #2e7d32; color: #fff; }
+.news-tag.t-awards.active    { background: #b8860b; color: #fff; }
+.news-tag.t-funding.active   { background: #1565c0; color: #fff; }
+.news-tag.t-outreach.active  { background: #6a1b9a; color: #fff; }
+.news-tag.t-personnel.active { background: #c2410c; color: #fff; }
+
+.news-item-tags {
+    display: inline-flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-left: 8px;
+    vertical-align: middle;
+}
+.news-item-tag {
+    color: #ffffff;
+    font-size: 70%;
+    font-weight: normal;
+    padding: 3px 12px;
+    border-radius: 12px;
+    white-space: nowrap;
+    cursor: pointer;
+    vertical-align: middle;
+}
+.news-item-tag:hover { filter: brightness(1.12); }
+.news-item-tag.t-student   { background: #2e7d32; }
+.news-item-tag.t-awards    { background: #b8860b; }
+.news-item-tag.t-funding   { background: #1565c0; }
+.news-item-tag.t-outreach  { background: #6a1b9a; }
+.news-item-tag.t-personnel { background: #c2410c; }
 </style>
 
 
@@ -56,22 +117,266 @@ div.larger {
 <tbody><tr><td class="mainbar">
 
 
-Filter based on:
-[<a href="news_student.html">Student Successes</a>]
-[<a href="news_awards.html">Awards and Recognition</a>]
-[<a href="news_funding.html">Funding</a>]
-[<a href="news_outreach.html">Outreach and Leadership</a>]
-[<a href="news_personnel.html">Personnel</a>]
-[<a href="news.html">All News</a>]
+<div class="news-filter">
+  <span class="label">Filter based on:</span>
+  <span class="news-tag active" data-filter="all">All News</span>
+  <span class="news-tag t-student" data-filter="student">Student Successes</span>
+  <span class="news-tag t-awards" data-filter="awards">Awards and Recognition</span>
+  <span class="news-tag t-funding" data-filter="funding">Funding</span>
+  <span class="news-tag t-outreach" data-filter="outreach">Outreach and Leadership</span>
+  <span class="news-tag t-personnel" data-filter="personnel">Personnel</span>
+</div>
+<!-- Note: we are behind on getting the website updated for 2021.  Many good happenings, including 8 publications and 3 Best Paper awards. -->
+<!-- <br><br><br><br> -->
 
-<br>
-<br>
-<br>
-Note: we are behind on getting the website updated for 2021.  Many good happenings, including 8 publications and 3 Best Paper awards.
-<br><br><br><br>
+<a name="2026_chenORNL"></a>
+<div class="news_page_item" data-tags="funding">
+<div class="news_page_date">March 2026</div>
+<div class="news_page_title">Jieyang Chen Receives ORNL Research Support</div>
+<div class="news_page_body">
+Jieyang Chen has received a new research grant from Oak Ridge National Laboratory (ORNL).
+As Principal Investigator on the ASCR/SIRIUS-2 project, "Adapting to Diverse Data Retrieval Patterns in
+Scientific Campaigns," Jieyang will investigate techniques for efficiently retrieving scientific data under
+the varied access patterns that arise across large-scale scientific campaigns.
+The award provides $100,000 in support.
+</div> </div>
+<div class="clearfix"></div>
+
+<a name="2026_chenCareer"></a>
+<div class="news_page_item" data-tags="awards funding">
+<div class="news_page_date">March 2026</div>
+<div class="news_page_title">Jieyang Chen Receives NSF CAREER Award</div>
+<div class="news_page_body">
+Congratulations to Jieyang Chen, who has received a
+<a href="https://jieyangchen7.github.io/grants.html">National Science Foundation CAREER award</a>!
+The CAREER award is the NSF's most prestigious award in support of early-career faculty.
+Jieyang's project, "CAREER: ProTrain: Enabling Efficient Large Language Model Training via Performance,
+Energy, and Reliability Co-optimizations," develops integrated techniques for making the training of
+large language models faster, more energy-efficient, and more reliable.
+The award provides $533,628 in funding from the NSF Information &amp; Intelligent Systems (IIS) program.
+</div> </div>
+<div class="clearfix"></div>
+
+<a name="2025_atherDefense"></a>
+<div class="news_page_item" data-tags="student">
+<div class="news_page_date">November 2025</div>
+<div class="news_page_title">Ph.D. Defense for Hammad Ather</div>
+<div class="news_page_body">
+Congratulations to Dr. Hammad Ather, who successfully defended his Ph.D. dissertation this month!
+His dissertation, titled "Towards End-to-End I/O Analysis and Optimization of HPC Systems,"
+was co-advised by Hank Childs and Allen D. Malony.
+Hammad's research focused on end-to-end analysis, visualization, and optimization of parallel I/O performance
+in scientific and AI/ML workloads, including collaborations with Lawrence Berkeley and Lawrence Livermore
+National Laboratories.
+He has joined Meta as a Research Scientist.
+</div> </div>
+<div class="clearfix"></div>
+
+<a name="2025_atherPDSW"></a>
+<div class="news_page_item" data-tags="student">
+<div class="news_page_date">November 2025</div>
+<div class="news_page_title">Hammad Ather Presents SmartIO at PDSW 2025</div>
+<div class="news_page_body">
+CDUX Ph.D. student Hammad Ather presented his paper
+<a href="publications.html#2025_AtherSmartIO">SmartIO: A Lightweight End-to-End Workflow for Runtime I/O Optimization of HPC Systems</a>
+at the 10th International Parallel Data Systems Workshop (PDSW), held with the SC25 workshops in St. Louis, MO.
+Co-authored with Chen Wang, Hariharan Devarajan, Hank Childs, and Kathryn M. Mohror,
+the work presents a lightweight, end-to-end workflow for optimizing I/O performance of HPC systems at runtime.
+</div> </div>
+<div class="clearfix"></div>
+
+<a name="2025_yanliangSC"></a>
+<div class="news_page_item" data-tags="student">
+<div class="news_page_date">November 2025</div>
+<div class="news_page_title">Yanliang Li Presents Paper at SC25</div>
+<div class="news_page_body">
+CDUX Ph.D. student Yanliang (Leon) Li presented his paper
+<a href="publications.html#2025_YanliangSC">HP-MDR: High-Performance and Portable Data Refactoring and Progressive Retrieval with Advanced GPUs</a>
+at the International Conference for High Performance Computing, Networking, Storage and Analysis (SC25)
+in St. Louis, MO.
+The work was advised by Jieyang Chen, with co-authors including collaborators from Oak Ridge National Laboratory.
+It introduces a high-performance, portable approach for data refactoring and progressive retrieval on modern GPUs.
+</div> </div>
+<div class="clearfix"></div>
+
+<a name="2025_chenOSUTalk"></a>
+<div class="news_page_item" data-tags="outreach">
+<div class="news_page_date">October 2025</div>
+<div class="news_page_title">Jieyang Chen Gives Invited Talk at Oregon State University</div>
+<div class="news_page_body">
+Jieyang Chen gave an
+<a href="https://www.linkedin.com/posts/ecotern-nsf-cybertraining-b02257372_ecoternseminar-exascale-hpc-activity-7378534410687623168--TU">invited talk</a>
+at Oregon State University as part of the EcoTERN seminar series, an NSF cybertraining program.
+His talk covered the CDUX group's research on high-performance computing at the exascale, including scientific
+data reduction and performance optimization on modern GPU-accelerated supercomputers.
+</div> </div>
+<div class="clearfix"></div>
+
+<a name="2025_yuhangPPoPP"></a>
+<div class="news_page_item" data-tags="student">
+<div class="news_page_date">March 2025</div>
+<div class="news_page_title">Yuhang Liang Presents Paper at PPoPP 2025</div>
+<div class="news_page_body">
+CDUX Ph.D. student Yuhang Liang presented his paper
+<a href="publications.html#2025_YuhangPPoPP">ATTNChecker: Highly-Optimized Fault Tolerant Attention for Large Language Model Training</a>
+at the 30th ACM SIGPLAN Annual Symposium on Principles and Practice of Parallel Programming (PPoPP) in Las Vegas, NV.
+The work, advised by Jieyang Chen, introduces a highly optimized fault-tolerance scheme for the attention
+mechanism used in large language model training.
+</div> </div>
+<div class="clearfix"></div>
+
+<a name="2025_majumderGrad"></a>
+<div class="news_page_item" data-tags="student personnel">
+<div class="news_page_date">March 2025</div>
+<div class="news_page_title">Meghanto Majumder Completes M.S. and Heads to Ph.D. at U. Houston</div>
+<div class="news_page_body">
+Congratulations to Meghanto Majumder, who completed his M.S. degree this month!
+His thesis, titled "A Multi-Phase Framework for Vector Field Sampling Using FTLE, Context, and Gradient Features,"
+was advised by Hank Childs.
+Meghanto's research interests include data management, data visualization, and high-performance computing.
+He will continue his studies as a Ph.D. student at the University of Houston.
+</div> </div>
+<div class="clearfix"></div>
+
+<a name="2025_chenCodirector"></a>
+<div class="news_page_item" data-tags="personnel">
+<div class="news_page_date">January 2025</div>
+<div class="news_page_title">Jieyang Chen Joins CDUX as Co-Director</div>
+<div class="news_page_body">
+We are excited to welcome Jieyang Chen, who joins CDUX as a Co-Director this month.
+Jieyang is an Assistant Professor in the Department of Computer Science at the University of Oregon.
+His research spans high-performance computing, GPU computing, machine learning system optimizations, and scientific data management,
+and his arrival broadens the group's expertise at the intersection of HPC, AI, and scientific data.
+</div> </div>
+<div class="clearfix"></div>
+
+<a name="2025_yuhangJoins"></a>
+<div class="news_page_item" data-tags="personnel">
+<div class="news_page_date">January 2025</div>
+<div class="news_page_title">Yuhang Liang Joins CDUX as Ph.D. Student</div>
+<div class="news_page_body">
+We are excited to welcome Yuhang Liang, who joins CDUX as a Ph.D. student advised by Prof. Jieyang Chen.
+Yuhang completed his Master's degree in Data Science at the University of Auckland in 2023 and his Bachelor's
+degree in Computer Science and Technology at Southwest University in 2021.
+His research interests include high-performance computing, fault tolerance, GPU computing, and machine learning.
+</div> </div>
+<div class="clearfix"></div>
+
+<a name="2025_yanliangJoins"></a>
+<div class="news_page_item" data-tags="personnel">
+<div class="news_page_date">January 2025</div>
+<div class="news_page_title">Yanliang (Leon) Li Joins CDUX as Ph.D. Student</div>
+<div class="news_page_body">
+We are excited to welcome Yanliang (Leon) Li, who joins CDUX as a Ph.D. student advised by Prof. Jieyang Chen.
+His research interests include high-performance computing, scientific data reduction, big data management,
+and scientific data visualization.
+</div> </div>
+<div class="clearfix"></div>
+
+<a name="2024_atherIPDPS"></a>
+<div class="news_page_item" data-tags="student">
+<div class="news_page_date">May 2024</div>
+<div class="news_page_title">Hammad Ather Presents Paper at IPDPS 2024</div>
+<div class="news_page_body">
+CDUX Ph.D. student Hammad Ather presented his paper
+<a href="publications.html#2024_AtherIPDPS">Drilling Down I/O Bottlenecks with Cross-layer I/O Profile Exploration</a>
+at the IEEE International Parallel and Distributed Processing Symposium (IPDPS) in San Francisco, CA.
+Co-authored with Jean Luca Bez, Yankun Xia, and Suren Byna, the work introduces cross-layer I/O
+profile exploration techniques for diagnosing performance bottlenecks in scientific applications.
+</div> </div>
+<div class="clearfix"></div>
+
+<a name="2023_mathaiLDAV"></a>
+<div class="news_page_item" data-tags="student">
+<div class="news_page_date">October 2023</div>
+<div class="news_page_title">Manish Mathai Presents Paper at LDAV 2023</div>
+<div class="news_page_body">
+CDUX Ph.D. student Manish Mathai presented his paper
+<a href="publications.html#2023_MathaiLDAV">A Distributed-Memory Parallel Approach for Volume Rendering with Shadows</a>
+at the IEEE 13th Symposium on Large Data Analysis and Visualization (LDAV) in Melbourne, Australia.
+The work, advised by Hank Childs and co-authored with CDUX alum Matt Larsen, develops a distributed-memory
+parallel method for incorporating shadows into scientific volume rendering.
+</div> </div>
+<div class="clearfix"></div>
+
+<a name="2023_atherISC"></a>
+<div class="news_page_item" data-tags="student">
+<div class="news_page_date">May 2023</div>
+<div class="news_page_title">Hammad Ather Presents Paper at ISC High Performance 2023</div>
+<div class="news_page_body">
+CDUX Ph.D. student Hammad Ather presented his paper
+<a href="publications.html#2023_AtherISC">Illuminating the I/O Optimization Path of Scientific Applications</a>
+at the 38th International Conference on High Performance Computing (ISC High Performance) in Hamburg, Germany.
+Co-authored with Jean Luca Bez, Boyana Norris, and Suren Byna, the work helps guide users along the
+I/O optimization path for scientific applications.
+</div> </div>
+<div class="clearfix"></div>
+
+<a name="2022_yenpureDefense"></a>
+<div class="news_page_item" data-tags="student">
+<div class="news_page_date">December 2022</div>
+<div class="news_page_title">Ph.D. Defense for Abhishek Yenpure</div>
+<div class="news_page_body">
+Congratulations to Dr. Abhishek Yenpure, who successfully defended his Ph.D. dissertation this month!
+His dissertation, titled "General Purpose Flow Visualization at the Exascale," was advised by Hank Childs.
+Abhishek's research developed performance-portable techniques for flow visualization on exascale-era
+many-core architectures.
+After graduation he joined Kitware, and is now at NVIDIA.
+</div> </div>
+<div class="clearfix"></div>
+
+<a name="2022_makaniJoins"></a>
+<div class="news_page_item" data-tags="personnel">
+<div class="news_page_date">September 2022</div>
+<div class="news_page_title">Makani Buckley Joins CDUX as Undergraduate Researcher</div>
+<div class="news_page_body">
+We are excited to welcome Makani Buckley, who joins CDUX as an undergraduate researcher.
+Makani's research interests include scientific visualization, parallel rendering, and performance-portable
+algorithms for GPUs.
+</div> </div>
+<div class="clearfix"></div>
+
+<a name="2022_kawakamiGrad"></a>
+<div class="news_page_item" data-tags="student personnel">
+<div class="news_page_date">June 2022</div>
+<div class="news_page_title">Yuya Kawakami Completes M.S. and Heads to Ph.D. at UC Davis</div>
+<div class="news_page_body">
+Congratulations to Yuya Kawakami, who completed his M.S. degree this month!
+His thesis was titled "The Time Slice Selection Bake-off."
+Yuya will continue his studies as a Ph.D. student at the University of California, Davis.
+</div> </div>
+<div class="clearfix"></div>
+
+<a name="2022_marsagliaDefense"></a>
+<div class="news_page_item" data-tags="student">
+<div class="news_page_date">March 2022</div>
+<div class="news_page_title">Ph.D. Defense for Nicole Marsaglia</div>
+<div class="news_page_body">
+Congratulations to Dr. Nicole Marsaglia, who successfully defended her Ph.D. dissertation!
+Her dissertation, titled "Automating Camera Placement for In Situ Visualization," was advised by Hank Childs.
+Nicole's work addressed automated decision making in an in situ setting&mdash;specifically automating camera
+placement when there is no human in the loop&mdash;spanning a user study of human preferences, viewpoint
+quality metrics that match those preferences, and efficient algorithms to compute and search over those
+metrics on supercomputers.
+She joined Lawrence Livermore National Laboratory as a staff member upon graduation.
+</div> </div>
+<div class="clearfix"></div>
+
+<a name="2021_alizaJoins"></a>
+<div class="news_page_item" data-tags="personnel">
+<div class="news_page_date">September 2021</div>
+<div class="news_page_title">Aliza Lisan Joins CDUX as Ph.D. Student</div>
+<div class="news_page_body">
+We are excited to welcome Aliza Lisan, who joins CDUX as a Ph.D. student advised by Dr. Hank Childs.
+Aliza completed her Bachelor's in Computer Science at the National University of Computer and Emerging Sciences
+(FAST-NU) in 2018.
+Her research interests span high-performance computing, performance analysis, visualization, and systems for AI/ML,
+with a focus on end-to-end performance analysis and optimization of HPC and scientific and AI/ML workflows.
+</div> </div>
+<div class="clearfix"></div>
 
 <a name="2021_egpgv"></a>
-<div class="news_page_item">
+<div class="news_page_item" data-tags="student awards">
 <div class="news_page_date">June 14, 2021</div>
 <div class="news_page_title">CDUX Students Present Three Papers at EGPGV, Including Best Paper and Best Short Paper</div>
 <div class="news_page_body">
@@ -90,7 +395,7 @@ Co-authors on this work again included David Pugmire and Hank Childs.</li>
 <div class="clearfix"></div>
 
 <a name="2021_binyahibIntel"></a>
-<div class="news_page_item">
+<div class="news_page_item" data-tags="student">
 <div class="news_page_date">June 1, 2021</div>
 <div class="news_page_title">Roba Binyahib Joins Advanced Rendering and Visualization Team at Intel</div>
 <div class="news_page_body">
@@ -100,7 +405,7 @@ This position builds on much of her PhD research of scientific visualization and
 <div class="clearfix"></div>
 
 <a name="2021_doecgf"></a>
-<div class="news_page_item">
+<div class="news_page_item" data-tags="student outreach">
 <div class="news_page_date">April 27, 2021</div>
 <div class="news_page_title">CDUX Presentations at DOECGF 2021</div>
 <div class="news_page_body">
@@ -121,7 +426,7 @@ Finally, CDUX alum Samuel Li served as the Program Chair for the event.
 <div class="clearfix"></div>
 
 <a name="2021_ecp21tutorial"></a>
-<div class="news_page_item">
+<div class="news_page_item" data-tags="outreach">
 <div class="news_page_date">April 16, 2021</div>
 <div class="news_page_title">In Situ Visualization Tutorial at Exascale Computing Project Annual Meeting</div>
 <div class="news_page_body">
@@ -138,7 +443,7 @@ presentations on VTK-m and Catalyst, respectively.
 <div class="clearfix"></div>
 
 <a name="2021_bleileDefense"></a>
-<div class="news_page_item">
+<div class="news_page_item" data-tags="student">
 <div class="news_page_date">March 4, 2021</div>
 <div class="news_page_title">Ph.D. Defense for Ryan Bleile</div>
 <div class="news_page_body">
@@ -156,7 +461,7 @@ He will continue at LLNL after graduation.
 <div class="clearfix"></div>
 
 <a name="2020_ascentTutorial"></a>
-<div class="news_page_item">
+<div class="news_page_item" data-tags="outreach">
 <div class="news_page_date">December 17, 2020</div>
 <div class="news_page_title">Virtual Tutorial on Ascent</div>
 <div class="news_page_body">
@@ -170,7 +475,7 @@ and its <a href="https://www.exascaleproject.org/wp-content/uploads/2020/11/asce
 <div class="clearfix"></div>
 
 <a name="2020_isav"></a>
-<div class="news_page_item">
+<div class="news_page_item" data-tags="student">
 <div class="news_page_date">November 12, 2020</div>
 <div class="news_page_title">Yuya Kawakami Presents Paper at ISAV 2020</div>
 <div class="news_page_body">
@@ -190,7 +495,7 @@ as well as CDUX alum Matt Larsen.
 <div class="clearfix"></div>
 
 <a name="2020_sc20tutorial"></a>
-<div class="news_page_item">
+<div class="news_page_item" data-tags="outreach">
 <div class="news_page_date">November 9, 2020</div>
 <div class="news_page_title">In Situ Visualization Tutorial at SC20</div>
 <div class="news_page_body">
@@ -210,7 +515,7 @@ respective software teams.
 <div class="clearfix"></div>
 
 <a name="2020_kressLDAV"></a>
-<div class="news_page_item">
+<div class="news_page_item" data-tags="student">
 <div class="news_page_date">October 25, 2020</div>
 <div class="news_page_title">James Kress Presents Paper at LDAV 2020 </div>
 <div class="news_page_body">
@@ -230,7 +535,7 @@ looked at time-to-solution.
 <div class="clearfix"></div>
 
 <a name="2020_istp"></a>
-<div class="news_page_item">
+<div class="news_page_item" data-tags="outreach">
 <div class="news_page_date">September 30, 2020</div>
 <div class="news_page_title">"In Situ Terminology Project" Is Published</div>
 <div class="news_page_body">
@@ -255,7 +560,7 @@ The paper had 57 co-authors, who met semi-regularly for several years (at confer
 <div class="clearfix"></div>
 
 <a name="2020_kawakamiMS"></a>
-<div class="news_page_item">
+<div class="news_page_item" data-tags="personnel">
 <div class="news_page_date">September 16, 2020</div>
 <div class="news_page_title">Yuya Kawakami Joins CDUX as M.S. Student</div>
 <div class="news_page_body">
@@ -271,7 +576,7 @@ researching in situ triggers.
 <div class="clearfix"></div>
 
 <a name="2020_promotion"></a>
-<div class="news_page_item">
+<div class="news_page_item" data-tags="awards personnel">
 <div class="news_page_date">September 15, 2020</div>
 <div class="news_page_title">Hank Childs Promoted to Full Professor</div>
 <div class="news_page_body">
@@ -289,7 +594,7 @@ organized Dagstuhl and Shonan workshops, among other activities.
 <div class="clearfix"></div>
 
 <a name="2020_cluster"></a>
-<div class="news_page_item">
+<div class="news_page_item" data-tags="student">
 <div class="news_page_date">September 14, 2020</div>
 <div class="news_page_title">Roba Binyahib Presents Research Results at Cluster 2020</div>
 <div class="news_page_body">
@@ -307,7 +612,7 @@ David Pugmire of Oak Ridge, and Hank Childs.
 <div class="clearfix"></div>
 
 <a name="2020_isc"></a>
-<div class="news_page_item">
+<div class="news_page_item" data-tags="student">
 <div class="news_page_date">June 23, 2020</div>
 <div class="news_page_title">James Kress Presents Paper at ISC'20</div>
 <div class="news_page_body">
@@ -328,7 +633,7 @@ use cases where in transit will run faster.
 <div class="clearfix"></div>
 
 <a name="2020_hubbardScholarship"></a>
-<div class="news_page_item">
+<div class="news_page_item" data-tags="student awards">
 <div class="news_page_date">June 15, 2020</div>
 <div class="news_page_title">Abhishek Yenpure Awarded J. Donald Hubbard Family Scholarship</div>
 <div class="news_page_body">
@@ -341,7 +646,7 @@ Congratulations Abhishek!!
 <div class="clearfix"></div>
 
 <a name="2020_belcherDefense"></a>
-<div class="news_page_item">
+<div class="news_page_item" data-tags="student personnel">
 <div class="news_page_date">June 4, 2020</div>
 <div class="news_page_title">Kristi Belcher Defends M.S. Thesis and Joins Lawrence Livermore</div>
 <div class="news_page_body">
@@ -356,7 +661,7 @@ Kristi will begin a position at Lawrence Livermore National Laboratory in June. 
 <div class="clearfix"></div>
 
 <a name="2020_eurovis"></a>
-<div class="news_page_item">
+<div class="news_page_item" data-tags="student">
 <div class="news_page_date">May 27, 2020</div>
 <div class="news_page_title">Sudhanshu Sane Presents State of the Art Report at EuroVis 2020</div>
 <div class="news_page_body">
@@ -375,7 +680,7 @@ University of Oregon.
 <div class="clearfix"></div>
 
 <a name="2020_saneDefense"></a>
-<div class="news_page_item">
+<div class="news_page_item" data-tags="student">
 <div class="news_page_date">May 18, 2020</div>
 <div class="news_page_title">Ph.D. Defense for Sudhanshu Sane</div>
 <div class="news_page_body">
@@ -390,7 +695,7 @@ After graduation, Sudhanshu will begin working as a post-doctoral researcher for
 <div class="clearfix"></div>
 
 <a name="2020_doecgf"></a>
-<div class="news_page_item">
+<div class="news_page_item" data-tags="student outreach">
 <div class="news_page_date">April 28, 2020</div>
 <div class="news_page_title">CDUX Presentations at DOECGF 2020</div>
 <div class="news_page_body">
@@ -409,7 +714,7 @@ which was held virtually this week:
 <div class="clearfix"></div>
 
 <a name="2020_saneMoursund"></a>
-<div class="news_page_item">
+<div class="news_page_item" data-tags="student awards">
 <div class="news_page_date">March 30, 2020</div>
 <div class="news_page_title">Sudhanshu Sane Delivers Data Visualization Course Via Moursund Scholarship</div>
 <div class="news_page_body">
@@ -423,7 +728,7 @@ Sudhanshu has designed the course from scratch, and is the instructor of record 
 <div class="clearfix"></div>
 
 <a name="2020_binyahibDefense"></a>
-<div class="news_page_item">
+<div class="news_page_item" data-tags="student">
 <div class="news_page_date">March 6, 2020</div>
 <div class="news_page_title">Ph.D. Defense for Roba Binyahib</div>
 <div class="news_page_body">
@@ -440,7 +745,7 @@ This position is a return for Roba, who did a summer internship at NREL in 2018.
 <div class="clearfix"></div>
 
 <a name="2020_kressDefense"></a>
-<div class="news_page_item">
+<div class="news_page_item" data-tags="student">
 <div class="news_page_date">March 4, 2020</div>
 <div class="news_page_title">Ph.D. Defense for James Kress</div>
 <div class="news_page_body">
@@ -456,7 +761,7 @@ graduation.
 <div class="clearfix"></div>
 
 <a name="2020_aeTVCG"></a>
-<div class="news_page_item">
+<div class="news_page_item" data-tags="outreach">
 <div class="news_page_date">February 11, 2020</div>
 <div class="news_page_title">Hank Childs Joins TVCG Editorial Board as Associate Editor</div>
 <div class="news_page_body">
@@ -467,7 +772,7 @@ His duties will include evaluating submissions by assigning them to reviewers, m
 <div class="clearfix"></div>
 
 <a name="2020_ecp20tutorial"></a>
-<div class="news_page_item">
+<div class="news_page_item" data-tags="outreach">
 <div class="news_page_date">February 4, 2020</div>
 <div class="news_page_title">In Situ Visualization Tutorial at Exascale Computing Project Annual Meeting</div>
 <div class="news_page_body">
@@ -483,7 +788,7 @@ and Cinema (LANL's Terry Turton).
 <div class="clearfix"></div>
 
 <a name="2020_vda"></a>
-<div class="news_page_item">
+<div class="news_page_item" data-tags="student">
 <div class="news_page_date">January 30, 2020</div>
 <div class="news_page_title">Brent Lessley Presents Paper at VDA</div>
 <div class="news_page_body">
@@ -504,7 +809,7 @@ In his VDA work, Brent compared his hardware-agnostic approach with hardware-spe
 <div class="clearfix"></div>
 
 <a name="2019_isav"></a>
-<div class="news_page_item">
+<div class="news_page_item" data-tags="student">
 <div class="news_page_date">November 18, 2019</div>
 <div class="news_page_title">Roba Binyahib's Paper Presented at ISAV</div>
 <div class="news_page_body">
@@ -524,7 +829,7 @@ getting her visa renewed and unable to attend.
 <div class="clearfix"></div>
 
 <a name="2019_sc19tutorial"></a>
-<div class="news_page_item">
+<div class="news_page_item" data-tags="outreach">
 <div class="news_page_date">November 17, 2019</div>
 <div class="news_page_title">In Situ Visualization Tutorial at SC19</div>
 <div class="news_page_body">
@@ -543,7 +848,7 @@ respective software teams.
 <div class="clearfix"></div>
 
 <a name="2019_ldav"></a>
-<div class="news_page_item">
+<div class="news_page_item" data-tags="student awards">
 <div class="news_page_date">October 21, 2019</div>
 <div class="news_page_title">Roba Binyahib Receives Best Paper Honorable Mention at LDAV</div>
 <div class="news_page_body">
@@ -560,7 +865,7 @@ advection that uses the recent Lifeline approach for identifying victims.
 <div class="clearfix"></div>
 
 <a name="2019_vtkmTutorial"></a>
-<div class="news_page_item">
+<div class="news_page_item" data-tags="outreach">
 <div class="news_page_date">October 20, 2019</div>
 <div class="news_page_title">VTK-m Tutorial at IEEE Visualization Conference</div>
 <div class="news_page_body">
@@ -580,7 +885,7 @@ The tutorial was well attended, with approximately 50 attendees throughout.
 <div class="clearfix"></div>
 
 <a name="2019_ecp"></a>
-<div class="news_page_item">
+<div class="news_page_item" data-tags="funding">
 <div class="news_page_date">October 1, 2019</div>
 <div class="news_page_title">Exascale Computing Project Renews Funding For CDUX</div>
 <div class="news_page_body">
@@ -605,7 +910,7 @@ Funding for these awards runs through 2023.
 <div class="clearfix"></div>
 
 <a name="2019_ceed"></a>
-<div class="news_page_item">
+<div class="news_page_item" data-tags="outreach">
 <div class="news_page_date">August 7, 2019</div>
 <div class="news_page_title">Visualization Outreach at CEED Annual Meeting</div>
 <div class="news_page_body">
@@ -621,7 +926,7 @@ his DevilRay renderer for higher order elements.
 <div class="clearfix"></div>
 
 <a name="2019_vtkm"></a>
-<div class="news_page_item">
+<div class="news_page_item" data-tags="student outreach">
 <div class="news_page_date">July 30-August 1, 2019</div>
 <div class="news_page_title">CDUX Members Attend VTK-m Hackathon</div>
 <div class="news_page_body">
@@ -642,7 +947,7 @@ CDUX collaborator Dave Pugmire.
 <div class="clearfix"></div>
 
 <a name="2019_hpcs"></a>
-<div class="news_page_item">
+<div class="news_page_item" data-tags="student">
 <div class="news_page_date">July 17, 2019</div>
 <div class="news_page_title">Ryan Bleile Presents Paper at HPCS</div>
 <div class="news_page_body">
@@ -660,13 +965,13 @@ the approach with predecessor, "fat thread" approaches.
 <div class="clearfix"></div>
 
 <a name="2019_moursundScholarship"></a>
-<div class="news_page_item">
+<div class="news_page_item" data-tags="student awards">
 <div class="news_page_date">July 15, 2019</div>
 <div class="news_page_title">Sudhanshu Sane Awarded Moursund Graduate Scholarship</div>
 <div class="news_page_body">
 Congratulations to Sudhanshu Sane, who has received the inaugural Moursund Graduate Scholarship.
 This scholarship supports future educators.
-In addition to financial support from the scholarship, Sudhanshu will receive support from the CIS Department to teach a course
+In addition to financial support from the scholarship, Sudhanshu will receive support from the CS Department to teach a course
 of his own design.
 His scholarship application proposed a course focusing on data visualization, which Sudhanshu will deliver in Spring 2020. 
 Congratulations Sudhanshu!!
@@ -676,7 +981,7 @@ Congratulations Sudhanshu!!
 <div class="clearfix"></div>
 
 <a name="2019_isc"></a>
-<div class="news_page_item">
+<div class="news_page_item" data-tags="student">
 <div class="news_page_date">June 18, 2019</div>
 <div class="news_page_title">James Kress Presents Paper at ISC</div>
 <div class="news_page_body">
@@ -700,11 +1005,11 @@ visualization at smaller scale.
 <div class="clearfix"></div>
 
 <a name="2019_teachingAward"></a>
-<div class="news_page_item">
+<div class="news_page_item" data-tags="awards">
 <div class="news_page_date">June 17, 2019</div>
 <div class="news_page_title">Hank Childs Receives Teaching Award</div>
 <div class="news_page_body">
-Hank Childs has received the CIS Department's Best Teacher Award for 2019.
+Hank Childs has received the CS Department's Best Teacher Award for 2019.
 The award was chosen based on student nominations from this year's
 graduating class, and was presented at today's commencement ceremony.
 This is the fourth time in five years that Hank has received the Best Teacher Award.
@@ -714,7 +1019,7 @@ This is the fourth time in five years that Hank has received the Best Teacher Aw
 <div class="clearfix"></div>
 
 <a name="2019_queenRHC"></a>
-<div class="news_page_item">
+<div class="news_page_item" data-tags="student awards">
 <div class="news_page_date">June 12, 2019</div>
 <div class="news_page_title">Laura Queen Receives Robert D. Clark Award
  </div>
@@ -734,7 +1039,7 @@ Congratulations Laura!!
 <div class="clearfix"></div>
 
 <a name="2019_egpgv"></a>
-<div class="news_page_item">
+<div class="news_page_item" data-tags="student">
 <div class="news_page_date">June 3, 2019</div>
 <div class="news_page_title">Three CDUX Papers at EGPGV 2019</div>
 <div class="news_page_body">
@@ -753,7 +1058,7 @@ EGPGV was located in Porto, Portugal.
 <div class="clearfix"></div>
 
 <a name="2019_internships"></a>
-<div class="news_page_item">
+<div class="news_page_item" data-tags="student">
 <div class="news_page_date">June 1, 2019</div>
 <div class="news_page_title">CDUX Students Head to Summer Internships</div>
 <div class="news_page_body">
@@ -785,7 +1090,7 @@ EGPGV was located in Porto, Portugal.
 <div class="clearfix"></div>
 
 <a name="2019_queenThesis"></a>
-<div class="news_page_item">
+<div class="news_page_item" data-tags="student awards">
 <div class="news_page_date">May 24, 2019</div>
 <div class="news_page_title">Laura Queen's BS Thesis Earns Distinction Honors</div>
 <div class="news_page_body">
@@ -802,7 +1107,7 @@ Her committee consisted of Hank Childs, Phil Mote (OSU), and Barbara Mossberg.
 <div class="clearfix"></div>
 
 <a name="2019_ipdps"></a>
-<div class="news_page_item">
+<div class="news_page_item" data-tags="student">
 <div class="news_page_date">May 21, 2019</div>
 <div class="news_page_title">Stephanie Labasan Presents Paper at IPDPS</div>
 <div class="news_page_body">
@@ -820,7 +1125,7 @@ IPDPS was held in Rio de Janeiro, Brazil.
 <div class="clearfix"></div>
 
 <a name="2019_verbLessley"></a>
-<div class="news_page_item">
+<div class="news_page_item" data-tags="student">
 <div class="news_page_date">May 21, 2019</div>
 <div class="news_page_title">Brent Lessley Accepts Position at Verb Surgical</div>
 <div class="news_page_body">
@@ -838,7 +1143,7 @@ Brent will be applying his expertise in designing efficient
 <div class="clearfix"></div>
 
 <a name="2019_llnlLabasan"></a>
-<div class="news_page_item">
+<div class="news_page_item" data-tags="student">
 <div class="news_page_date">April 1, 2019</div>
 <div class="news_page_title">Staff Position at Lawrence Livemore for Stephanie Labasan</div>
 <div class="news_page_body">
@@ -853,7 +1158,7 @@ dissertation on power-constrained high-performance computing.
 <div class="clearfix"></div>
 
 <a name="2019_schwartzPhD"></a>
-<div class="news_page_item">
+<div class="news_page_item" data-tags="personnel">
 <div class="news_page_date">March 15, 2019</div>
 <div class="news_page_title">Sam Schwartz to Join CDUX as Ph.D. Student in Fall 2019</div>
 <div class="news_page_body">
@@ -867,7 +1172,7 @@ program, including teaching English for a Chilean high school.
 <div class="clearfix"></div>
 
 <a name="2019_labasanDefense"></a>
-<div class="news_page_item">
+<div class="news_page_item" data-tags="student">
 <div class="news_page_date">March 4, 2019</div>
 <div class="news_page_title">Ph.D. Defense for Stephanie Labasan</div>
 <div class="news_page_body">
@@ -881,7 +1186,7 @@ publications, plus an additional work that is in progress.
 <div class="clearfix"></div>
 
 <a name="2019_lessleyDefense"></a>
-<div class="news_page_item">
+<div class="news_page_item" data-tags="student">
 <div class="news_page_date">February 22, 2019</div>
 <div class="news_page_title">Ph.D. Defense for Brent Lessley</div>
 <div class="news_page_body">
@@ -897,7 +1202,7 @@ is a survey paper deriving from his Area Exam.
 <div class="clearfix"></div>
 
 <a name="2019_shonan"></a>
-<div class="news_page_item">
+<div class="news_page_item" data-tags="outreach">
 <div class="news_page_date">Feb 11-15, 2019</div>
 <div class="news_page_title">Shonan Meeting on Visualization Software</div>
 <div class="news_page_body">
@@ -913,7 +1218,7 @@ between disparate development groups.
 <div class="clearfix"></div>
 
 <a name="2019_dagstuhl"></a>
-<div class="news_page_item">
+<div class="news_page_item" data-tags="outreach">
 <div class="news_page_date">January 22, 2019</div>
 <div class="news_page_title">Dagstuhl Report Released on In Situ Visualization for Computational Science</div>
 <div class="news_page_body">
@@ -926,7 +1231,7 @@ The seminar was made up of participants with expertise in visualization, high-pe
 <div class="clearfix"></div>
 
 <a name="2019_ecp19tutorial"></a>
-<div class="news_page_item">
+<div class="news_page_item" data-tags="outreach">
 <div class="news_page_date">January 17, 2019</div>
 <div class="news_page_title">In Situ Visualization Tutorial at Exascale Computing Project Annual Meeting</div>
 <div class="news_page_body">
@@ -941,7 +1246,7 @@ and Cinema (LANL's David Rogers).
 <div class="clearfix"></div>
 
 <a name="2018_ISAV"></a>
-<div class="news_page_item">
+<div class="news_page_item" data-tags="student awards">
 <div class="news_page_date">November 12, 2018</div>
 <div class="news_page_title">Matt Larsen Wins Best Paper at ISAV18 Workshop</div>
 <div class="news_page_body">
@@ -954,7 +1259,7 @@ Congratulations Matt!
 <div class="clearfix"></div>
 
 <a name="2018_VIS"></a>
-<div class="news_page_item">
+<div class="news_page_item" data-tags="student">
 <div class="news_page_date">October 25, 2018</div>
 <div class="news_page_title">Roba Binyahib Presents Paper at IEEE VIS Conference</div>
 <div class="news_page_body">
@@ -969,7 +1274,7 @@ The work showed the scalability of a novel approach for unstructured volume rend
 <div class="clearfix"></div>
 
 <a name="2018_ldav"></a>
-<div class="news_page_item">
+<div class="news_page_item" data-tags="student">
 <div class="news_page_date">October 21, 2018</div>
 <div class="news_page_title">Brent Lessley Presents Paper at LDAV</div>
 <div class="news_page_body">
@@ -986,7 +1291,7 @@ technique for computer vision, in the context of data-parallel primitives.
 <div class="clearfix"></div>
 
 <a name="2018_ATPESC"></a>
-<div class="news_page_item">
+<div class="news_page_item" data-tags="student">
 <div class="news_page_date">July 29-August 10, 2018</div>
 <div class="news_page_title">Kristi Belcher Participates in ATPESC</div>
 <div class="news_page_body">
@@ -999,7 +1304,7 @@ program is paying all expenses for Kristi to spend two weeks in Illinois.
 <div class="clearfix"></div>
 
 <a name="2018_dagstuhl"></a>
-<div class="news_page_item">
+<div class="news_page_item" data-tags="outreach">
 <div class="news_page_date">July 1-6, 2018</div>
 <div class="news_page_title">Schloss Dagstuhl On In Situ Visualization for Computational Science</div>
 <div class="news_page_body">
@@ -1014,7 +1319,7 @@ The seminar's focus was on bringing together three communities: visualization ex
 <div class="clearfix"></div>
 
 <a name="2018_woiv"></a>
-<div class="news_page_item">
+<div class="news_page_item" data-tags="student">
 <div class="news_page_date">June 28, 2018</div>
 <div class="news_page_title">CDUX Research Presented at ISC In Situ Workshop</div>
 <div class="news_page_body">
@@ -1037,7 +1342,7 @@ The work explored tradeoffs when using binning-based compression.</li>
 <div class="clearfix"></div>
 
 <a name="2018_FEA"></a>
-<div class="news_page_item">
+<div class="news_page_item" data-tags="awards">
 <div class="news_page_date">June 19, 2018</div>
 <div class="news_page_title">Hank Childs Receives University of Oregon Faculty Excellence Award</div>
 <div class="news_page_body">
@@ -1052,7 +1357,7 @@ The UO press release on the awards can be found <a href="https://around.uoregon.
 <div class="clearfix"></div>
 
 <a name="2018_ms_grads"></a>
-<div class="news_page_item">
+<div class="news_page_item" data-tags="student personnel">
 <div class="news_page_date">June 18, 2018</div>
 <div class="news_page_title">Theses, M.S Degrees, and Employment for Manish Mathai and Garrett Morrison</div>
 <div class="news_page_body">
@@ -1072,7 +1377,7 @@ He will be working with Harsh Bhatia on VisIt rendering issues.</li>
 <div class="clearfix"></div>
 
 <a name="2018_internships"></a>
-<div class="news_page_item">
+<div class="news_page_item" data-tags="student">
 <div class="news_page_date">June 11, 2018</div>
 <div class="news_page_title">CDUX Students Head to Summer Internships</div>
 <div class="news_page_body">
@@ -1105,7 +1410,7 @@ She hopes to complete her dissertation this summer.</li>
        </ul>
        Additionally:
        <ul>
-         <li>Kristi Belcher is taking advantage of the CIS Department's
+         <li>Kristi Belcher is taking advantage of the CS Department's
              funding for her Directed Research Project.</li>
          <li>Brent Lessley opted to stay at UO this summer to complete
              his dissertation and interview for jobs.</li>
@@ -1116,11 +1421,11 @@ She hopes to complete her dissertation this summer.</li>
 <div class="clearfix"></div>
 
 <a name="2018_scholarships"></a>
-<div class="news_page_item">
+<div class="news_page_item" data-tags="student awards">
 <div class="news_page_date">June 8, 2018</div>
 <div class="news_page_title">Kristi Belcher and Roba Binyahib Receive Scholarships</div>
 <div class="news_page_body">
-Two CDUX students received scholarships from the CIS Department:
+Two CDUX students received scholarships from the CS Department:
 <ul>
 <li>Kristi Belcher received the Phillip W. and Judy A. Seeley Graduate
 Fellowship in Computer and Information Science.  
@@ -1137,7 +1442,7 @@ Congratulations Kristi and Roba!!
 <div class="clearfix"></div>
 
 <a name="2018_eurovis"></a>
-<div class="news_page_item">
+<div class="news_page_item" data-tags="student">
 <div class="news_page_date">June 6, 2018</div>
 <div class="news_page_title">Shaomeng Li Presents State of the Art Report at EuroVis 2018</div>
 <div class="news_page_body">
@@ -1157,7 +1462,7 @@ University of Oregon.
 <div class="clearfix"></div>
 
 <a name="2018_egpgv"></a>
-<div class="news_page_item">
+<div class="news_page_item" data-tags="student">
 <div class="news_page_date">June 4, 2018</div>
 <div class="news_page_title">Sudhanshu Sane Presents Research Results at EGPGV 2018</div>
 <div class="news_page_body">
@@ -1172,7 +1477,7 @@ Co-authors on his paper included Roxana Bujack
 <div class="clearfix"></div>
 
 <a name="2018_bruder"></a>
-<div class="news_page_item">
+<div class="news_page_item" data-tags="personnel">
 <div class="news_page_date">May 21, 2018</div>
 <div class="news_page_title">Valentin Bruder Begins Three Month Visit</div>
 <div class="news_page_body">
@@ -1186,7 +1491,7 @@ performance modeling for scientific visualization.
 <div class="clearfix"></div>
 
 <a name="2018_doecgf"></a>
-<div class="news_page_item">
+<div class="news_page_item" data-tags="student outreach">
 <div class="news_page_date">April 25, 2018</div>
 <div class="news_page_title">Roba Binyahib Presents at DOECGF 2018</div>
 <div class="news_page_body">
@@ -1202,7 +1507,7 @@ on Visualization and Computer Graphics (TVCG).
 <div class="clearfix"></div>
 
 <a name="2018_llnlBleile"></a>
-<div class="news_page_item">
+<div class="news_page_item" data-tags="student">
 <div class="news_page_date">April 16, 2018</div>
 <div class="news_page_title">Staff Position at LLNL for Ryan Bleile</div>
 <div class="news_page_body">
@@ -1220,7 +1525,7 @@ He will complete his dissertation from LLNL.
 <div class="clearfix"></div>
 
 <a name="2018_waltonPhD"></a>
-<div class="news_page_item">
+<div class="news_page_item" data-tags="personnel">
 <div class="news_page_date">April 3, 2018</div>
 <div class="news_page_title">Steven Walton to Join CDUX as Ph.D. Student in Fall 2018</div>
 <div class="news_page_body">
@@ -1236,7 +1541,7 @@ Phase II funding.
 <div class="clearfix"></div>
 
 <a name="2018_omsi"></a>
-<div class="news_page_item">
+<div class="news_page_item" data-tags="outreach">
 <div class="news_page_date">March 8, 2018</div>
 <div class="news_page_title">Hank Childs Gives Presentation for OMSI</div>
 <div class="news_page_body">
@@ -1253,7 +1558,7 @@ Your Computer: Just How Powerful Is it, and Is That Enough?</a>."
 <div class="clearfix"></div>
 
 <a name="2018_yenpurePhD"></a>
-<div class="news_page_item">
+<div class="news_page_item" data-tags="personnel">
 <div class="news_page_date">January 22, 2018</div>
 <div class="news_page_title">Abhishek Yenpure to Join CDUX as Ph.D. Student</div>
 <div class="news_page_body">
@@ -1267,7 +1572,7 @@ Your Computer: Just How Powerful Is it, and Is That Enough?</a>."
 <div class="clearfix"></div>
 
 <a name="2018_intelBrennan"></a>
-<div class="news_page_item">
+<div class="news_page_item" data-tags="student">
 <div class="news_page_date">January 8, 2018</div>
 <div class="news_page_title">Undergrad Researcher Jeremy Brennan Graduates, Starts Position at Intel</div>
 <div class="news_page_body">
@@ -1277,7 +1582,7 @@ His official title is Driver Developer for the Integrated GFX Card,
 and he will work 
 on Intel's integrated graphics card optimizing the driver code for games.
 Jeremy previously was an intern for the same group in the summer of 2017.
-His UO experience, both as a student in the CIS441 graphics class and as
+His UO experience, both as a student in the CS441 graphics class and as
 an undergraduate research optimizing VisIt for the Xeon Phi,
 helped prepare him for the job.
 Jeremy completed his B.S. in December 2017.
@@ -1287,7 +1592,7 @@ Jeremy completed his B.S. in December 2017.
 <div class="clearfix"></div>
 
 <a name="2017_liDefense"></a>
-<div class="news_page_item">
+<div class="news_page_item" data-tags="student">
 <div class="news_page_date">November 28, 2017</div>
 <div class="news_page_title">Ph.D. Defense for Shaomeng Li</div>
 <div class="news_page_body">
@@ -1303,7 +1608,7 @@ continue in that position after graduation.
 <div class="clearfix"></div>
 
 <a name="2017_isav"></a>
-<div class="news_page_item">
+<div class="news_page_item" data-tags="student">
 <div class="news_page_date">November 12, 2017</div>
 <div class="news_page_title">Two Presentations at ISAV 2017</div>
 <div class="news_page_body">
@@ -1333,7 +1638,7 @@ and Cyrus Harrison.
 <div class="clearfix"></div>
 
 <a name="2017_ldav"></a>
-<div class="news_page_item">
+<div class="news_page_item" data-tags="student">
 <div class="news_page_date">October 2, 2017</div>
 <div class="news_page_title">Brent Lessley Presents Two Papers at LDAV 2017</div>
 <div class="news_page_body">
@@ -1360,7 +1665,7 @@ Co-authors on this work included Ken Moreland of Sandia Labs, CDUX alum Matt Lar
 <div class="clearfix"></div>
 
 <a name="2017_DC"></a>
-<div class="news_page_item">
+<div class="news_page_item" data-tags="student">
 <div class="news_page_date">September 30, 2017</div>
 <div class="news_page_title">Two CDUX Students Participate in Doctoral Colloquium at IEEE Visualization</div>
 <div class="news_page_body">
@@ -1378,7 +1683,7 @@ Our two participants were:
 <div class="clearfix"></div>
 
 <a name="2017_egpgv_chair"></a>
-<div class="news_page_item">
+<div class="news_page_item" data-tags="outreach">
 <div class="news_page_date">September 25, 2017</div>
 <div class="news_page_title">Hank Childs (Program Co-Chair) and Kristi Belcher (Student Program Chair) to
 Help Organize EGPGV18</div>
@@ -1392,7 +1697,7 @@ EuroVis in Brno, Czech Republic
 <div class="clearfix"></div>
 
 <a name="2017_cluster"></a>
-<div class="news_page_item">
+<div class="news_page_item" data-tags="student">
 <div class="news_page_date">September 7, 2017</div>
 <div class="news_page_title">Shaomeng Li Presents Research Results at Cluster 2017</div>
 <div class="news_page_body">
@@ -1412,7 +1717,7 @@ Leigh Orf, Pablo Mininni, John Clyne, and Hank Childs.
 <div class="clearfix"></div>
 
 <a name="2017_woiv"></a>
-<div class="news_page_item">
+<div class="news_page_item" data-tags="student">
 <div class="news_page_date">June 22, 2017</div>
 <div class="news_page_title">Shaomeng Li's Research Presented at ISC In Situ Workshop</div>
 <div class="news_page_body">
@@ -1425,7 +1730,7 @@ The presentation was titled "Wavelets as an In Situ Compression Operator for Pos
 <div class="clearfix"></div>
 
 <a name="2017_isc"></a>
-<div class="news_page_item">
+<div class="news_page_item" data-tags="outreach">
 <div class="news_page_date">June 21, 2017</div>
 <div class="news_page_title">ISC High Performance Conference</div>
 <div class="news_page_body">
@@ -1444,7 +1749,7 @@ data access.
 <div class="clearfix"></div>
 
 <a name="2017_llnlMaguire"></a>
-<div class="news_page_item">
+<div class="news_page_item" data-tags="student">
 <div class="news_page_date">June 19, 2017</div>
 <div class="news_page_title">Undergrad Researcher Alister Magure Graduates, Starts Position at LLNL</div>
 <div class="news_page_body">
@@ -1454,7 +1759,7 @@ Next, he will go to Lawrence Livermore National Laboratory as a
 computer programmer.
 In this role, he will work on the VisIt project, and also on other LLNL
 projects.
-Alister's UO experience, both as a student in the CIS441 graphics class and as
+Alister's UO experience, both as a student in the CS441 graphics class and as
 an undergraduate research optimizing VisIt for the Xeon Phi,
 helped prepare him for the job.
 
@@ -1463,11 +1768,11 @@ helped prepare him for the job.
 <div class="clearfix"></div>
 
 <a name="2017_teachingAward"></a>
-<div class="news_page_item">
+<div class="news_page_item" data-tags="awards">
 <div class="news_page_date">June 19, 2017</div>
 <div class="news_page_title">Hank Childs Receives Teaching Award</div>
 <div class="news_page_body">
-Hank Childs has received the CIS Department's Best Teacher Award for 2017.
+Hank Childs has received the CS Department's Best Teacher Award for 2017.
 The award was chosen based on student nominations from this year's
 graduating class, and was presented at today's commencement ceremony.
 This is the third straight year Hank has received the Best Teacher Award.
@@ -1477,12 +1782,12 @@ This is the third straight year Hank has received the Best Teacher Award.
 <div class="clearfix"></div>
 
 <a name="2017_hubbardScholarship"></a>
-<div class="news_page_item">
+<div class="news_page_item" data-tags="student awards">
 <div class="news_page_date">June 19, 2017</div>
 <div class="news_page_title">Manish Mathai Awarded J. Donald Hubbard Family Scholarship</div>
 <div class="news_page_body">
 Manish Mathai received the J. Donald Hubbard Family Scholarship in Computer and Information Science at the
-CIS Department's commencement ceremony. This scholarship is awarded to students who show an interest in human-computer interaction, computer graphics, or multimedia.
+CS Department's commencement ceremony. This scholarship is awarded to students who show an interest in human-computer interaction, computer graphics, or multimedia.
 Congratulations Manish!!
      
 
@@ -1490,7 +1795,7 @@ Congratulations Manish!!
 <div class="clearfix"></div>
 
 <a name="2017_internships"></a>
-<div class="news_page_item">
+<div class="news_page_item" data-tags="student">
 <div class="news_page_date">June 12, 2017</div>
 <div class="news_page_title">CDUX Students Head to Summer Internships</div>
 <div class="news_page_body">
@@ -1525,7 +1830,7 @@ Congratulations Manish!!
 <div class="clearfix"></div>
 
 <a name="2017_egpgv"></a>
-<div class="news_page_item">
+<div class="news_page_item" data-tags="student">
 <div class="news_page_date">June 12-13, 2017</div>
 <div class="news_page_title">Two CDUX Students Presents Research Results at EGPGV 2017</div>
 <div class="news_page_body">
@@ -1552,7 +1857,7 @@ John Clyne, and Hank Childs.</li>
 <div class="clearfix"></div>
 
 <a name="2017_ixpug"></a>
-<div class="news_page_item">
+<div class="news_page_item" data-tags="outreach">
 <div class="news_page_date">May 22, 2017</div>
 <div class="news_page_title">Keynote Presentation at IXPUG Workshop</div>
 <div class="news_page_body">
@@ -1567,7 +1872,7 @@ Hank's talk was titled "State of the Art for In Situ Visualization."
 <div class="clearfix"></div>
 
 <a name="2017_belcherPhD"></a>
-<div class="news_page_item">
+<div class="news_page_item" data-tags="student awards funding personnel">
 <div class="news_page_date">April 8, 2017</div>
 <div class="news_page_title">Kristi Belcher, NSF Graduate Research Fellow, To Join CDUX as Ph.D. Student in Fall 2017</div>
 <div class="news_page_body">
@@ -1583,7 +1888,7 @@ Great job Kristi, and we are very glad that you will be joining the team!!
 <div class="clearfix"></div>
 
 <a name="2017_codesprint"></a>
-<div class="news_page_item">
+<div class="news_page_item" data-tags="outreach">
 <div class="news_page_date">April 4-6, 2017</div>
 <div class="news_page_title">CDUX Hosts 3rd Annual VTK-m Code Sprint</div>
 <div class="news_page_body">
@@ -1600,7 +1905,7 @@ Remote students James Kress and Stephanie Labasan also joined us for the event, 
 <div class="clearfix"></div>
 
 <a name="2017_hentschel"></a>
-<div class="news_page_item">
+<div class="news_page_item" data-tags="">
 <div class="news_page_date">April 3, 2017</div>
 <div class="news_page_title">Bernd Hentschel Begins Month-long Visit</div>
 <div class="news_page_body">
@@ -1618,7 +1923,7 @@ and virtual reality for very large data.
 <div class="clearfix"></div>
 
 <a name="2017_kpNREL"></a>
-<div class="news_page_item">
+<div class="news_page_item" data-tags="personnel">
 <div class="news_page_date">March 24, 2017</div>
 <div class="news_page_title">Kristi Potter Takes Scientist Position at NREL</div>
 <div class="news_page_body">
@@ -1631,7 +1936,7 @@ We will miss her and wish her the best in her new position.
 <div class="clearfix"></div>
 
 <a name="2017_vda"></a>
-<div class="news_page_item">
+<div class="news_page_item" data-tags="student">
 <div class="news_page_date">February 2, 2017</div>
 <div class="news_page_title">Ryan Bleile Presents Research Results at SPIE Conference on Visualization and Data Analysis</div>
 <div class="news_page_body">
@@ -1649,7 +1954,7 @@ Linda Sugiyama of MIT, and Hank Childs.
 <div class="clearfix"></div>
 
 <a name="2017_twoMS"></a>
-<div class="news_page_item">
+<div class="news_page_item" data-tags="personnel">
 <div class="news_page_date">January 9, 2017</div>
 <div class="news_page_title">M.S. Students Abhishek Yenpure and Garrett Morrison Join CDUX</div>
 <div class="news_page_body">
@@ -1667,7 +1972,7 @@ Linda Sugiyama of MIT, and Hank Childs.
 <div class="clearfix"></div>
 
 <a name="2016_ornlKress"></a>
-<div class="news_page_item">
+<div class="news_page_item" data-tags="student">
 <div class="news_page_date">December 12, 2016</div>
 <div class="news_page_title">Staff Position at ORNL for James Kress</div>
 <div class="news_page_body">
@@ -1685,7 +1990,7 @@ complete his dissertation from ORNL.
 <div class="clearfix"></div>
 
 <a name="2016_larsenDefense"></a>
-<div class="news_page_item">
+<div class="news_page_item" data-tags="student">
 <div class="news_page_date">November 21, 2016</div>
 <div class="news_page_title">Ph.D. Defense for Matt Larsen</div>
 <div class="news_page_body">
@@ -1701,7 +2006,7 @@ continue in that position after graduation.
 <div class="clearfix"></div>
 
 <a name="2016_scLarsen"></a>
-<div class="news_page_item">
+<div class="news_page_item" data-tags="student awards">
 <div class="news_page_date">November 15, 2016</div>
 <div class="news_page_title">Matt Larsen Presents Research Results at SC16</div>
 <div class="news_page_body">
@@ -1725,7 +2030,7 @@ and CDUX members James Kress and Hank Childs.
 <div class="clearfix"></div>
 
 <a name="2016_isav"></a>
-<div class="news_page_item">
+<div class="news_page_item" data-tags="student">
 <div class="news_page_date">November 13, 2016</div>
 <div class="news_page_title">James Kress Presents Research Results at ISAV 2016</div>
 <div class="news_page_body">
@@ -1745,7 +2050,7 @@ and Hank Childs.
 <div class="clearfix"></div>
 
 <a name="2016_ecp"></a>
-<div class="news_page_item">
+<div class="news_page_item" data-tags="funding">
 <div class="news_page_date">November 10, 2016</div>
 <div class="news_page_title">Exascale Computing Project Funds Two Awards That Include CDUX</div>
 <div class="news_page_body">
@@ -1772,7 +2077,7 @@ The press release for all of the ECP software awards can be found
 <div class="clearfix"></div>
 
 <a name="2016_ansWinter"></a>
-<div class="news_page_item">
+<div class="news_page_item" data-tags="student">
 <div class="news_page_date">November 6, 2016</div>
 <div class="news_page_title">Ryan Bleile Presents Research Results at ANS Annual Winter Meeting</div>
 <div class="news_page_body">
@@ -1783,7 +2088,7 @@ His paper, titled <a href="publications.html#2016_BleileANSWinter">Algorithmic I
 <div class="clearfix"></div>
 
 <a name="2016_ldav"></a>
-<div class="news_page_item">
+<div class="news_page_item" data-tags="student">
 <div class="news_page_date">October 23, 2016</div>
 <div class="news_page_title">Matt Larsen Presents Research Results at LDAV 2016</div>
 <div class="news_page_body">
@@ -1803,7 +2108,7 @@ University of Utah, and Hank Childs.
 <div class="clearfix"></div>
 
 <a name="2016_ncarLi"></a>
-<div class="news_page_item">
+<div class="news_page_item" data-tags="student">
 <div class="news_page_date">September 26, 2016</div>
 <div class="news_page_title">Staff Position at NCAR for Samuel Li</div>
 <div class="news_page_body">
@@ -1822,7 +2127,7 @@ complete his dissertation from NCAR.
 <div class="clearfix"></div>
 
 <a name="2016_morrison"></a>
-<div class="news_page_item">
+<div class="news_page_item" data-tags="student personnel">
 <div class="news_page_date">September 15, 2016</div>
 <div class="news_page_title">Undergrad Researcher Garrett Morrison Graduates, Becomes CDUX Staff</div>
 <div class="news_page_body">
@@ -1837,7 +2142,7 @@ complete his dissertation from NCAR.
 <div class="clearfix"></div>
 
 <a name="2016_smc"></a>
-<div class="news_page_item">
+<div class="news_page_item" data-tags="outreach">
 <div class="news_page_date">August 30, 2016</div>
 <div class="news_page_title">Smoky Mountains Conference</div>
 <div class="news_page_body">
@@ -1862,7 +2167,7 @@ Hank met with Prof. Jian Huang and CDUX alum
 <div class="clearfix"></div>
 
 <a name="2016_woiv"></a>
-<div class="news_page_item">
+<div class="news_page_item" data-tags="outreach">
 <div class="news_page_date">June 23, 2016</div>
 <div class="news_page_title">Keynote Presentation at ISC In Situ Workshop</div>
 <div class="news_page_body">
@@ -1879,7 +2184,7 @@ Hank met with Prof. Jian Huang and CDUX alum
 <div class="clearfix"></div>
 
 <a name="2016_vsc"></a>
-<div class="news_page_item">
+<div class="news_page_item" data-tags="outreach">
 <div class="news_page_date">June 16-17, 2016</div>
 <div class="news_page_title">Short Course for Vlaams Supercomputer Centrum</div>
 <div class="news_page_body">
@@ -1895,7 +2200,7 @@ took place in Leuven, Belgium, on the KU Leuven campus.
 <div class="clearfix"></div>
 
 <a name="2016_sc16BPF"></a>
-<div class="news_page_item">
+<div class="news_page_item" data-tags="student awards">
 <div class="news_page_date">June 15, 2016</div>
 <div class="news_page_title">Matt Larsen's SC16 Submission Selected as Best Paper Finalist </div>
 <div class="news_page_body">
@@ -1913,7 +2218,7 @@ Congratulations everyone!!
 <div class="clearfix"></div>
 
 <a name="2016_TAJO"></a>
-<div class="news_page_item">
+<div class="news_page_item" data-tags="student personnel">
 <div class="news_page_date">June 13, 2016</div>
 <div class="news_page_title">Undergrad Researcher Ouermi Timbwaoga Aime Judicael Completes Thesis, Graduates</div>
 <div class="news_page_body">
@@ -1929,11 +2234,11 @@ Congratulations everyone!!
 <div class="clearfix"></div>
 
 <a name="2016_teachingAward"></a>
-<div class="news_page_item">
+<div class="news_page_item" data-tags="awards">
 <div class="news_page_date">June 13, 2016</div>
 <div class="news_page_title">Hank Childs Receives Teaching Award</div>
 <div class="news_page_body">
-        Hank Childs has received the CIS Department's Best Teacher Award for 2016.
+        Hank Childs has received the CS Department's Best Teacher Award for 2016.
         The award was chosen based on student nominations from this year's
         graduating class, and was presented at today's commencement ceremony.
 
@@ -1941,7 +2246,7 @@ Congratulations everyone!!
 <div class="clearfix"></div>
 
 <a name="2016_ans"></a>
-<div class="news_page_item">
+<div class="news_page_item" data-tags="student">
 <div class="news_page_date">June 12, 2016</div>
 <div class="news_page_title">Ryan Bleile Presents Research Results at ANS Annual Meeting</div>
 <div class="news_page_body">
@@ -1956,7 +2261,7 @@ costs for taking a hardware-agnostic approach.
 <div class="clearfix"></div>
 
 <a name="2016_egpgv"></a>
-<div class="news_page_item">
+<div class="news_page_item" data-tags="student">
 <div class="news_page_date">June 6, 2016</div>
 <div class="news_page_title">Brent Lessley Presents Research Results at EGPGV 2016</div>
 <div class="news_page_body">
@@ -1976,7 +2281,7 @@ for this problem.
 <div class="clearfix"></div>
 
 <a name="2016_internships"></a>
-<div class="news_page_item">
+<div class="news_page_item" data-tags="student">
 <div class="news_page_date">June 4, 2016</div>
 <div class="news_page_title">CDUX Students Head to Summer Internships</div>
 <div class="news_page_body">
@@ -2017,7 +2322,7 @@ for this problem.
 <div class="clearfix"></div>
 
 <a name="2016_graphicsClass"></a>
-<div class="news_page_item">
+<div class="news_page_item" data-tags="awards">
 <div class="news_page_date">May 16, 2016</div>
 <div class="news_page_title">Computer Graphics Class Featured by Cascade Magazine</div>
 <div class="news_page_body">
@@ -2034,7 +2339,7 @@ UO undergraduates land jobs.
 <div class="clearfix"></div>
 
 <a name="2016_dawes"></a>
-<div class="news_page_item">
+<div class="news_page_item" data-tags="student personnel">
 <div class="news_page_date">April 15, 2016</div>
 <div class="news_page_title">Undergrad Researcher Kirsten Dawes Graduates, to Attend UT Ph.D. Program in Fall 2016</div>
 <div class="news_page_body">
@@ -2052,7 +2357,7 @@ UO undergraduates land jobs.
 <div class="clearfix"></div>
 
 <a name="2016_ouermi"></a>
-<div class="news_page_item">
+<div class="news_page_item" data-tags="student personnel">
 <div class="news_page_date">April 1, 2016</div>
 <div class="news_page_title">Undergrad Researcher Ouermi Timbwaoga Aime Judicael to Enroll as Ph.D. Student at the University of Utah</div>
 <div class="news_page_body">
@@ -2066,7 +2371,7 @@ UO undergraduates land jobs.
 <div class="clearfix"></div>
 
 <a name="2016_sanePhD"></a>
-<div class="news_page_item">
+<div class="news_page_item" data-tags="personnel">
 <div class="news_page_date">March 15, 2016</div>
 <div class="news_page_title">Sudhanshu Sane to Join CDUX as Ph.D. Student</div>
 <div class="news_page_body">
@@ -2081,7 +2386,7 @@ UO undergraduates land jobs.
 <div class="clearfix"></div>
 
 <a name="2016_marsaglia"></a>
-<div class="news_page_item">
+<div class="news_page_item" data-tags="personnel">
 <div class="news_page_date">February 1, 2016</div>
 <div class="news_page_title">Ph.D. Student Nicole Marsaglia Joins CDUX</div>
 <div class="news_page_body">
@@ -2094,7 +2399,7 @@ UO undergraduates land jobs.
 <div class="clearfix"></div>
 
 <a name="2016_kressGradSchool"></a>
-<div class="news_page_item">
+<div class="news_page_item" data-tags="student awards">
 <div class="news_page_date">January 25, 2016</div>
 <div class="news_page_title">James Kress featured by UO</div>
 <div class="news_page_body">
@@ -2109,7 +2414,7 @@ details on his extended internship at Oak Ridge National Laboratory.
 <div class="clearfix"></div>
 
 <a name="2016_llnlLarsen"></a>
-<div class="news_page_item">
+<div class="news_page_item" data-tags="student">
 <div class="news_page_date">January 18, 2016</div>
 <div class="news_page_title">Staff Position at Lawrence Livermore for Matt Larsen</div>
 <div class="news_page_body">
@@ -2126,7 +2431,7 @@ complete his dissertation from LLNL.
 <div class="clearfix"></div>
 
 <a name="2016_sane"></a>
-<div class="news_page_item">
+<div class="news_page_item" data-tags="personnel">
 <div class="news_page_date">January 4, 2016</div>
 <div class="news_page_title">M.S. Student Sudhanshu Sane Joins CDUX</div>
 <div class="news_page_body">
@@ -2140,7 +2445,7 @@ complete his dissertation from LLNL.
 <div class="clearfix"></div>
 
 <a name="2015_asp"></a>
-<div class="news_page_item">
+<div class="news_page_item" data-tags="student awards">
 <div class="news_page_date">December 11, 2015</div>
 <div class="news_page_title">Samuel Li Receives NCAR ASP Award</div>
 <div class="news_page_body">
@@ -2155,7 +2460,7 @@ of scientific data sets using wavelets.
 <div class="clearfix"></div>
 
 <a name="2015_sc"></a>
-<div class="news_page_item">
+<div class="news_page_item" data-tags="student outreach">
 <div class="news_page_date">November 15-20, 2015</div>
 <div class="news_page_title">CDUX at SC15</div>
 <div class="news_page_body">
@@ -2178,7 +2483,7 @@ CDUX participated in many activities at the <a href="http://sc15.supercomputing.
 <div class="clearfix"></div>
 
 <a name="2015_isav"></a>
-<div class="news_page_item">
+<div class="news_page_item" data-tags="student">
 <div class="news_page_date">November 17, 2015</div>
 <div class="news_page_title">Two CDUX Students Present Research Results at ISAV</div>
 <div class="news_page_body">
@@ -2206,7 +2511,7 @@ Eric Brugger, Kevin Griffin, and Cyrus Harrison of LLNL, Jim Eliot of AWE, and H
 <div class="clearfix"></div>
 
 <a name="2015_ldav"></a>
-<div class="news_page_item">
+<div class="news_page_item" data-tags="student">
 <div class="news_page_date">October 26, 2015</div>
 <div class="news_page_title">Three CDUX Students Present Research Results at LDAV</div>
 <div class="news_page_body">
@@ -2242,7 +2547,7 @@ Co-authors on the effort included Erik Anderson of
 <div class="clearfix"></div>
 
 <a name="2015_chen"></a>
-<div class="news_page_item">
+<div class="news_page_item" data-tags="personnel">
 <div class="news_page_date">September 25, 2015</div>
 <div class="news_page_title">M.S. Student Vincent Chen Joins CDUX</div>
 <div class="news_page_body">
@@ -2256,7 +2561,7 @@ Co-authors on the effort included Erik Anderson of
 <div class="clearfix"></div>
 
 <a name="2015_ouermi"></a>
-<div class="news_page_item">
+<div class="news_page_item" data-tags="personnel">
 <div class="news_page_date">September 21, 2015</div>
 <div class="news_page_title">Undergraduate Researcher Ouermi Timbwaoga Aime Judicael Joins CDUX</div>
 <div class="news_page_body">
@@ -2270,7 +2575,7 @@ Welcome TAJO!
 <div class="clearfix"></div>
 
 <a name="2015_xu"></a>
-<div class="news_page_item">
+<div class="news_page_item" data-tags="personnel">
 <div class="news_page_date">September 16, 2015</div>
 <div class="news_page_title">M.S. Student Hang Xu Joins CDUX</div>
 <div class="news_page_body">
@@ -2285,7 +2590,7 @@ with foci on cache usage and vector utilization.
 <div class="clearfix"></div>
 
 <a name="2015_icas"></a>
-<div class="news_page_item">
+<div class="news_page_item" data-tags="outreach">
 <div class="news_page_date">September 15, 2015</div>
 <div class="news_page_title">International Computing for the Atmospheric Sciences Symposium</div>
 <div class="news_page_body">
@@ -2302,7 +2607,7 @@ and Lagrangian particle tracers.
 <div class="clearfix"></div>
 
 <a name="2015_codesprint"></a>
-<div class="news_page_item">
+<div class="news_page_item" data-tags="outreach">
 <div class="news_page_date">September 1-2, 2015</div>
 <div class="news_page_title">VTK-m Code Sprint</div>
 <div class="news_page_body">
@@ -2314,24 +2619,24 @@ Four CDUX Ph.D. students (Brent Lessley, James Kress, Matt Larsen, and Ryan Blei
 <div class="clearfix"></div>
 
 <a name="2015_teachingAward"></a>
-<div class="news_page_item">
+<div class="news_page_item" data-tags="awards">
 <div class="news_page_date">June 15, 2015</div>
 <div class="news_page_title">Hank Childs Receives Teaching Award</div>
 <div class="news_page_body">
         Hank Childs received the Best Teacher Award at the
-        CIS Department's commencement ceremony.
+        CS Department's commencement ceremony.
         The award was selected based on student nominations from the graduating class of 2015.
 
 </div> </div>
 <div class="clearfix"></div>
 
 <a name="2015_hubbardScholarship"></a>
-<div class="news_page_item">
+<div class="news_page_item" data-tags="student awards">
 <div class="news_page_date">June 15, 2015</div>
 <div class="news_page_title">Matt Larsen Awarded J. Donald Hubbard Family Scholarship</div>
 <div class="news_page_body">
         Matt Larsen received the J. Donald Hubbard Family Scholarship in Computer and Information Science at the
-        CIS Department's commencement ceremony. This scholarship is awarded to students who show an interest in human-computer interaction, computer graphics, or multimedia.
+        CS Department's commencement ceremony. This scholarship is awarded to students who show an interest in human-computer interaction, computer graphics, or multimedia.
 Congratulations Matt!
      
 
@@ -2339,7 +2644,7 @@ Congratulations Matt!
 <div class="clearfix"></div>
 
 <a name="2015_hartree"></a>
-<div class="news_page_item">
+<div class="news_page_item" data-tags="outreach">
 <div class="news_page_date">June 15-19, 2015</div>
 <div class="news_page_title">Hartree Centre Summer School on Visualization</div>
 <div class="news_page_body">
@@ -2349,7 +2654,7 @@ Congratulations Matt!
 <div class="clearfix"></div>
 
 <a name="2015_internships"></a>
-<div class="news_page_item">
+<div class="news_page_item" data-tags="student">
 <div class="news_page_date">June 12, 2015</div>
 <div class="news_page_title">8 CDUX Students Head To Internships, Including 15 Month Internship for James Kress</div>
 <div class="news_page_body">
@@ -2390,7 +2695,7 @@ Congratulations Matt!
 <div class="clearfix"></div>
 
 <a name="2015_promotion"></a>
-<div class="news_page_item">
+<div class="news_page_item" data-tags="awards personnel">
 <div class="news_page_date">June 1, 2015</div>
 <div class="news_page_title">Hank Childs Promoted to Associate Professor</div>
 <div class="news_page_body">
@@ -2400,7 +2705,7 @@ Congratulations Matt!
 <div class="clearfix"></div>
 
 <a name="2015_researchAward"></a>
-<div class="news_page_item">
+<div class="news_page_item" data-tags="awards">
 <div class="news_page_date">May 28, 2015</div>
 <div class="news_page_title">Hank Childs Receives UO Research Excellence Award for Outstanding Early Career</div>
 <div class="news_page_body">
@@ -2413,7 +2718,7 @@ More information on the award can be found <a href="https://www.cs.uoregon.edu/N
 <div class="clearfix"></div>
 
 <a name="2015_egpgv"></a>
-<div class="news_page_item">
+<div class="news_page_item" data-tags="student">
 <div class="news_page_date">May 25, 2015</div>
 <div class="news_page_title">Matt Larsen Presents Research Results at EGPGV 2015</div>
 <div class="news_page_body">
@@ -2432,7 +2737,7 @@ contributed
 <div class="clearfix"></div>
 
 <a name="2015_lgsf"></a>
-<div class="news_page_item">
+<div class="news_page_item" data-tags="student awards funding personnel">
 <div class="news_page_date">May 20, 2015</div>
 <div class="news_page_title">Stephanie Labasan and Ryan Bleile Awarded Lawrence Graduate Scholar Fellowship</div>
 <div class="news_page_body">
@@ -2454,7 +2759,7 @@ contributed
 <div class="clearfix"></div>
 
 <a name="2015_uncertainty"></a>
-<div class="news_page_item">
+<div class="news_page_item" data-tags="outreach">
 <div class="news_page_date">May 15, 2015</div>
 <div class="news_page_title">Kristi Potter to Lead Workshop at IEEE Visualization 2015</div>
 <div class="news_page_body">
@@ -2464,7 +2769,7 @@ contributed
 <div class="clearfix"></div>
 
 <a name="2015_pacvis"></a>
-<div class="news_page_item">
+<div class="news_page_item" data-tags="student">
 <div class="news_page_date">April 15, 2015</div>
 <div class="news_page_title">Matt Larsen Presents Research Results at PacificVis 2015</div>
 <div class="news_page_body">
@@ -2483,7 +2788,7 @@ Co-authors on the work include
 <div class="clearfix"></div>
 
 <a name="2015_scf"></a>
-<div class="news_page_item">
+<div class="news_page_item" data-tags="outreach">
 <div class="news_page_date">March 19, 2015</div>
 <div class="news_page_title">Supercomputing Frontiers Conference</div>
 <div class="news_page_body">
@@ -2498,7 +2803,7 @@ Co-authors on the work include
 <div class="clearfix"></div>
 
 <a name="2015_vda"></a>
-<div class="news_page_item">
+<div class="news_page_item" data-tags="student awards">
 <div class="news_page_date">February 9, 2015</div>
 <div class="news_page_title">Samuel Li Wins a Best Paper at SPIE Conference on Visualization and Data Analysis</div>
 <div class="news_page_body">
@@ -2515,7 +2820,7 @@ co-authors on the paper, along with Hank Childs.
 <div class="clearfix"></div>
 
 <a name="2015_lessley"></a>
-<div class="news_page_item">
+<div class="news_page_item" data-tags="personnel">
 <div class="news_page_date">January 26, 2015</div>
 <div class="news_page_title">Ph.D. Student Brent Lessley Joins CDUX</div>
 <div class="news_page_body">
@@ -2529,7 +2834,7 @@ co-authors on the paper, along with Hank Childs.
 
 
 <a name="2014_anderson"></a>
-<div class="news_page_item">
+<div class="news_page_item" data-tags="personnel">
 <div class="news_page_date">December 16, 2014</div>
 <div class="news_page_title">Farewell to Erik Anderson</div>
 <div class="news_page_body">
@@ -2541,7 +2846,7 @@ co-authors on the paper, along with Hank Childs.
 <div class="clearfix"></div>
 
 <a name="2014_HiPC"></a>
-<div class="news_page_item">
+<div class="news_page_item" data-tags="">
 <div class="news_page_date">December 16, 2014</div>
 <div class="news_page_title">Hank Childs Presents Research Results at HiPC 2014</div>
 <div class="news_page_body">
@@ -2557,7 +2862,7 @@ Co-authors on the work include three researchers from UO -- Scott Biersdorff, Da
 <div class="clearfix"></div>
 
 <a name="2014_sc14"></a>
-<div class="news_page_item">
+<div class="news_page_item" data-tags="student outreach">
 <div class="news_page_date">November 17-22 2014</div>
 <div class="news_page_title">Intel Booth Demo at SC14</div>
 <div class="news_page_body">
@@ -2570,7 +2875,7 @@ The demonstration highlighted recent successes from our team's Intel Parallel Co
 <div class="clearfix"></div>
 
 <a name="2014_ldav"></a>
-<div class="news_page_item">
+<div class="news_page_item" data-tags="awards">
 <div class="news_page_date">November 10, 2014</div>
 <div class="news_page_title">Best Paper at LDAV</div>
 <div class="news_page_body">
@@ -2591,7 +2896,7 @@ more accurate, and takes less storage than the traditional approach.
 <div class="clearfix"></div>
 
 <a name="2014_xvis"></a>
-<div class="news_page_item">
+<div class="news_page_item" data-tags="funding">
 <div class="news_page_date">September 4, 2014</div>
 <div class="news_page_title">Department of Energy Funds XVis Grant</div>
 <div class="news_page_body">
@@ -2604,7 +2909,7 @@ Funding for this grant runs through 2017.
 <div class="clearfix"></div>
 
 <a name="2014_hartree"></a>
-<div class="news_page_item">
+<div class="news_page_item" data-tags="outreach">
 <div class="news_page_date">July 13-18, 2014</div>
 <div class="news_page_title">Hartree Summer School on Visualization</div>
 <div class="news_page_body">
@@ -2613,25 +2918,25 @@ Funding for this grant runs through 2017.
 <div class="clearfix"></div>
 
 <a name="2014_binyahib"></a>
-<div class="news_page_item">
+<div class="news_page_item" data-tags="personnel">
 <div class="news_page_date">June 17, 2014</div>
 <div class="news_page_title">Ph.D. Student Roba Binyahib Joins CDUX</div>
 <div class="news_page_body">
-      <a href="binyahib.html">Roba Binyahib</a> has officially joined CDUX.  Roba's interests are in visualization of large data sets.  She previously completed a M.S. degree at KAUST, and worked for Saudi Aramco.
+      <a href="people/phd/binyahib.html">Roba Binyahib</a> has officially joined CDUX.  Roba's interests are in visualization of large data sets.  She previously completed a M.S. degree at KAUST, and worked for Saudi Aramco.
 </div> </div>
 <div class="clearfix"></div>
 
 <a name="2014_dawesewing"></a>
-<div class="news_page_item">
+<div class="news_page_item" data-tags="personnel">
 <div class="news_page_date">June 17, 2014</div>
 <div class="news_page_title">Undergraduate Researchers Kirsten Dawes and Elliott Ewing Join CDUX</div>
 <div class="news_page_body">
-      <a href="dawes.html">Kirsten Dawes</a> and <a href="ewing.html">Elliott Ewing</a> joined CDUX.  They will work as part of the Intel Parallel Computing Center, optimizing the VisIt visualization tool for the Intel Xeon Phi.
+      <a href="people/undergrad/dawes.html">Kirsten Dawes</a> and <a href="people/undergrad/ewing.html">Elliott Ewing</a> joined CDUX.  They will work as part of the Intel Parallel Computing Center, optimizing the VisIt visualization tool for the Intel Xeon Phi.
 </div> </div>
 <div class="clearfix"></div>
 
 <a name="2014_dagstuhl_scivis"></a>
-<div class="news_page_item">
+<div class="news_page_item" data-tags="outreach">
 <div class="news_page_date">June 1-6, 2014</div>
 <div class="news_page_title">Schloss Dagstuhl</div>
 <div class="news_page_body">
@@ -2644,7 +2949,7 @@ Hank Childs and Kristi Potter both participated in a week-long seminar
 <div class="clearfix"></div>
 
 <a name="2014_bleile_llnl"></a>
-<div class="news_page_item">
+<div class="news_page_item" data-tags="student">
 <div class="news_page_date">April 30, 2014</div>
 <div class="news_page_title">Ryan Bleile to Join Lawrence Livermore National Laboratory for Summer Internship</div>
 <div class="news_page_body">
@@ -2658,7 +2963,7 @@ Hank Childs and Kristi Potter both participated in a week-long seminar
 <div class="clearfix"></div>
 
 <a name="2014_ipcc"></a>
-<div class="news_page_item">
+<div class="news_page_item" data-tags="funding">
 <div class="news_page_date">April 9, 2014</div>
 <div class="news_page_title">Intel Parallel Computing Center</div>
 <div class="news_page_body">
@@ -2671,7 +2976,7 @@ Hank Childs and Kristi Potter both participated in a week-long seminar
 <div class="clearfix"></div>
 
 <a name="2014_weiler"></a>
-<div class="news_page_item">
+<div class="news_page_item" data-tags="student personnel">
 <div class="news_page_date">April 7, 2014</div>
 <div class="news_page_title">Jordan Weiler Accepts Offer to Join Emberex After graduation</div>
 <div class="news_page_body">
@@ -2681,7 +2986,7 @@ Hank Childs and Kristi Potter both participated in a week-long seminar
 <div class="clearfix"></div>
 
 <a name="2014_larsen_ornl"></a>
-<div class="news_page_item">
+<div class="news_page_item" data-tags="student">
 <div class="news_page_date">March 31, 2014</div>
 <div class="news_page_title">Matt Larsen to Join Oak Ridge National Laboratory for Summer Internship</div>
 <div class="news_page_body">
@@ -2695,7 +3000,7 @@ Hank Childs and Kristi Potter both participated in a week-long seminar
 <div class="clearfix"></div>
 
 <a name="2014_kress_ornl"></a>
-<div class="news_page_item">
+<div class="news_page_item" data-tags="student">
 <div class="news_page_date">March 31, 2014</div>
 <div class="news_page_title">James Kress to Join Oak Ridge National Laboratory for Summer Internship</div>
 <div class="news_page_body">
@@ -2709,7 +3014,7 @@ Hank Childs and Kristi Potter both participated in a week-long seminar
 <div class="clearfix"></div>
 
 <a name="2014_aachen"></a>
-<div class="news_page_item">
+<div class="news_page_item" data-tags="outreach">
 <div class="news_page_date">March 25-26, 2014</div>
 <div class="news_page_title">EU Regional School in Aachen</div>
 <div class="news_page_body">
@@ -2719,7 +3024,7 @@ Hank Childs and Kristi Potter both participated in a week-long seminar
 <div class="clearfix"></div>
 
 <a name="2014_labasan_intel"></a>
-<div class="news_page_item">
+<div class="news_page_item" data-tags="student">
 <div class="news_page_date">February 14, 2014</div>
 <div class="news_page_title">Stephanie Labasan to Join Intel for Summer Internship</div>
 <div class="news_page_body">
@@ -2731,7 +3036,7 @@ Hank Childs and Kristi Potter both participated in a week-long seminar
 <div class="clearfix"></div>
 
 <a name="2014_potter_osu"></a>
-<div class="news_page_item">
+<div class="news_page_item" data-tags="outreach">
 <div class="news_page_date">February 3, 2014</div>
 <div class="news_page_title">Oregon State Visit</div>
 <div class="news_page_body">
@@ -2745,7 +3050,7 @@ Kristi Potter gave a colloquium talk at
 <div class="clearfix"></div>
 
 <a name="2014_dagstuhl_perf"></a>
-<div class="news_page_item">
+<div class="news_page_item" data-tags="outreach">
 <div class="news_page_date">January 5-10, 2014</div>
 <div class="news_page_title">Schloss Dagstuhl</div>
 <div class="news_page_body">
@@ -2762,17 +3067,17 @@ Hank Childs participated in a week-long seminar
 
 
 <a name="2013_larsen"></a>
-<div class="news_page_item">
+<div class="news_page_item" data-tags="personnel">
 <div class="news_page_date">December 16, 2013</div>
 <div class="news_page_title">Ph.D. Student Matthew Larsen Joins CDUX</div>
 <div class="news_page_body">
-     CIS Ph.D. student <a href="larsen.html">Matthew Larsen</a> joined CDUX today.
+     CS Ph.D. student <a href="people/phd/larsen.html">Matthew Larsen</a> joined CDUX today.
      Matt is passionate about computer graphics and will work on the GraviT ray-tracing project.
 </div> </div>
 <div class="clearfix"></div>
 
 <a name="2013_CP"></a>
-<div class="news_page_item">
+<div class="news_page_item" data-tags="funding">
 <div class="news_page_date">December 5, 2013</div>
 <div class="news_page_title">Conoco Phillips Funds VisIt-Related Project</div>
 <div class="news_page_body">
@@ -2784,7 +3089,7 @@ Hank Childs participated in a week-long seminar
 <div class="clearfix"></div>
 
 <a name="2013_tutorial"></a>
-<div class="news_page_item">
+<div class="news_page_item" data-tags="outreach">
 <div class="news_page_date">November 18, 2013</div>
 <div class="news_page_title">VisIt Tutorial at SC13</div>
 <div class="news_page_body">
@@ -2799,7 +3104,7 @@ Hank Childs participated in the tutorial
 <div class="clearfix"></div>
 
 <a name="2013_ldav"></a>
-<div class="news_page_item">
+<div class="news_page_item" data-tags="outreach">
 <div class="news_page_date">October 21, 2013</div>
 <div class="news_page_title">Hank Childs to Serve as Papers Co-Chair for LDAV 2014</div>
 <div class="news_page_body">
@@ -2813,7 +3118,7 @@ Hank Childs participated in the tutorial
 <div class="clearfix"></div>
 
 <a name="2013_vis_panel"></a>
-<div class="news_page_item">
+<div class="news_page_item" data-tags="outreach">
 <div class="news_page_date">October 17, 2013</div>
 <div class="news_page_title">Panel at IEEE Visualization 2013</div>
 <div class="news_page_body">
@@ -2829,7 +3134,7 @@ Hank Childs organized and participated in a
 <div class="clearfix"></div>
 
 <a name="2013_GSAB"></a>
-<div class="news_page_item">
+<div class="news_page_item" data-tags="outreach">
 <div class="news_page_date">October 16, 2013</div>
 <div class="news_page_title">James Kress Selected as Member of Graduate Student Advisory Board</div>
 <div class="news_page_body">
@@ -2839,7 +3144,7 @@ students, provide workshops that enhance the quality of the graduate experience,
 <div class="clearfix"></div>
 
 <a name="2013_arrival"></a>
-<div class="news_page_item">
+<div class="news_page_item" data-tags="personnel">
 <div class="news_page_date">September 16, 2013</div>
 <div class="news_page_title">Students Arrive!</div>
 <div class="news_page_body">
@@ -2851,7 +3156,7 @@ students, provide workshops that enhance the quality of the graduate experience,
 <div class="clearfix"></div>
 
 <a name="2013_gravit"></a>
-<div class="news_page_item">
+<div class="news_page_item" data-tags="funding">
 <div class="news_page_date">September 13, 2013</div>
 <div class="news_page_title">NSF Funds Ray-Tracing Project</div>
 <div class="news_page_body">
@@ -2868,7 +3173,7 @@ students, provide workshops that enhance the quality of the graduate experience,
 <div class="clearfix"></div>
 
 <a name="2013_vmv"></a>
-<div class="news_page_item">
+<div class="news_page_item" data-tags="outreach">
 <div class="news_page_date">September 11, 2013</div>
 <div class="news_page_title">Keynote Presentation at VMV 2013</div>
 <div class="news_page_body">
@@ -2881,7 +3186,7 @@ students, provide workshops that enhance the quality of the graduate experience,
 <div class="clearfix"></div>
 
 <a name="2013_naming_contest"></a>
-<div class="news_page_item">
+<div class="news_page_item" data-tags="">
 <div class="news_page_date">August 30, 2013</div>
 <div class="news_page_title">CDUX Is Named!</div>
 <div class="news_page_body">
@@ -2894,7 +3199,7 @@ students, provide workshops that enhance the quality of the graduate experience,
 <div class="clearfix"></div>
 
 <a name="2013_sdav"></a>
-<div class="news_page_item">
+<div class="news_page_item" data-tags="funding">
 <div class="news_page_date">August 26, 2013</div>
 <div class="news_page_title">SciDAC SDAV Institute: Scalable Data Management, Analysis, and Visualization</div>
 <div class="news_page_body">
@@ -2910,20 +3215,20 @@ Funding for this grant runs through 2017.
 <div class="clearfix"></div>
 
 <a name="2013_anderson"></a>
-<div class="news_page_item">
+<div class="news_page_item" data-tags="personnel">
 <div class="news_page_date">August 1, 2013</div>
 <div class="news_page_title">Erik Anderson Joins CDUX</div>
 <div class="news_page_body">
       We are pleased to announce that Erik Anderson will help direct the CDUX research group.
       Erik recently moved to Eugene to research issues with medical visualization at
        <a href="http://egi.com">Electrical Geodesics, Inc.</a>, and also will have
-       a courtesy faculty appointment in the CIS Department.
+       a courtesy faculty appointment in the CS Department.
       Erik received his Ph.D. in 2011 from the University of Utah.
 </div> </div>
 <div class="clearfix"></div>
 
 <a name="2013_career"></a>
-<div class="news_page_item">
+<div class="news_page_item" data-tags="funding">
 <div class="news_page_date">July 29, 2013</div>
 <div class="news_page_title">Department of Energy Career Award</div>
 <div class="news_page_body">
@@ -2935,14 +3240,14 @@ Funding for this grant runs through 2017.
 <div class="clearfix"></div>
 
 <a name="2013_potter"></a>
-<div class="news_page_item">
+<div class="news_page_item" data-tags="personnel">
 <div class="news_page_date">June 17, 2013</div>
 <div class="news_page_title">Kristi Potter Officially Joins UO and CDUX</div>
 <div class="news_page_body">
       Kristi Potter has finally joined us at the University of Oregon.  She will work as
       the visualization evangelist for the UO campus as
       part of <a href="https://casit.uoregon.edu/services/scientific-programming">CASSPR</a> and also will have a
-      courtesy faculty appointment in the CIS Department.
+      courtesy faculty appointment in the CS Department.
       Kristi will also help direct the CDUX research group.
       Hank heavily recruited Kristi to take the job, and said that they would form a research group together (CDUX).
       She received her Ph.D. in 2010 from the University of Utah.
@@ -2950,7 +3255,7 @@ Funding for this grant runs through 2017.
 <div class="clearfix"></div>
 
 <a name="2013_doecgf"></a>
-<div class="news_page_item">
+<div class="news_page_item" data-tags="outreach">
 <div class="news_page_date">April 22-25, 2013</div>
 <div class="news_page_title">Department of Energy Computer Graphics Forum</div>
 <div class="news_page_body">
@@ -2962,7 +3267,7 @@ Funding for this grant runs through 2017.
 <div class="clearfix"></div>
 
 <a name="2013_kaust"></a>
-<div class="news_page_item">
+<div class="news_page_item" data-tags="outreach">
 <div class="news_page_date">April 15-17, 2013</div>
 <div class="news_page_title">KAUST Visualization Summit</div>
 <div class="news_page_body">
@@ -2974,22 +3279,22 @@ Funding for this grant runs through 2017.
 <div class="clearfix"></div>
 
 <a name="2013_4_PhD"></a>
-<div class="news_page_item">
+<div class="news_page_item" data-tags="personnel">
 <div class="news_page_date">April 15, 2013</div>
 <div class="news_page_title">Four Ph.D. Students Commit to CDUX</div>
 <div class="news_page_body">
     All four Ph.D. offers made by the CDUX team were accepted.
     We are excited to welcome (in order of acceptance):
-    <ul>      <li><a href="kress.html">James Kress</a>, outstanding computer science graduate from Boise State University.</li>      <li><a href="li.html">Samuel Li</a>, who received an M.S. from Tufts University working with
+    <ul>      <li><a href="people/phd/kress.html">James Kress</a>, outstanding computer science graduate from Boise State University.</li>      <li><a href="people/phd/li.html">Samuel Li</a>, who received an M.S. from Tufts University working with
            <a href="http://www.cs.tufts.edu/~remco/">Remco Chang</a>.</li>
-      <li><a href="bleile.html">Ryan Bleile</a>, outstanding computer science graduate from the University of the Pacific.</li>
-      <li><a href="labasan.html">Stephanie Labasan</a>, outstanding computer engineering graduate from the University of the Pacific.</li>
+      <li><a href="people/phd/bleile.html">Ryan Bleile</a>, outstanding computer science graduate from the University of the Pacific.</li>
+      <li><a href="people/phd/labasan.html">Stephanie Labasan</a>, outstanding computer engineering graduate from the University of the Pacific.</li>
     </ul> 
 </div> </div>
 <div class="clearfix"></div>
 
 <a name="2013_childs"></a>
-<div class="news_page_item">
+<div class="news_page_item" data-tags="personnel">
 <div class="news_page_date">March 1, 2013</div>
 <div class="news_page_title">Hank Childs Starts at UO</div>
 <div class="news_page_body">
@@ -3020,6 +3325,79 @@ Research Group on Computing and Data Understanding at eXtreme Scale &#8226; The 
 </div>
 -->
 
+<script>
+(function () {
+  var tags = document.querySelectorAll('.news-tag');
+  var items = document.querySelectorAll('.news_page_item');
+
+  var labels = {
+    student: 'Student Successes',
+    awards: 'Awards and Recognition',
+    funding: 'Funding',
+    outreach: 'Outreach and Leadership',
+    personnel: 'Personnel'
+  };
+
+  function selectFilter(filter) {
+    var btn = document.querySelector('.news-tag[data-filter="' + filter + '"]');
+    if (btn) btn.click();
+  }
+
+  // Render a tag label next to each item's title, based on its data-tags.
+  items.forEach(function (item) {
+    var itemTags = (item.getAttribute('data-tags') || '').split(' ').filter(Boolean);
+    if (!itemTags.length) return;
+    var title = item.querySelector('.news_page_title');
+    if (!title) return;
+    var holder = document.createElement('span');
+    holder.className = 'news-item-tags';
+    itemTags.forEach(function (t) {
+      if (!labels[t]) return;
+      var pill = document.createElement('span');
+      pill.className = 'news-item-tag t-' + t;
+      pill.setAttribute('data-filter', t);
+      pill.textContent = labels[t];
+      pill.addEventListener('click', function (e) {
+        e.stopPropagation();
+        selectFilter(t);
+      });
+      holder.appendChild(pill);
+    });
+    title.appendChild(holder);
+  });
+
+  function applyFilter(filter) {
+    items.forEach(function (item) {
+      var itemTags = (item.getAttribute('data-tags') || '').split(' ');
+      var show = (filter === 'all') || (itemTags.indexOf(filter) !== -1);
+      item.style.display = show ? '' : 'none';
+      // Hide the trailing clearfix and preceding anchor so spacing collapses too.
+      var sib = item.nextElementSibling;
+      if (sib && sib.className === 'clearfix') sib.style.display = show ? '' : 'none';
+    });
+  }
+
+  tags.forEach(function (tag) {
+    tag.addEventListener('click', function () {
+      tags.forEach(function (t) { t.classList.remove('active'); });
+      tag.classList.add('active');
+      applyFilter(tag.getAttribute('data-filter'));
+      if (history.replaceState) {
+        var f = tag.getAttribute('data-filter');
+        history.replaceState(null, '', f === 'all' ? location.pathname : location.pathname + '?filter=' + f);
+      }
+    });
+  });
+
+  // Honor an initial ?filter=... in the URL (e.g., linked from elsewhere).
+  var initial = (location.search.match(/[?&]filter=([^&]+)/) || [])[1];
+  if (initial) {
+    var match = document.querySelector('.news-tag[data-filter="' + initial + '"]');
+    if (match) match.click();
+  }
+})();
+</script>
+<script src="spa.js"></script>
 
 
 

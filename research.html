@@ -26,13 +26,13 @@ img {
 
 <div class="navigation">
   <a class="item" href="index.html">Home</a>
+  <a class="item" href="index.html#people">People</a>
   <a class="item" href="news.html">News</a>
-  <a class="item" href="research.html">Research</a>
+  <a class="item active" href="research.html">Research</a>
   <a class="item" href="publications.html">Publications</a>
-  <a class="item" href="people.html">People</a>
   <a class="item" href="join.html">Prospective Students</a>
   <!-- <a class="item" href="social.html">Social Events</a> --!>
- 
+
 </div> <!-- end nav -->
 
 </div> <!-- end header -->
@@ -49,24 +49,156 @@ div.small {
 div.larger {
     font-size: 125%;
 }
+.area-section {
+    display: none;
+}
+.area-section.active {
+    display: block;
+}
+#viz-wrap {
+    position: relative;
+    width: 620px;
+    max-width: 100%;
+    margin: 10px auto 0 auto;
+}
+#viz-tip {
+    position: absolute;
+    display: none;
+    width: 230px;
+    height: 96px;
+    box-sizing: border-box;
+    overflow: hidden;
+    background: #ffffff;
+    color: #222;
+    border: 2px solid #006633;
+    border-radius: 14px;
+    padding: 9px 12px;
+    font-size: 13px;
+    line-height: 1.4;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.18);
+    pointer-events: none;
+    z-index: 10;
+    transform: translate(-50%, -100%);
+}
+#viz-tip .viz-tip-title {
+    font-weight: bold;
+    color: #006633;
+    display: block;
+    margin-bottom: 3px;
+}
+#viz-tip:after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: -9px;
+    transform: translateX(-50%);
+    border-width: 9px 8px 0 8px;
+    border-style: solid;
+    border-color: #006633 transparent transparent transparent;
+}
+#area-content {
+    border-top: 2px solid #006633;
+    margin-top: 8px;
+    padding-top: 18px;
+}
 </style>
-
-
-<table>
-<tbody><tr><td class="mainbar">
 
 
 <div class="larger">
 
-<p>
-The CDUX group pursues research in scientific visualization, high-performance computing, computational science, and computer graphics, and especially focuses on problems where these areas intersect. 
-That said, much of our group's results to date have considered visualization on supercomputers.  This page provides more background on this topic, and concludes with links to pages summarizing some research highlights from CDUX members.
+<p style="text-align:center;">
+The CDUX group pursues research at the intersection of HPC systems, AI, scientific visualization and analysis, scientific data reduction, computational science, and computer graphics.
+<b>Click a topic in the graph below</b> to read more about each area.
 </p>
 
+<div id="viz-wrap">
+<canvas id="cdux-viz" width="620" height="540" style="display:block; width:100%; -webkit-user-select:none; user-select:none; touch-action:none;"></canvas>
+<div id="viz-tip"></div>
+</div>
+<p style="text-align:center; font-size:12px; color:#666; margin:4px 0 14px 0; font-style:italic;">Click a bubble to read about that area &nbsp;&bull;&nbsp; drag nodes to explore</p>
+
+<div id="area-content">
+
+<!-- ============ HPC ============ -->
+<div class="area-section" id="area-hpc">
+<div class="news_page_item">
+<div class="news_page_title">High-Performance Computing</div>
+<p>
+High-performance computing (HPC) harnesses supercomputers&mdash;machines built from thousands of interconnected nodes&mdash;to solve problems far beyond the reach of any single computer. CDUX studies how to run scientific workloads efficiently at extreme scale, addressing the challenges that arise from massive parallelism, complex communication patterns, deep memory hierarchies, and the increasingly heterogeneous architectures of modern leadership-class systems.
+</p>
+<p>
+Our work spans the full range of the machine, from extracting performance on an individual node to coordinating computation across an entire supercomputer. The overarching goal is to enable scientific discovery on the world's largest computers, where data and computation are too large to be handled by conventional means.
+</p>
+</div>
+<div class="news_page_item">
+<div class="news_page_title">Related Publications</div>
+<ul>
+<li><a href="publications.html#2021_BleileICCS">A Dynamic Replication Approach for Monte Carlo Photon Transport on Heterogeneous Architectures</a> &mdash; ICCS 2021</li>
+<li><a href="publications.html#2019_BleileHPCS">Thin-Threads: An Approach for History-Based Monte Carlo on GPUs</a> &mdash; HPCS 2019</li>
+<li><a href="publications.html#2020_KressISC20">Opportunities for Cost Savings with In Transit Visualization</a> &mdash; ISC 2020</li>
+<li><a href="publications.html#2020_KressLDAV20">Comparing Time-to-Solution for In Situ Visualization Paradigms at Scale</a> &mdash; LDAV 2020</li>
+<li><a href="publications.html#2019_KressISC">Comparing the Efficiency of In Situ Visualization Paradigms at Scale</a> &mdash; ISC 2019</li>
+<li><a href="publications.html#2016_KressSFI">Preparing for In Situ Processing on Upcoming Leading-edge Supercomputers</a> &mdash; 2016</li>
+<li><a href="publications.html#2015_ChildsSFI">Data Exploration at the Exascale</a> &mdash; 2015</li>
+<li><a href="publications.html#2010_ChildsCGA">Extreme Scaling of Production Visualization Software on Diverse Architectures</a> &mdash; IEEE CG&amp;A 2010</li>
+</ul>
+</div>
+</div>
+
+<!-- ============ GPU Computing ============ -->
+<div class="area-section" id="area-gpu">
+<div class="news_page_item">
+<div class="news_page_title">GPU Computing</div>
+<p>
+Modern supercomputers derive most of their computational power from graphics processing units (GPUs), which deliver enormous parallelism but require fundamentally different programming approaches than traditional CPUs. CDUX develops techniques for running visualization, analysis, and data-reduction algorithms efficiently across diverse many-core architectures.
+</p>
+<p>
+A central theme of this work is <i>performance portability</i>: writing software once and having it run well on GPUs from different vendors&mdash;as well as on multi-core CPUs&mdash;without rewriting code for each platform. This makes it possible to deploy the same scientific software across the constantly changing landscape of supercomputing hardware. Learn more about <a href="dppvis.html">how visualization software can run efficiently on diverse many-core architectures</a>.
+</p>
+</div>
+<div class="news_page_item">
+<div class="news_page_title">Related Publications</div>
+<ul>
+<li><a href="publications.html#2026_BuckleyEGPGV">Rasterization with Data-Parallel Primitives</a> &mdash; EGPGV 2026</li>
+<li><a href="publications.html#2026_MorelandVisGap">Viskores: Integrating Parallel Scientific Visualization Research into Applications</a> &mdash; VisGap 2026</li>
+<li><a href="publications.html#2024_KwokCHEP">Application of Performance Portability Solutions for GPUs and Many-Core CPUs to Track Reconstruction Kernels</a> &mdash; CHEP 2024</li>
+<li><a href="publications.html#2024_AtherFrontiers">Exploring Code Portability Solutions for HEP with a Particle Tracking Test Code</a> &mdash; Frontiers in Big Data 2024</li>
+<li><a href="publications.html#2021_MorelandPARCO">Minimizing Development Costs for Efficient Many-Core Visualization Using MCD&sup3;</a> &mdash; Parallel Computing 2021</li>
+<li><a href="publications.html#2020_LessleyTPDS">Data-Parallel Hashing Techniques for GPU Architectures</a> &mdash; IEEE TPDS 2020</li>
+<li><a href="publications.html#2019_YenpureEGPGV">Efficient Point Merge Using Data Parallel Techniques</a> &mdash; EGPGV 2019</li>
+<li><a href="publications.html#2018_PugmireEGPGV">Performance-Portable Particle Advection with VTK-m</a> &mdash; EGPGV 2018</li>
+<li><a href="publications.html#2016_MorelandCGA">VTK-m: Accelerating the Visualization Toolkit for Massively Threaded Architectures</a> &mdash; IEEE CG&amp;A 2016</li>
+</ul>
+</div>
+</div>
+
+<!-- ============ AI / ML ============ -->
+<div class="area-section" id="area-ai">
+<div class="news_page_item">
+<div class="news_page_title">Artificial Intelligence &amp; Machine Learning</div>
+<p>
+Artificial intelligence and machine learning are transforming how scientists analyze and understand data. CDUX explores the intersection of AI/ML with high-performance computing and scientific visualization&mdash;using learned models to accelerate simulation and analysis, to guide automated decision-making during in situ processing, and to extract insight from massive scientific data sets.
+</p>
+<p>
+We are also interested in the systems challenges of training and deploying models efficiently at scale, and in how AI techniques can help address long-standing problems in visualization and analysis when there is no human in the loop.
+</p>
+</div>
+<div class="news_page_item">
+<div class="news_page_title">Related Publications</div>
+<ul>
+<li><a href="publications.html#2026_MathaiEuroVis">NL2SciVis: A Benchmark for Natural Language to Scientific Visualization</a> &mdash; EuroVis 2026</li>
+<li><a href="publications.html#2025_YuhangPPoPP">ATTNChecker: Highly-Optimized Fault Tolerant Attention for Large Language Model Training</a> &mdash; PPoPP 2025</li>
+<li><a href="publications.html#2021_SchwartzEGPGV">Machine Learning-Based Autotuning for Parallel Particle Advection</a> &mdash; EGPGV 2021</li>
+</ul>
+</div>
+</div>
+
+<!-- ============ Scientific Visualization ============ -->
+<div class="area-section" id="area-vis">
 <div class="news_page_item">
 <div class="news_page_title">What Is Scientific Visualization?</div>
 <p>
-Visualization is the branch of computer science devoted to analyzing data by visual means. The visualization field is frequently segmented into two sub-disciplines: scientific visualization and information visualization. The primary distinction between the two is that scientific visualization data normally has an implied spatial layout, and information visualization data does not. With scientific visualization, techniques can exploit the spatial properties of the information (meshes, grids, vectors, tensors, etc.) and utilize the three-dimensional capabilities of today’s graphics engines to help visually present their analysis. The types of data associated with scientific visualization are often "scientific" in nature: engineering, climate, medical, etc. With information visualization, the data has no accompanying spatial information, and so the resulting visualizations have more flexibility in how to arrange data. The types of data associated with information visualization are diverse: tax records, twitter feed information, network usage statistics, etc. For both scientific visualization and information visualization, however, the goal is to enable insight into data.
+Visualization is the branch of computer science devoted to analyzing data by visual means. The visualization field is frequently segmented into two sub-disciplines: scientific visualization and information visualization. The primary distinction between the two is that scientific visualization data normally has an implied spatial layout, and information visualization data does not. With scientific visualization, techniques can exploit the spatial properties of the information (meshes, grids, vectors, tensors, etc.) and utilize the three-dimensional capabilities of today's graphics engines to help visually present their analysis. The types of data associated with scientific visualization are often "scientific" in nature: engineering, climate, medical, etc. With information visualization, the data has no accompanying spatial information, and so the resulting visualizations have more flexibility in how to arrange data. The types of data associated with information visualization are diverse: tax records, twitter feed information, network usage statistics, etc. For both scientific visualization and information visualization, however, the goal is to enable insight into data.
 </p>
 </div>
 
@@ -76,7 +208,7 @@ Visualization is the branch of computer science devoted to analyzing data by vis
 Large data visualization is the area of visualization devoted to very large and complex data sets. There are two key challenges with large-data visualization:
 <ul>
 <li>The first challenge is obvious: how to process the scale of large data? How to load a terabyte (or petabyte, or exabyte), apply an algorithm to it, and render the result?</li>
-<li>The second challenge is more subtle: how to gain insight from large data? That is, assuming that techniques do exist for processing very large data sets, then how do we ensure that the resulting visualizations do not produce images beyond what the human brain’s visual processing system can interpret?</li>
+<li>The second challenge is more subtle: how to gain insight from large data? That is, assuming that techniques do exist for processing very large data sets, then how do we ensure that the resulting visualizations do not produce images beyond what the human brain's visual processing system can interpret?</li>
 </ul>
 </p>
 </div>
@@ -84,7 +216,7 @@ Large data visualization is the area of visualization devoted to very large and 
 <div class="news_page_item">
 <div class="news_page_title">Challenges for Visualization on Supercomputers: In Situ Processing, Massive Parallelism, and Many-Core Nodes</div>
 <p>
-While large scientific data sets can come from experimental or observational sources, such as medical instrumentation or sensor networks, they often come from simulation, and specifically from simulations on supercomputers. In this case, data sets are often stored on the supercomputers where they were generated, and the typical processing approach is to use parallel techniques on the supercomputer itself. Traditionally, the processing paradigm for visualization on supercomputers has been post hoc, i.e., a simulation program saves its data to a disk, and, later, a visualization program loads this data and operates on it. However, supercomputing trends are favoring compute capability over I/O bandwidth — disks speeds are getting faster, but not when compared to increases in the ability to generate data. Worse, visualization performance on supercomputers was already frequently limited by the time it takes to read data from disk, so increased data load times significantly worsen overall execution time. Taken altogether, post hoc processing is falling out of favor with our community. Instead, we are moving towards in situ processing, i.e., visualizing data as it is generated. Finally, leading-edge supercomputers are made up of many nodes, each of which contains multiple GPUs, and, with in situ processing, our visualization algorithms need to run on these architectures.  This complex setting requires innovation to achieve high efficiency. 
+While large scientific data sets can come from experimental or observational sources, such as medical instrumentation or sensor networks, they often come from simulation, and specifically from simulations on supercomputers. In this case, data sets are often stored on the supercomputers where they were generated, and the typical processing approach is to use parallel techniques on the supercomputer itself. Traditionally, the processing paradigm for visualization on supercomputers has been post hoc, i.e., a simulation program saves its data to a disk, and, later, a visualization program loads this data and operates on it. However, supercomputing trends are favoring compute capability over I/O bandwidth — disks speeds are getting faster, but not when compared to increases in the ability to generate data. Worse, visualization performance on supercomputers was already frequently limited by the time it takes to read data from disk, so increased data load times significantly worsen overall execution time. Taken altogether, post hoc processing is falling out of favor with our community. Instead, we are moving towards in situ processing, i.e., visualizing data as it is generated. Finally, leading-edge supercomputers are made up of many nodes, each of which contains multiple GPUs, and, with in situ processing, our visualization algorithms need to run on these architectures.  This complex setting requires innovation to achieve high efficiency.
 </p>
 
 These supercomputing trends have led to many interesting research questions for visualization:
@@ -110,13 +242,309 @@ Finally, CDUX personnel have contributed to several resources which are useful f
 </ul>
 </p>
 </div>
-
+<div class="news_page_item">
+<div class="news_page_title">Related Publications</div>
+<ul>
+<li><a href="publications.html#2023_MathaiLDAV">A Distributed-Memory Parallel Approach for Volume Rendering with Shadows</a> &mdash; LDAV 2023</li>
+<li><a href="publications.html#2022_MarsagliaEGPGV22">Automatic In Situ Camera Placement for Isosurfaces of Large-Scale Scientific Simulations</a> &mdash; EGPGV 2022</li>
+<li><a href="publications.html#2021_MarsagliaLDAV">An Entropy-Based Approach for Identifying User-Preferred Camera Positions</a> &mdash; LDAV 2021</li>
+<li><a href="publications.html#2021_LarsenLDAV21">Trigger Happy: Assessing the Viability of Trigger-Based In Situ Analysis</a> &mdash; LDAV 2021</li>
+<li><a href="publications.html#2021_BinyahibEGPGV">HyLiPoD: Parallel Particle Advection Via a Hybrid of Lifeline Scheduling and Parallelization-Over-Data</a> &mdash; EGPGV 2021</li>
+<li><a href="publications.html#2020_ChildsIJHPCA">A Terminology for In Situ Visualization and Analysis Systems</a> &mdash; IJHPCA 2020</li>
+<li><a href="publications.html#2020_BinyahibCLUSTER">Parallel Particle Advection Bake-Off for Scientific Visualization Workloads</a> &mdash; IEEE Cluster 2020</li>
+<li><a href="publications.html#2020_SaneCGF">A Survey of Seed Placement and Streamline Selection Techniques</a> &mdash; CGF / EuroVis STAR 2020</li>
+<li><a href="publications.html#2019_BinyahibTVCG">A Scalable Hybrid Scheme for Ray-Casting of Unstructured Volume Data</a> &mdash; IEEE TVCG 2019</li>
+<li><a href="publications.html#2019_ChildsCGA19">In Situ Visualization for Computational Science</a> &mdash; IEEE CG&amp;A 2019</li>
+</ul>
+</div>
 </div>
 
+<!-- ============ Data Reduction ============ -->
+<div class="area-section" id="area-data">
+<div class="news_page_item">
+<div class="news_page_title">Scientific Data Reduction</div>
+<p>
+Scientific simulations now generate data far faster than it can be stored to disk or moved across a network. As a result, data reduction has become essential to modern science. CDUX develops compression and reduction techniques&mdash;including error-bounded lossy compression&mdash;that dramatically shrink data while preserving the features scientists care about.
+</p>
+<p>
+By controlling exactly how much error is introduced, these methods let scientists save, transfer, and analyze their data within the tight I/O and storage budgets of today's supercomputers, without sacrificing scientific fidelity. Data reduction is tightly connected to in situ processing, where reduced data must be produced as a simulation runs.
+</p>
+</div>
+<div class="news_page_item">
+<div class="news_page_title">Related Publications</div>
+<ul>
+<li><a href="publications.html#2025_YanliangSC">HP-MDR: High-Performance and Portable Data Refactoring and Progressive Retrieval with Advanced GPUs</a> &mdash; SC 2025</li>
+<li><a href="publications.html#2025_YanliangIPDPS">HPDR: High-Performance Portable Scientific Data Reduction Framework</a> &mdash; IPDPS 2025</li>
+<li><a href="publications.html#2024_YanliangVis">Accelerating In-Transit Isosurface Generation With Topology Preserving Compression</a> &mdash; e-Science 2024</li>
+<li><a href="publications.html#2021_SaneICCS">Investigating In Situ Reduction via Lagrangian Representations for Cosmology and Seismology Applications</a> &mdash; ICCS 2021</li>
+<li><a href="publications.html#2021_SaneEGPGV21">Scalable In Situ Computation of Lagrangian Representations via Local Flow Maps</a> &mdash; EGPGV 2021</li>
+<li><a href="publications.html#2019_SaneEGPGV19">An Interpolation Scheme for VDVP Lagrangian Basis Flows</a> &mdash; EGPGV 2019</li>
+<li><a href="publications.html#2019_MarsagliaEGPGV">Dynamic I/O Budget Reallocation For In Situ Wavelet Compression</a> &mdash; EGPGV 2019</li>
+<li><a href="publications.html#2018_LiCGF">Data Reduction Techniques for Simulation, Visualization, and Data Analysis</a> &mdash; CGF 2018</li>
+<li><a href="publications.html#2017_LiCluster">Spatiotemporal Wavelet Compression for Visualization of Scientific Simulation Data</a> &mdash; IEEE Cluster 2017</li>
+</ul>
+</div>
+</div>
+
+<!-- ============ Performance Analysis ============ -->
+<div class="area-section" id="area-perf">
+<div class="news_page_item">
+<div class="news_page_title">Performance Analysis</div>
+<p>
+Achieving good performance on supercomputers requires understanding where time and resources are spent. CDUX studies performance analysis and modeling for visualization and analysis workloads&mdash;characterizing how algorithms behave across different architectures, identifying bottlenecks, and building models that predict performance and guide tuning.
+</p>
+<p>
+This understanding is key to using expensive computing resources efficiently and to making informed design decisions, particularly for in situ processing, where the cost of visualization must be weighed against the cost of the simulation it accompanies.
+</p>
+</div>
+<div class="news_page_item">
+<div class="news_page_title">Related Publications</div>
+<ul>
+<li><a href="publications.html#2025_AtherSmartIO">SmartIO: A Lightweight End-to-End Workflow for Runtime I/O Optimization of HPC Systems</a> &mdash; PDSW 2025</li>
+<li><a href="publications.html#2025_LisanSSDBM">Enabling Lightweight Performance Analysis of Complex Scientific Workflows with PerfFlowAspect</a> &mdash; SSDBM 2025</li>
+<li><a href="publications.html#2025_AtherSurvey">Parallel I/O Characterization and Optimization on Large-Scale HPC Systems: A 360-Degree Survey</a> &mdash; 2025</li>
+<li><a href="publications.html#2024_AtherIPDPS">Drilling Down I/O Bottlenecks with Cross-layer I/O Profile Exploration</a> &mdash; IPDPS 2024</li>
+<li><a href="publications.html#2023_AtherISC">Illuminating the I/O Optimization Path of Scientific Applications</a> &mdash; ISC 2023</li>
+<li><a href="publications.html#2022_BezDrishti">Drishti: Guiding End-Users in the I/O Optimization Journey</a> &mdash; PDSW 2022</li>
+<li><a href="publications.html#2021_BrinkPARCO">Evaluating Adaptive and Predictive Power Management Strategies for Optimizing Visualization Performance on Supercomputers</a> &mdash; Parallel Computing 2021</li>
+<li><a href="publications.html#2019_MalonyParco">When Parallel Performance Measurement and Analysis Meets In Situ Analytics and Visualization</a> &mdash; ParCo 2019</li>
+<li><a href="publications.html#2019_LabasanIPDPS">Power and Performance Tradeoffs for Visualization Algorithms</a> &mdash; IPDPS 2019</li>
+</ul>
+</div>
+</div>
+
+</div> <!-- end area-content -->
+
+</div> <!-- end larger -->
 
 
-</td></tr>
-</tbody></table>
+<script>
+(function () {
+  var canvas = document.getElementById('cdux-viz');
+  var ctx = canvas.getContext('2d');
+  var W = canvas.width, H = canvas.height;
+  var CX = W / 2, CY = H / 2;
+  var REST = 200, K = 0.018, DAMP = 0.86;
+
+  // c1 = highlight (inner), c2 = base (outer), rgb = matching tint for the link
+  var nodeData = [
+    { lines: ['HPC'], target: 'area-hpc', title: 'High-Performance Computing',
+      c1: '#43a047', c2: '#1b5e20', rgb: '67,160,71',
+      brief: 'Running scientific workloads efficiently across the thousands of nodes of modern supercomputers.' },
+    { lines: ['GPU', 'Computing'], target: 'area-gpu', title: 'GPU Computing',
+      c1: '#1e88e5', c2: '#0d47a1', rgb: '30,136,229',
+      brief: 'Performance-portable algorithms that run well on GPUs and many-core CPUs from any vendor.' },
+    { lines: ['AI / ML'], target: 'area-ai', title: 'AI / Machine Learning',
+      c1: '#8e24aa', c2: '#4a148c', rgb: '142,36,170',
+      brief: 'Using learned models to accelerate simulation, guide in situ analysis, and find insight in massive data.' },
+    { lines: ['Sci.', 'Visualization'], target: 'area-vis', title: 'Scientific Visualization',
+      c1: '#26a69a', c2: '#00695c', rgb: '38,166,154',
+      brief: 'Analyzing spatial scientific data by visual means to enable insight at extreme scale.' },
+    { lines: ['Data', 'Reduction'], target: 'area-data', title: 'Scientific Data Reduction',
+      c1: '#f4511e', c2: '#bf360c', rgb: '244,81,30',
+      brief: 'Error-bounded compression that shrinks data while preserving the features scientists care about.' },
+    { lines: ['Perf.', 'Analysis'], target: 'area-perf', title: 'Performance Analysis',
+      c1: '#c9a227', c2: '#8d6e00', rgb: '201,162,39',
+      brief: 'Characterizing and modeling workload performance to find bottlenecks and guide tuning.' }
+  ];
+
+  var nodes = nodeData.map(function (d, i) {
+    var angle = (i / nodeData.length) * Math.PI * 2 - Math.PI / 2;
+    return {
+      lines: d.lines,
+      target: d.target,
+      title: d.title,
+      brief: d.brief,
+      c1: d.c1, c2: d.c2, rgb: d.rgb,
+      x: CX + Math.cos(angle) * REST,
+      y: CY + Math.sin(angle) * REST,
+      vx: (Math.random() - 0.5) * 0.8,
+      vy: (Math.random() - 0.5) * 0.8,
+      r: 52
+    };
+  });
+
+  var dragNode = null, hovNode = null, selectedNode = null;
+  var downC = null, moved = false;
+  var tip = document.getElementById('viz-tip');
+  var tipNode = null;
+
+  function updateTip() {
+    var show = hovNode && !(dragNode && moved);
+    if (show) {
+      if (hovNode !== tipNode) {
+        tip.innerHTML = '<span class="viz-tip-title">' + hovNode.title + '</span>' + hovNode.brief;
+        tipNode = hovNode;
+      }
+      var scale = canvas.clientWidth / W;
+      tip.style.left = (hovNode.x * scale) + 'px';
+      tip.style.top = ((hovNode.y - hovNode.r - 6) * scale) + 'px';
+      tip.style.display = 'block';
+    } else {
+      tip.style.display = 'none';
+      tipNode = null;
+    }
+  }
+
+  function coords(e) {
+    var r = canvas.getBoundingClientRect();
+    var src = e.touches && e.touches.length ? e.touches[0] : (e.changedTouches ? e.changedTouches[0] : e);
+    var sx = W / r.width, sy = H / r.height;
+    return [(src.clientX - r.left) * sx, (src.clientY - r.top) * sy];
+  }
+  function getHit(mx, my) {
+    for (var i = nodes.length - 1; i >= 0; i--)
+      if (Math.hypot(mx - nodes[i].x, my - nodes[i].y) <= nodes[i].r + 4) return nodes[i];
+    return null;
+  }
+
+  function selectNode(n) {
+    selectedNode = n;
+    var sections = document.querySelectorAll('#area-content .area-section');
+    for (var i = 0; i < sections.length; i++) {
+      sections[i].className = 'area-section' + (sections[i].id === n.target ? ' active' : '');
+    }
+  }
+
+  function press(c) {
+    dragNode = getHit(c[0], c[1]);
+    downC = c;
+    moved = false;
+  }
+  function move(c) {
+    if (downC && Math.hypot(c[0] - downC[0], c[1] - downC[1]) > 5) moved = true;
+    if (dragNode && moved) { dragNode.x = c[0]; dragNode.y = c[1]; dragNode.vx = dragNode.vy = 0; }
+  }
+  function release() {
+    if (dragNode && !moved) selectNode(dragNode);
+    dragNode = null;
+    downC = null;
+  }
+
+  canvas.addEventListener('mousedown', function (e) { e.preventDefault(); press(coords(e)); });
+  canvas.addEventListener('mousemove', function (e) {
+    var c = coords(e);
+    move(c);
+    hovNode = getHit(c[0], c[1]);
+    canvas.style.cursor = (dragNode && moved) ? 'grabbing' : hovNode ? 'pointer' : 'default';
+    updateTip();
+  });
+  canvas.addEventListener('mouseup', function () { release(); });
+  canvas.addEventListener('mouseleave', function () { dragNode = null; hovNode = null; downC = null; updateTip(); });
+  canvas.addEventListener('touchstart', function (e) { e.preventDefault(); press(coords(e)); }, { passive: false });
+  canvas.addEventListener('touchmove', function (e) { e.preventDefault(); move(coords(e)); }, { passive: false });
+  canvas.addEventListener('touchend', function (e) { e.preventDefault(); release(); }, { passive: false });
+
+  var tick = 0;
+
+  function update() {
+    tick++;
+    nodes.forEach(function (n, i) {
+      if (n === dragNode && moved) return;
+      var dx = n.x - CX, dy = n.y - CY;
+      var dist = Math.hypot(dx, dy) || 1;
+      var f = (dist - REST) * K;
+      n.vx -= dx / dist * f;
+      n.vy -= dy / dist * f;
+      n.vx += Math.sin(tick * 0.008 + i * 1.1) * 0.04;
+      n.vy += Math.cos(tick * 0.006 + i * 0.9) * 0.04;
+      n.vx *= DAMP; n.vy *= DAMP;
+      var pad = n.r + 10;
+      if (n.x < pad) n.vx += 1; if (n.x > W - pad) n.vx -= 1;
+      if (n.y < pad) n.vy += 1; if (n.y > H - pad) n.vy -= 1;
+      n.x += n.vx; n.y += n.vy;
+    });
+  }
+
+  function drawLine(n) {
+    var dx = n.x - CX, dy = n.y - CY;
+    var dist = Math.hypot(dx, dy) || 1;
+    var stretch = (dist - REST) / REST;
+    var px = -dy / dist, py = dx / dist;
+    var amp = stretch * 62;
+    var cpx = (CX + n.x) / 2 + px * amp;
+    var cpy = (CY + n.y) / 2 + py * amp;
+    ctx.beginPath();
+    ctx.moveTo(CX, CY);
+    ctx.quadraticCurveTo(cpx, cpy, n.x, n.y);
+    ctx.lineWidth = Math.min(2 + Math.abs(stretch) * 5, 6);
+    var alpha = Math.min(0.95, 0.55 + Math.abs(stretch) * 0.5);
+    var g = ctx.createLinearGradient(CX, CY, n.x, n.y);
+    g.addColorStop(0, 'rgba(255,204,0,' + alpha + ')');
+    g.addColorStop(1, 'rgba(' + n.rgb + ',' + alpha + ')');
+    ctx.strokeStyle = g;
+    ctx.stroke();
+  }
+
+  function drawNode(n) {
+    var hov = n === hovNode || n === dragNode;
+    var sel = n === selectedNode;
+    ctx.save();
+    if (hov || sel) { ctx.shadowColor = '#FFCC00'; ctx.shadowBlur = sel ? 26 : 20; }
+    ctx.beginPath();
+    ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2);
+    var g = ctx.createRadialGradient(n.x - n.r * 0.3, n.y - n.r * 0.3, 2, n.x, n.y, n.r);
+    g.addColorStop(0, n.c1);
+    g.addColorStop(1, n.c2);
+    ctx.fillStyle = g;
+    ctx.fill();
+    ctx.strokeStyle = (hov || sel) ? '#FFCC00' : '#cc9900';
+    ctx.lineWidth = (hov || sel) ? 3.5 : 2;
+    ctx.stroke();
+    ctx.restore();
+    ctx.fillStyle = '#ffffff';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    var lh = 20;
+    ctx.font = 'bold ' + (n.lines.length > 1 ? '15' : '18') + 'px arial, sans-serif';
+    n.lines.forEach(function (line, li) {
+      ctx.fillText(line, n.x, n.y + (li - (n.lines.length - 1) / 2) * lh);
+    });
+  }
+
+  function drawCenter() {
+    ctx.save();
+    ctx.shadowColor = '#FFCC00';
+    ctx.shadowBlur = 26;
+    ctx.beginPath();
+    ctx.arc(CX, CY, 82, 0, Math.PI * 2);
+    ctx.strokeStyle = 'rgba(255,204,0,0.25)';
+    ctx.lineWidth = 9;
+    ctx.stroke();
+    ctx.shadowBlur = 0;
+    ctx.beginPath();
+    ctx.arc(CX, CY, 72, 0, Math.PI * 2);
+    var g = ctx.createRadialGradient(CX - 24, CY - 24, 6, CX, CY, 72);
+    g.addColorStop(0, '#006633');
+    g.addColorStop(1, '#002a13');
+    ctx.fillStyle = g;
+    ctx.fill();
+    ctx.strokeStyle = '#FFCC00';
+    ctx.lineWidth = 3;
+    ctx.stroke();
+    ctx.restore();
+    ctx.fillStyle = '#FFCC00';
+    ctx.font = 'bold 32px arial, sans-serif';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText('CDUX', CX, CY);
+  }
+
+  function loop() {
+    ctx.clearRect(0, 0, W, H);
+    nodes.forEach(drawLine);
+    nodes.forEach(drawNode);
+    drawCenter();
+    update();
+    updateTip();
+    requestAnimationFrame(loop);
+  }
+
+  // No area is shown until the user clicks a bubble.
+  loop();
+})();
+</script>
+
 </div>
 
 <div class="footer" style="clear: both">
@@ -129,6 +557,8 @@ Research Group on Computing and Data Understanding at eXtreme Scale &#8226; The 
 <a href="http://www.ucdavis.edu/"><img border="0" src="./idav_files/ucdavis_logo_png"></a>
 </div>
 -->
+<script src="spa.js"></script>
+
 
 
 

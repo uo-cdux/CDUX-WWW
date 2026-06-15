@@ -26,10 +26,10 @@ img {
 
 <div class="navigation">
   <a class="item" href="index.html">Home</a>
+  <a class="item" href="index.html#people">People</a>
   <a class="item" href="news.html">News</a>
-  <a class="item" href="research.html">Research</a>
+  <a class="item active" href="research.html">Research</a>
   <a class="item" href="publications.html">Publications</a>
-  <a class="item" href="people.html">People</a>
   <a class="item" href="join.html">Prospective Students</a>
   <!-- <a class="item" href="social.html">Social Events</a> --!>
  
@@ -71,14 +71,14 @@ This page describes two research directions for in situ processing, first in usi
 
 <p>
 The first research direction focused on ensuring our visualization routines can execute within a time budget specified by a simulation code. A motivation for this problem is that the exact performance of a given visualization routine is often not known beforehand, so it often is not clear if that routine can run within a given budget. Instead, we often are forced to estimate, based on previous anecdotal evidence from similar workloads, extrapolations, etc. 
-<a href="larsen.html">Matt Larsen</a> approached this problem 
+<a href="people/phd/larsen.html">Matt Larsen</a> approached this problem 
 <a href="publications.html#2016_LarsenSC">by incorporating cost models for rendering use cases</a>, in a publication that was a Best Paper Finalist at SC16.
 He employed a half-analytical, half-empirical approach to model performance, including a priori knowledge of acceleration structures and fixed costs (e.g., shading) and stratified sampling to cover the parameter space. In the end, he had models for ray-casted volume rendering, and for rasterization and ray tracing of surfaces. Further, after building his model, he used it to ask two interesting questions: (1) for a given a time budget, how many images can be rendered? What if rendering techniques and image sizes are varied? and (2) for a given rendering workload, is rasterization or ray tracing faster? The latter question was particularly timely, since scientific visualization on supercomputers has recently seen a surge of rendering via ray tracing. Matt’s work confirmed that ray tracing is a better choice with smaller images and a large number of triangles, and additionally informed crossover points. Finally, Matt’s models have great potential for in situ scheduling, via adapting a visualization workload to fit the available time (i.e., less/more images, fewer/greater pixels).
 </p>
 
 <p>
 The second research direction considered how to allocate resources for in situ processing. This question is significant, since in situ processing can take varied forms, and it is not clear which of these forms are best suited for our stakeholders. While much scientific visualization research has focused on "in line" in situ, 
-<a href="kress.html">James Kress</a> has been focused on "in transit" in situ. Roughly, "in line" in this context would mean that the in situ routines are compiled into the simulation code and access the same memory and compute resources, while "in transit"
+<a href="people/phd/kress.html">James Kress</a> has been focused on "in transit" in situ. Roughly, "in line" in this context would mean that the in situ routines are compiled into the simulation code and access the same memory and compute resources, while "in transit"
  would mean that the in situ routines run as a separate program on distinct resources, with the simulation code transferring its data to the in situ routines, likely over a network. 
 James’s first work in this space was a <a href="publications.html#2015_KressISAV">position paper</a> 
 where he considered ten evaluation criteria between the two variants, including fault tolerance, ease of use, and performance. 
@@ -93,19 +93,19 @@ Finally, in his <a href="publications.html#2020_KressLDAV20">third study compari
 <div class="news_page_title">CDUX People</div>
 <div style="width:100%;margin-left:auto; margin-right:auto;">
 <div style="float:left;width:200px;min-height:200px;margin:10px;text-align:center;">
-<a href="kress.html"><img style="border: none" src="./images/people/kress_cropped.png" alt="" width="150"></a>
+<a href="people/phd/kress.html"><img style="border: none" src="./images/people/kress_cropped.png" alt="" width="150"></a>
 <br>
-<a href="kress.html"><b>James Kress</b></a>
+<a href="people/phd/kress.html"><b>James Kress</b></a>
 <br>Ph.D. Student (alum)</div>
 <div style="float:left;width:200px;min-height:200px;margin:10px;text-align:center;">
-<a href="larsen.html"><img style="border: none" src="./images/people/larsen_cropped.png" alt="" width="150"></a>
+<a href="people/phd/larsen.html"><img style="border: none" src="./images/people/larsen_cropped.png" alt="" width="150"></a>
 <br>
-<a href="larsen.html"><b>Matt Larsen </b></a>
+<a href="people/phd/larsen.html"><b>Matt Larsen </b></a>
 <br>Ph.D. Student (alum)</div>
 <div style="float:left;width:200px;min-height:200px;margin:10px;text-align:center;">
-<a href="childs.html"><img style="border: none" src="./images/people/childs_cropped.png" alt="" width="150"></a>
+<a href="people/faculty/childs.html"><img style="border: none" src="./images/people/childs_cropped.png" alt="" width="150"></a>
 <br>
-<a href="childs.html"><b>Hank Childs</b></a>
+<a href="people/faculty/childs.html"><b>Hank Childs</b></a>
 <br>CDUX Director</div>
 </div><div class="clearfix"></div>
 </div>
@@ -118,11 +118,11 @@ Finally, in his <a href="publications.html#2020_KressLDAV20">third study compari
 <div style="float: left; width: 125; margin: 5px; padding: 5px">
 <IMG SRC="pubs/LarsenSC_thumb.jpeg" BORDER="0" width="125"></a></div>
 <br>Performance Modeling of In Situ Rendering <br>
-<a href="larsen.html">Matthew Larsen</a>, 
+<a href="people/phd/larsen.html">Matthew Larsen</a>, 
 Cyrus Harrison,
-<a href="kress.html">James Kress</a>, 
+<a href="people/phd/kress.html">James Kress</a>, 
 David Pugmire, Jeremy S. Meredith,
-and <a href="childs.html">Hank Childs</a> <br>
+and <a href="people/faculty/childs.html">Hank Childs</a> <br>
 <a href="http://sc16.supercomputing.org/">The International Conference for High Performance Computing, Networking, Storage, and Analysis (SC16)</a>, Salt Lake City, UT, November 2016 <br>
 <b><em>Best Paper Finalist</em></b> <br>
 <br>[<a href="pubs/LarsenSC.pdf">PDF</a>] &nbsp; &nbsp; [<a href="pubs/LarsenSC.bib">BIB</a>]<br>
@@ -132,10 +132,10 @@ and <a href="childs.html">Hank Childs</a> <br>
 <div style="float: left; width: 125; margin: 5px; padding: 5px">
 <IMG SRC="pubs/KressISC20_thumb.jpeg" BORDER="0" width="125"></a></div>
 <br>Opportunities for Cost Savings with In Transit Visualization <br>
-<a href="kress.html">James Kress</a>,
-<a href="larsen.html">Matt Larsen</a>,
+<a href="people/phd/kress.html">James Kress</a>,
+<a href="people/phd/larsen.html">Matt Larsen</a>,
 Jong Choi, Mark Kim, Matthew Wolf, Norbert Podhorszki, Scott Klasky, 
-<a href="childs.html">Hank Childs</a>, 
+<a href="people/faculty/childs.html">Hank Childs</a>, 
 and David Pugmire <br>
 ISC High Performance Conference, Frankfurt, Germany, June 2020 <br>
 <br>[<a href="pubs/KressISC20.pdf">PDF</a>] &nbsp; &nbsp; [<a href="pubs/KressISC20.bib">BIB</a>]<br>
@@ -145,10 +145,10 @@ ISC High Performance Conference, Frankfurt, Germany, June 2020 <br>
 <div style="float: left; width: 125; margin: 5px; padding: 5px">
 <IMG SRC="pubs/KressISC_thumb.jpeg" BORDER="0" width="125"></a></div>
 <br>Comparing the Efficiency of In Situ Visualization Paradigms at Scale <br>
-<a href="kress.html">James Kress</a>,
-<a href="larsen.html">Matthew Larsen</a>,
+<a href="people/phd/kress.html">James Kress</a>,
+<a href="people/phd/larsen.html">Matthew Larsen</a>,
 Jong Choi, Mark Kim, Matthew Wolf, Norbert Podhorszki, Scott Klasky,
-<a href="childs.html">Hank Childs</a>,
+<a href="people/faculty/childs.html">Hank Childs</a>,
 and David Pugmire <br>
 ISC High Performance Conference, Frankfurt, Germany, June 2019 <br>
 <br>[<a href="pubs/KressISC.pdf">PDF</a>] &nbsp; &nbsp; [<a href="pubs/KressISC.bib">BIB</a>]<br>
@@ -158,10 +158,10 @@ ISC High Performance Conference, Frankfurt, Germany, June 2019 <br>
 <div style="float: left; width: 125; margin: 5px; padding: 5px">
 <IMG SRC="pubs/KressLDAV20_thumb.jpeg" BORDER="0" width="125"></a></div>
 <br>Comparing Time-to-Solution for In Situ Visualization Paradigms at Scale <br>
-<a href="kress.html">James Kress</a>,
-<a href="larsen.html">Matt Larsen</a>,
+<a href="people/phd/kress.html">James Kress</a>,
+<a href="people/phd/larsen.html">Matt Larsen</a>,
 Jong Choi, Mark Kim, Matthew Wolf, Norbert Podhorszki, Scott Klasky, 
-<a href="childs.html">Hank Childs</a>, 
+<a href="people/faculty/childs.html">Hank Childs</a>, 
 and David Pugmire <br>
 <a href="http://ldav.org">IEEE Symposium on Large Data Analysis and Visualization (LDAV)</a>, Salt Lake City, Utah, October 2020 <br>
 <br>[<a href="pubs/KressLDAV20.pdf">PDF</a>] &nbsp; &nbsp; [<a href="pubs/KressLDAV20.bib">BIB</a>]<br>
@@ -171,11 +171,11 @@ and David Pugmire <br>
 <div style="float: left; width: 125; margin: 5px; padding: 5px">
 <IMG SRC="pubs/KressISAV_thumb.jpeg" BORDER="0" width="125"></a></div>
 <br>Loosely Coupled In Situ Visualization: A Perspective on Why it's Here to Stay <br>
-<a href="kress.html">James Kress</a>,
+<a href="people/phd/kress.html">James Kress</a>,
 Scott Klasky,
 Norbert Podhorszki, 
 Jong Choi, 
-<a href="childs.html">Hank Childs</a>, 
+<a href="people/faculty/childs.html">Hank Childs</a>, 
 and Dave Pugmire <br>
 <a href="http://vis.lbl.gov/Events/ISAV-2015/"> SC15 Workshop on In Situ Infrastructures for Enabling Extreme-scale Analysis and Visualization (ISAV-15)</a>, Austin, TX, November 2015 <br>
 <br>[<a href="pubs/KressISAV.pdf">PDF</a>] &nbsp; &nbsp; [<a href="pubs/KressISAV.bib">BIB</a>]<br>
@@ -197,6 +197,8 @@ Research Group on Computing and Data Understanding at eXtreme Scale &#8226; The 
 <a href="http://www.ucdavis.edu/"><img border="0" src="./idav_files/ucdavis_logo_png"></a>
 </div>
 -->
+<script src="spa.js"></script>
+
 
 
 
